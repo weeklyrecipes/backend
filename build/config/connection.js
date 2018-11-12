@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose = require("mongoose");
-var index_1 = require("../env/index");
 var connectOptions = {
     autoReconnect: true,
     reconnectTries: Number.MAX_VALUE,
     reconnectInterval: 1000,
 };
-var MONGO_URI = "" + index_1.default.envConfig.database.MONGODB_URI;
+var MONGO_URI = 'mongodb://heroku_sz1xtlxd:m1go0e6822ttstpvbec0rvt4ob@ds159673-a0.mlab.com:59673,ds159673-a1.mlab.com:59673/heroku_sz1xtlxd?replicaSet=rs-ds159673';
 console.log(MONGO_URI);
 exports.db = mongoose.createConnection(MONGO_URI, connectOptions);
 // handlers
