@@ -3,6 +3,6 @@
 export const envConfig: any = {
     database: {
         MONGODB_URI: process.env.MONGODB_URI,
-        MONGODB_DB_MAIN: process.env.MONGODB_MAIN
+        MONGODB_DB_MAIN: ""
     }
 };

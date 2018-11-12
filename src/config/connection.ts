@@ -13,7 +13,7 @@ const connectOptions: connectOptions = {
     reconnectInterval: 1000,
 };
 
-const MONGO_URI: string = `${config.envConfig.database.MONGODB_URI}`;
+const MONGO_URI: string = 'mongodb://heroku_sz1xtlxd:m1go0e6822ttstpvbec0rvt4ob@ds159673-a0.mlab.com:59673,ds159673-a1.mlab.com:59673/heroku_sz1xtlxd?replicaSet=rs-ds159673';
 console.log(MONGO_URI)
 
 export const db: mongoose.Connection = mongoose.createConnection(MONGO_URI, connectOptions);
