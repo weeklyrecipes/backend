@@ -1,5 +1,5 @@
 import RecipeModel from '../models/RecipeModel';
-// import calulcateRecipe from '../helpers/calculateRecipe';
+import { calculateRecipe } from '../helpers/calculateRecipe';
 import * as express from 'express';
 
 class RecipeController {
@@ -41,8 +41,10 @@ class RecipeController {
                 instructions: req.body.instructions,
                 type: req.body.type
             })
-            .then((data) => {
-                res.status(200).json({ data });
+            .then((recipe) => {
+                calculateRecipe(recipe);
+                recipe.save();
+                res.status(200).json({ recipe });
             })
             .catch((error: Error) => {
                 res.status(500).json({

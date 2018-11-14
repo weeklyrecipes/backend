@@ -29,8 +29,7 @@ var RecipeSchema = new mongoose_1.Schema({
         type: Array
     },
     macro: {
-        type: Object,
-        default: 0
+        type: Object
     },
     photo_url: {
         type: String,

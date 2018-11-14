@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var RecipeModel_1 = require("../models/RecipeModel");
+var calculateRecipe_1 = require("../helpers/calculateRecipe");
 var RecipeController = /** @class */ (function () {
     function RecipeController() {
     }
@@ -41,8 +42,10 @@ var RecipeController = /** @class */ (function () {
             instructions: req.body.instructions,
             type: req.body.type
         })
-            .then(function (data) {
-            res.status(200).json({ data: data });
+            .then(function (recipe) {
+            calculateRecipe_1.calculateRecipe(recipe);
+            recipe.save();
+            res.status(200).json({ recipe: recipe });
         })
             .catch(function (error) {
             res.status(500).json({
