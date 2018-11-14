@@ -13,6 +13,7 @@ var RecipeRouter = /** @class */ (function () {
     RecipeRouter.prototype.routes = function () {
         this.router.get('/', RecipeController_1.default.getRecipes);
         this.router.post('/', RecipeController_1.default.createRecipe);
+        this.router.delete('/:id', RecipeController_1.default.deleteRecipe);
     };
     return RecipeRouter;
 }());

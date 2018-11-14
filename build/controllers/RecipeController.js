@@ -55,6 +55,19 @@ var RecipeController = /** @class */ (function () {
             next(error);
         });
     };
+    RecipeController.prototype.deleteRecipe = function (req, res, next) {
+        RecipeModel_1.default.remove({ _id: req.params.id })
+            .then(function (recipe) {
+            res.status(200).json({ recipe: recipe });
+        })
+            .catch(function (error) {
+            res.status(500).json({
+                error: error.message,
+                errorStack: error.stack
+            });
+            next(error);
+        });
+    };
     return RecipeController;
 }());
 exports.default = new RecipeController();

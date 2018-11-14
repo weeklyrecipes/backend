@@ -14,5 +14,6 @@ export default class RecipeRouter {
     public routes(): void {
         this.router.get('/', RecipeController.getRecipes);
         this.router.post('/', RecipeController.createRecipe);
+        this.router.delete('/:id', RecipeController.deleteRecipe);
     }
 }
