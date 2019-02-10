@@ -16,5 +16,8 @@ export default class IngredientRouter {
     public routes(): void {
         this.router.get('/', IngredientController.getIngredients);
         this.router.get('/search', IngredientController.searchIngredients);
+        // this.router.get('/:id', IngredientController.getIngredient);
+        // this.router.put('/:id', IngredientController.editIngredient);
+        // this.router.delete('/:id', IngredientController.deleteIngredient);
     }
 }

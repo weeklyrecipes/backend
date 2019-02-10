@@ -6,6 +6,9 @@ export interface IUserModel extends Document {
     updatedAt ? : Date;
     name: string;
     email: string;
+    menus: array;
+    pass: object;
+    fireId: string;
 }
 
 const UserSchema: Schema = new Schema({
@@ -16,6 +19,17 @@ const UserSchema: Schema = new Schema({
     email: {
         type: String,
         required: true
+    },
+    fireId: {
+      type: String,
+      required: true
+    },
+    menus: {
+        type: Array
+    },
+    pass: {
+        type: Object,
+        default: false
     }
 }, {
     collection: 'usermodel',

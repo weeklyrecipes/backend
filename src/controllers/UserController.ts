@@ -10,11 +10,18 @@ class UserController {
     public getUser(req: express.Request, res: express.Response, next: express.NextFunction): void {
         UserModel
             .findOne({
-                name: req.query.name,
+                fireId: req.query.fireId,
                 email: req.query.email
             })
-            .then((data) => {
-                res.status(200).json({ data });
+            .then((user) => {
+                // updatePass(user);
+                // updateMenus(user);
+                if (user && user.pass.status == "valid") {
+                  res.status(200).json({ user });
+                }
+                else {
+                  res.status(400).json({error: "update-payment"})
+                }
             })
             .catch((error: Error) => {
                 res.status(500).json({

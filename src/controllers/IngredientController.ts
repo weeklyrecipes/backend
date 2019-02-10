@@ -4,25 +4,24 @@ import * as express from 'express';
 var data = require('../helpers/ingredients.json');
 
 class IngredientController {
+
      /**
      * @param  {express.Request} req
      * @param  {express.Response} res
      * @param  {express.NextFunction} next
      */
     public getIngredients(req: express.Request, res: express.Response, next: express.NextFunction): void {
-        // IngredientModel
-        //     .find({})
-        //     .then((data) => {
-        //         res.status(200).json({ data });
-        //     })
-        //     .catch((error: Error) => {
-        //         res.status(500).json({
-        //             error: error.message,
-        //             errorStack: error.stack
-        //         });
-        //         next(error);
-        //     });
+        res.status(200).json(data);
     }
+
+      /**
+      * @param  {express.Request} req
+      * @param  {express.Response} res
+      * @param  {express.NextFunction} next
+      */
+     public editIngredient(req: express.Request, res: express.Response, next: express.NextFunction): void {
+         data[req.query.id].
+     }
 
     /**
      * @param  {express.Request} req
