@@ -27,31 +27,3 @@ export function calculateRecipe(recipe: any) {
     console.log(recipe)
   }
 }
-
-
-
-
-
-function calculateTMB(data: any) {
-  if (data.gender == "M") {
-      return 66 + (13.7516 * data.weight) + (5 * data.height) - (6.8 * data.age);
-  }
-  else {
-      return 655 + (9.5634 * data.weight) + (1.8 * data.height) - (4.6756 * data.age);
-  }
-}
-
-function returnAF(data: any) {
-  if(data.objective == 0) {
-    return 1.375;
-  }
-  else if (data.objective == 1) {
-    return 1.56;
-  }
-  else if (data.objective == 2) {
-    return 1.64;
-  }
-  else if (data.objective == 3) {
-    return 1.22;
-  }
-}

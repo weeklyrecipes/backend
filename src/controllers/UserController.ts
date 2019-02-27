@@ -16,12 +16,12 @@ class UserController {
             .then((user) => {
                 // updatePass(user);
                 // updateMenus(user);
-                if (user && user.pass.status == "valid") {
-                  res.status(200).json({ user });
-                }
-                else {
-                  res.status(400).json({error: "update-payment"})
-                }
+                // if (user && user.pass.status == "valid") {
+                //   res.status(200).json({ user });
+                // }
+                // else {
+                //   res.status(400).json({error: "update-payment"})
+                // }
             })
             .catch((error: Error) => {
                 res.status(500).json({

@@ -29,35 +29,254 @@ function calculateAF(data: any) {
   }
 }
 
-function gainWeight() {
-
-}
-
-var semaineA1600  = {
-  breakfast: {
-    carbs: 2,
-    lact: 0.5,
-    prot: 2,
-    lip: 0.5
-  },
-  encas: {
-    fruits: 1.5
-  },
-  lunch: {
+let diets = {
+  "a1200": {
+    breakfast: {
+      carbs: 2,
+      lact: 0.5,
+      prot: 1
+    },
+    snack: {
+      fruits: 1
+    },
+    lunch: {
       veg: 1,
-      fruits: 0,
-      carbs: 3,
-      lact: 0,
+      carbs: 2,
       prot: 2.5,
       lip: 1
+    },
+    snack2: {
+      fruits: 1.5,
+      carbs: 1,
+      lact: 0.5
+    },
+    dinner: {
+      veg: 1,
+      carbs: 2,
+      prot: 2,
+      lip: 1
+    }
   },
-  dinner: {
-    veg: 1,
-    fruits: 0,
-    carbs: 2,
-    lact: 0.5,
-    prot: 2.5,
-    lip: 1
+  "b1200": {
+    breakfast: {
+      fruits: 1,
+      carbs: 2,
+      lact: 0.5
+    },
+    snack1: {
+      fruits: 1.5
+    },
+    lunch: {
+      veg: 1,
+      carbs: 2,
+      prot: 2,
+      lip: 1.5
+    },
+    snack2: {
+      carbs: 1,
+      lact: 0.5,
+      prot: 1
+    },
+    dinner: {
+      veg: 1,
+      carbs: 1,
+      prot: 2,
+      lip: 1
+    }
+  },
+  "a1300": {
+    breakfast: {
+      carbs: 2,
+      lact: 0.5,
+      prot: 1
+    },
+    snack: {
+      fruits: 2
+    },
+    lunch: {
+      veg: 1,
+      carbs: 3,
+      prot: 3,
+      lip: 1
+    },
+    snack2: {
+      fruits: 1,
+      lact: 0.5
+    },
+    dinner: {
+      veg: 1,
+      carbs: 2,
+      prot: 2,
+      lip: 1
+    }
+  },
+  "b1300": {
+    breakfast: {
+      fruits: 0.5,
+      carbs: 2,
+      lact: 0.5
+    },
+    snack1: {
+      fruits: 1
+    },
+    lunch: {
+      veg: 1,
+      carbs: 2,
+      prot: 3,
+      lip: 1.5
+    },
+    snack2: {
+      fruits: 1,
+      carbs: 1,
+      lact: 0.5
+    },
+    dinner: {
+      veg: 1,
+      carbs: 1.5,
+      prot: 2.5,
+      lip: 1
+    }
+  },
+  "a1400": {
+    breakfast: {
+      carbs: 2,
+      lact: 0.5,
+      prot: 1,
+      lip: 0.5
+    },
+    snack: {
+      fruits: 2
+    },
+    lunch: {
+      veg: 1,
+      carbs: 2,
+      prot: 3,
+      lip: 1
+    },
+    snack2: {
+      fruits: 1,
+      carbs: 2,
+      lact: 0.5
+    },
+    dinner: {
+      veg: 1,
+      carbs: 2,
+      prot: 2,
+      lip: 1
+    }
+  },
+  "b1400": {
+    breakfast: {
+      fruits: 1,
+      carbs: 2,
+      lact: 0.5
+    },
+    snack1: {
+      fruits: 1,
+      lact: 0.5
+    },
+    lunch: {
+      veg: 1,
+      carbs: 2,
+      prot: 3,
+      lip: 1
+    },
+    snack2: {
+      fruits: 1,
+      carbs: 1,
+      prot: 1
+    },
+    dinner: {
+      veg: 1,
+      carbs: 2,
+      prot: 2,
+      lip: 1
+    }
+  },
+  "a1500": {
+    breakfast: {
+      carbs: 2,
+      lact: 0.5,
+      prot: 1,
+      lip: 0.5
+    },
+    snack: {
+      fruits: 1.5
+    },
+    lunch: {
+      veg: 1,
+      carbs: 2,
+      prot: 3,
+      lip: 1
+    },
+    snack2: {
+      fruits: 2,
+      carbs: 2,
+      lact: 0.5
+    },
+    dinner: {
+      veg: 1,
+      carbs: 2,
+      lact: 0.5,
+      prot: 2.5,
+      lip: 1
+    }
+  },
+  "b1500": {
+    breakfast: {
+      fruits: 1,
+      carbs: 2,
+      lact: 0.5
+    },
+    snack1: {
+      fruits: 1,
+      lact: 0.5
+    },
+    lunch: {
+      veg: 1,
+      carbs: 2,
+      prot: 3,
+      lip: 1
+    },
+    snack2: {
+      fruits: 1,
+      carbs: 1.5,
+      prot: 0.5
+    },
+    dinner: {
+      veg: 1,
+      carbs: 2,
+      lact: 0.5,
+      prot: 3,
+      lip: 1
+    }
+  },
+  "a1600": {
+    breakfast: {
+      carbs: 2,
+      lact: 0.5,
+      prot: 2,
+      lip: 0.5
+    },
+    encas: {
+      fruits: 1.5
+    },
+    lunch: {
+        veg: 1,
+        fruits: 0,
+        carbs: 3,
+        lact: 0,
+        prot: 2.5,
+        lip: 1
+    },
+    dinner: {
+      veg: 1,
+      fruits: 0,
+      carbs: 2,
+      lact: 0.5,
+      prot: 2.5,
+      lip: 1
+    }
   }
 }
 
@@ -68,33 +287,16 @@ var recipeWeekA = {
   veg: [{name: "Courgette", ratio: 0.04}]
 }
 
-function calculateRecipe() {
-  var repas = "lunch";
-  var ratios = semaineA1600["lunch"];
-  var ingredients = [];
-  ingredients.push({name: recipeWeekA.prot[0].name, quantity: (ratios.prot/recipeWeekA.prot[0].ratio) * 10});
-  ingredients.push({name: recipeWeekA.lip[0].name, quantity: (ratios.lip/recipeWeekA.lip[0].ratio) * 10});
-  ingredients.push({name: recipeWeekA.carbs[0].name, quantity: (ratios.carbs/recipeWeekA.carbs[0].ratio) * 10});
-  ingredients.push({name: recipeWeekA.veg[0].name, quantity: (ratios.veg/recipeWeekA.veg[0].ratio) * 10});
-  console.log(ingredients);
-}
-
-var semaineB1200  = {
-  breakfast: {
-    carbs: 20,
-    prot: 20,
-    lip: 5
-  },
-  encas: {
-    carbs: 15
-  },
-  lunch: {
-
-  }
-  dinner: {
-
-  }
-}
+// function calculateRecipe() {
+//   var repas = "lunch";
+//   var ratios = semaineA1600["lunch"];
+//   var ingredients = [];
+//   ingredients.push({name: recipeWeekA.prot[0].name, quantity: (ratios.prot/recipeWeekA.prot[0].ratio) * 10});
+//   ingredients.push({name: recipeWeekA.lip[0].name, quantity: (ratios.lip/recipeWeekA.lip[0].ratio) * 10});
+//   ingredients.push({name: recipeWeekA.carbs[0].name, quantity: (ratios.carbs/recipeWeekA.carbs[0].ratio) * 10});
+//   ingredients.push({name: recipeWeekA.veg[0].name, quantity: (ratios.veg/recipeWeekA.veg[0].ratio) * 10});
+//   console.log(ingredients);
+// }
 
 function looseWeight(data: any) {
   let calories = Math.round(caloriesNeeded(data) * 0.7);
@@ -109,10 +311,10 @@ function remise(data: any) {
 function seche(data: any) {
   let calories = caloriesNeeded(data) * 0.75;
 }
-
-function gainWeight(data: any) {
-  let calories = caloriesNeeded(data) * 1.3;
-}
+//
+// function gainWeight(data: any) {
+//   let calories = caloriesNeeded(data) * 1.3;
+// }
 
 // function readjustCal(data: any) {
 //   if(data.objective == 0) {

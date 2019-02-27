@@ -13,6 +13,9 @@ var IngredientRouter = /** @class */ (function () {
     IngredientRouter.prototype.routes = function () {
         this.router.get('/', IngredientController_1.default.getIngredients);
         this.router.get('/search', IngredientController_1.default.searchIngredients);
+        // this.router.get('/:id', IngredientController.getIngredient);
+        // this.router.put('/:id', IngredientController.editIngredient);
+        // this.router.delete('/:id', IngredientController.deleteIngredient);
     };
     return IngredientRouter;
 }());

@@ -33,6 +33,18 @@ class RecipeController {
      * @param  {express.NextFunction} next
      */
     public createRecipe(req: express.Request, res: express.Response, next: express.NextFunction): void {
+        let ingredients = req.body.ingredients;
+        let macros = {};
+        let i = 0;
+        while (ingredients[i]) {
+          if (macros[ingredients[i].macroType]) {
+            macros[ingredients[i].macroType].push(ingredients[i]);
+          }
+          else {
+            macros[ingredients[i].macroType] = [ingredients[i]];
+          }
+          i++;
+        }
         RecipeModel
             .create({
                 ingredients: req.body.ingredients,

@@ -11,6 +11,17 @@ var UserSchema = new mongoose_1.Schema({
     email: {
         type: String,
         required: true
+    },
+    fireId: {
+        type: String,
+        required: true
+    },
+    menus: {
+        type: Array
+    },
+    pass: {
+        type: Object,
+        default: false
     }
 }, {
     collection: 'usermodel',

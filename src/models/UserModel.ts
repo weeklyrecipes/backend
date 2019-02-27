@@ -6,7 +6,7 @@ export interface IUserModel extends Document {
     updatedAt ? : Date;
     name: string;
     email: string;
-    menus: array;
+    menus: Array<any>;
     pass: object;
     fireId: string;
 }

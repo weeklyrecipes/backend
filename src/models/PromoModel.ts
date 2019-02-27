@@ -3,7 +3,9 @@ import { Schema, Document } from 'mongoose';
 
 export interface IPromoModel extends Document {
     value: string;
-    validity: string;
+    status: string;
+    duration: number;
+    date: Date;
 }
 
 const PromoSchema: Schema = new Schema({
@@ -11,14 +13,17 @@ const PromoSchema: Schema = new Schema({
         type: String,
         required: true
     },
-    validity: {
-        type: String,
-        required: true
-    },
     status: {
       type: String,
       enum: ['available', 'valid', 'expired'],
       default: 'available'
+    },
+    duration: {
+      type: Number,
+      default: 30
+    },
+    date: {
+      type: Date
     }
 }, {
     collection: 'promomodel',

@@ -34,6 +34,18 @@ var RecipeController = /** @class */ (function () {
      * @param  {express.NextFunction} next
      */
     RecipeController.prototype.createRecipe = function (req, res, next) {
+        var ingredients = req.body.ingredients;
+        var macros = {};
+        var i = 0;
+        while (ingredients[i]) {
+            if (macros[ingredients[i].macroType]) {
+                macros[ingredients[i].macroType].push(ingredients[i]);
+            }
+            else {
+                macros[ingredients[i].macroType] = [ingredients[i]];
+            }
+            i++;
+        }
         RecipeModel_1.default
             .create({
             ingredients: req.body.ingredients,

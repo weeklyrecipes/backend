@@ -10,18 +10,14 @@ var IngredientController = /** @class */ (function () {
     * @param  {express.NextFunction} next
     */
     IngredientController.prototype.getIngredients = function (req, res, next) {
-        // IngredientModel
-        //     .find({})
-        //     .then((data) => {
-        //         res.status(200).json({ data });
-        //     })
-        //     .catch((error: Error) => {
-        //         res.status(500).json({
-        //             error: error.message,
-        //             errorStack: error.stack
-        //         });
-        //         next(error);
-        //     });
+        res.status(200).json(data);
+    };
+    /**
+    * @param  {express.Request} req
+    * @param  {express.Response} res
+    * @param  {express.NextFunction} next
+    */
+    IngredientController.prototype.editIngredient = function (req, res, next) {
     };
     /**
      * @param  {express.Request} req

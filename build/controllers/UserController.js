@@ -12,11 +12,18 @@ var UserController = /** @class */ (function () {
     UserController.prototype.getUser = function (req, res, next) {
         UserModel_1.default
             .findOne({
-            name: req.query.name,
+            fireId: req.query.fireId,
             email: req.query.email
         })
-            .then(function (data) {
-            res.status(200).json({ data: data });
+            .then(function (user) {
+            // updatePass(user);
+            // updateMenus(user);
+            // if (user && user.pass.status == "valid") {
+            //   res.status(200).json({ user });
+            // }
+            // else {
+            //   res.status(400).json({error: "update-payment"})
+            // }
         })
             .catch(function (error) {
             res.status(500).json({

@@ -20,7 +20,6 @@ class IngredientController {
       * @param  {express.NextFunction} next
       */
      public editIngredient(req: express.Request, res: express.Response, next: express.NextFunction): void {
-         data[req.query.id].
      }
 
     /**
