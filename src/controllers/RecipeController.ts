@@ -54,7 +54,7 @@ class RecipeController {
                 type: req.body.type
             })
             .then((recipe) => {
-                calculateRecipe(recipe);
+                // calculateRecipe(recipe);
                 recipe.save();
                 res.status(200).json({ recipe });
             })
