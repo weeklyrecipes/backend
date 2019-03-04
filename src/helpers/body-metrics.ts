@@ -48,23 +48,39 @@ var recipeWeekA = {
 //   console.log(ingredients);
 // }
 
-function looseWeight(data: any) {
-  let calories = Math.round(caloriesNeeded(data) * 0.7);
+function loseWeight(data: any) {
+  return Math.round(caloriesNeeded(data) * 0.7);
 
 }
 
 function remise(data: any) {
-  let calories = caloriesNeeded(data);
+  return caloriesNeeded(data);
 
 }
 
 function seche(data: any) {
-  let calories = caloriesNeeded(data) * 0.75;
+  return caloriesNeeded(data) * 0.75;
 }
-//
-// function gainWeight(data: any) {
-//   let calories = caloriesNeeded(data) * 1.3;
-// }
+
+function gainWeight(data: any) {
+  return caloriesNeeded(data) * 1.3;
+}
+
+export function finalCalculus(data: any) {
+  if (data.objective == 0) {
+    return loseWeight(data);
+  }
+  else if (data.objective == 1) {
+    return remise(data);
+  }
+  else if (data.objective == 2) {
+    return seche(data);
+  }
+  else if (data.objective == 3) {
+    return gainWeight(data);
+  }
+
+}
 
 // function readjustCal(data: any) {
 //   if(data.objective == 0) {

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var UserModel_1 = require("../models/UserModel");
+var body_metrics_1 = require("../helpers/body-metrics");
 var UserController = /** @class */ (function () {
     function UserController() {
     }
@@ -11,10 +12,7 @@ var UserController = /** @class */ (function () {
      */
     UserController.prototype.getUser = function (req, res, next) {
         UserModel_1.default
-            .findOne({
-            fireId: req.query.fireId,
-            email: req.query.email
-        })
+            .findById(req.query.id)
             .then(function (user) {
             // updatePass(user);
             // updateMenus(user);
@@ -46,14 +44,43 @@ var UserController = /** @class */ (function () {
             activity: req.body.activity,
             allergens: req.body.allergens,
             gender: req.body.gender,
+            objective: req.body.objective,
             weight: req.body.weight,
             height: req.body.height,
             age: req.body.age,
             _id: req.body.fireId
         })
-            .then(function (data) {
-            // calculateRecipes(data);
-            res.status(200).json({ data: data });
+            .then(function (user) {
+            var calories = body_metrics_1.finalCalculus(user);
+            console.log(calories);
+            user.calories = calories;
+            user.save(function () {
+                res.status(200).json({ user: user });
+            });
+            // res.status(200).json({ data });
+        })
+            .catch(function (error) {
+            res.status(500).json({
+                error: error.message,
+                errorStack: error.stack
+            });
+            next(error);
+        });
+    };
+    /**
+     * @param  {express.Request} req
+     * @param  {express.Response} res
+     * @param  {express.NextFunction} next
+     */
+    UserController.prototype.editUser = function (req, res, next) {
+        UserModel_1.default
+            .findById(req.body.userId)
+            .then(function (user) {
+            var calories = body_metrics_1.finalCalculus(user);
+            user.calories = calories;
+            user.save(function () {
+                res.status(200).json({ user: user });
+            });
         })
             .catch(function (error) {
             res.status(500).json({

@@ -1,6 +1,7 @@
 import UserModel from '../models/UserModel';
 import * as express from 'express';
 import { calculateRecipes } from '../helpers/calculateRecipe';
+import { finalCalculus } from '../helpers/body-metrics';
 
 class UserController {
     /**
@@ -10,10 +11,7 @@ class UserController {
      */
     public getUser(req: express.Request, res: express.Response, next: express.NextFunction): void {
         UserModel
-            .findOne({
-                fireId: req.query.fireId,
-                email: req.query.email
-            })
+            .findById(req.query.id)
             .then((user) => {
                 // updatePass(user);
                 // updateMenus(user);
@@ -46,14 +44,44 @@ class UserController {
                 activity: req.body.activity,
                 allergens: req.body.allergens,
                 gender: req.body.gender,
+                objective: req.body.objective,
                 weight: req.body.weight,
                 height: req.body.height,
                 age: req.body.age,
                 _id: req.body.fireId
             })
-            .then((data) => {
-                // calculateRecipes(data);
-                res.status(200).json({ data });
+            .then((user) => {
+                let calories = finalCalculus(user);
+                console.log(calories);
+                user.calories = calories;
+                user.save(() => {
+                  res.status(200).json({ user });
+                })
+                // res.status(200).json({ data });
+            })
+            .catch((error: Error) => {
+                res.status(500).json({
+                    error: error.message,
+                    errorStack: error.stack
+                });
+                next(error);
+            });
+    }
+
+    /**
+     * @param  {express.Request} req
+     * @param  {express.Response} res
+     * @param  {express.NextFunction} next
+     */
+    public editUser(req: express.Request, res: express.Response, next: express.NextFunction): void {
+        UserModel
+            .findById(req.body.userId)
+            .then((user) => {
+                let calories = finalCalculus(user);
+                user.calories = calories;
+                user.save(() => {
+                  res.status(200).json({ user });
+                })
             })
             .catch((error: Error) => {
                 res.status(500).json({
