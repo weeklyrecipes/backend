@@ -12,7 +12,7 @@ var UserController = /** @class */ (function () {
      */
     UserController.prototype.getUser = function (req, res, next) {
         UserModel_1.default
-            .findById(req.params.id)
+            .findOne({ _id: req.params.id })
             .then(function (user) {
             // updatePass(user);
             // updateMenus(user);

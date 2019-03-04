@@ -11,7 +11,7 @@ class UserController {
      */
     public getUser(req: express.Request, res: express.Response, next: express.NextFunction): void {
         UserModel
-            .findById(req.params.id)
+            .findOne({_id: req.params.id})
             .then((user) => {
                 // updatePass(user);
                 // updateMenus(user);
