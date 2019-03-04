@@ -11,11 +11,11 @@ class UserController {
      */
     public getUser(req: express.Request, res: express.Response, next: express.NextFunction): void {
         UserModel
-            .findById(req.query.id)
+            .findById(req.params.id)
             .then((user) => {
                 // updatePass(user);
                 // updateMenus(user);
-                console.log(req.query.id)
+                console.log(req.params.id)
                 console.log(user);
                 if (user) {
                   res.status(200).json({ user });

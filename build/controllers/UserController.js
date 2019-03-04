@@ -12,11 +12,11 @@ var UserController = /** @class */ (function () {
      */
     UserController.prototype.getUser = function (req, res, next) {
         UserModel_1.default
-            .findById(req.query.id)
+            .findById(req.params.id)
             .then(function (user) {
             // updatePass(user);
             // updateMenus(user);
-            console.log(req.query.id);
+            console.log(req.params.id);
             console.log(user);
             if (user) {
                 res.status(200).json({ user: user });
