@@ -50,11 +50,12 @@ class RecipeController {
                 name: req.body.name,
                 photo_url: req.body.photo_url,
                 instructions: req.body.instructions,
-                type: req.body.type
+                type: req.body.type,
+                macro: macros
             })
             .then((recipe) => {
                 // calculateRecipe(recipe);
-                recipe.save();
+                // recipe.save();
                 res.status(200).json({ recipe });
             })
             .catch((error: Error) => {

@@ -17,10 +17,6 @@ var RecipeSchema = new mongoose_1.Schema({
         type: Array,
         required: true
     },
-    calories: {
-        type: Number,
-        default: 0
-    },
     cookingTime: {
         type: Number,
         default: 0

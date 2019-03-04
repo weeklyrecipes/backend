@@ -5,7 +5,6 @@ export interface IRecipeModel extends Document {
     createdAt ? : Date;
     updatedAt ? : Date;
     ingredients: Array<any>;
-    calories: Number;
     type: String;
     name: String;
     macro: Object;
@@ -28,10 +27,6 @@ const RecipeSchema: Schema = new Schema({
     ingredients: {
         type: Array,
         required: true
-    },
-    calories: {
-        type: Number,
-        default: 0
     },
     cookingTime: {
         type: Number,
