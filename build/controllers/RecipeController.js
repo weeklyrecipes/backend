@@ -39,11 +39,11 @@ var RecipeController = /** @class */ (function () {
         console.log("INGREDIENTS");
         console.log(JSON.stringify(ingredients));
         while (ingredients[i]) {
-            if (macros[ingredients[i].macroType]) {
-                macros[ingredients[i].macroType].push(ingredients[i]);
+            if (macros[ingredients[i]["macroType"]]) {
+                macros[ingredients[i]["macroType"]].push(ingredients[i]);
             }
             else {
-                macros[ingredients[i].macroType] = [ingredients[i]];
+                macros[ingredients[i]["macroType"]] = [ingredients[i]];
             }
             i++;
         }
