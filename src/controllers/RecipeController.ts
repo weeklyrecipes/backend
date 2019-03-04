@@ -35,6 +35,8 @@ class RecipeController {
         let ingredients = req.body.ingredients;
         let macros = {};
         let i = 0;
+        console.log("INGREDIENTS")
+        console.log(JSON.stringify(ingredients))
         while (ingredients[i]) {
           if (macros[ingredients[i].macroType]) {
             macros[ingredients[i].macroType].push(ingredients[i]);
