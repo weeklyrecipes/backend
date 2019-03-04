@@ -1,6 +1,6 @@
 import RecipeModel from '../models/RecipeModel';
-import { calculateRecipe } from '../helpers/calculateRecipe';
 import * as express from 'express';
+import { calculateRecipes } from '../helpers/calculateRecipe';
 
 class RecipeController {
      /**
@@ -9,11 +9,10 @@ class RecipeController {
      * @param  {express.NextFunction} next
      */
     public getRecipes(req: express.Request, res: express.Response, next: express.NextFunction): void {
-        console.log("Arrived here")
         RecipeModel
             .find({})
             .then((data) => {
-              // console.log("ney")
+                calculateRecipes();
                 res.status(200).json({ data });
             })
             .catch((error: Error) => {

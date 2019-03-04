@@ -12,7 +12,7 @@ var UserSchema = new mongoose_1.Schema({
         type: String,
         required: true
     },
-    fireId: {
+    _id: {
         type: String,
         required: true
     },
@@ -22,6 +22,36 @@ var UserSchema = new mongoose_1.Schema({
     pass: {
         type: Object,
         default: false
+    },
+    activity: {
+        type: Number
+    },
+    allergens: {
+        type: Array
+    },
+    gender: {
+        type: String
+    },
+    age: {
+        type: Number
+    },
+    weight: {
+        type: Number
+    },
+    height: {
+        type: Number
+    },
+    objective: {
+        type: Number,
+        default: 0
+    },
+    calories: {
+        type: Number,
+        default: 0
+    },
+    week: {
+        type: String,
+        default: "A"
     }
 }, {
     collection: 'usermodel',

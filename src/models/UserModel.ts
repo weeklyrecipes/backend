@@ -4,11 +4,20 @@ import { Schema, Document } from 'mongoose';
 export interface IUserModel extends Document {
     createdAt ? : Date;
     updatedAt ? : Date;
-    name: string;
-    email: string;
+    name: String;
+    email: String;
     menus: Array<any>;
-    pass: object;
-    fireId: string;
+    pass: any;
+    _id: String;
+    activity: Number;
+    allergens: Array<any>;
+    gender: String;
+    age: Number;
+    weight: Number;
+    height: Number;
+    objective: Number;
+    calories: Number;
+    week: String;
 }
 
 const UserSchema: Schema = new Schema({
@@ -20,7 +29,7 @@ const UserSchema: Schema = new Schema({
         type: String,
         required: true
     },
-    fireId: {
+    _id: {
       type: String,
       required: true
     },
@@ -30,6 +39,36 @@ const UserSchema: Schema = new Schema({
     pass: {
         type: Object,
         default: false
+    },
+    activity: {
+      type: Number
+    },
+    allergens: {
+      type: Array
+    },
+    gender: {
+      type: String
+    },
+    age: {
+      type: Number
+    },
+    weight: {
+      type: Number
+    },
+    height: {
+      type: Number
+    },
+    objective: {
+      type: Number,
+      default: 0
+    },
+    calories: {
+      type: Number,
+      default: 0
+    },
+    week: {
+      type: String,
+      default: "A"
     }
 }, {
     collection: 'usermodel',
