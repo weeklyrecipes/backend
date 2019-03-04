@@ -1,7 +1,7 @@
 import UserModel from '../models/UserModel';
 import * as express from 'express';
 import { calculateRecipes } from '../helpers/calculateRecipe';
-import { finalCalculus } from '../helpers/body-metrics';
+import { finalCalculus } from '../helpers/bodyMetrics';
 
 class UserController {
     /**

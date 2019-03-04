@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var UserModel_1 = require("../models/UserModel");
-var body_metrics_1 = require("../helpers/body-metrics");
+var bodyMetrics_1 = require("../helpers/bodyMetrics");
 var UserController = /** @class */ (function () {
     function UserController() {
     }
@@ -51,7 +51,7 @@ var UserController = /** @class */ (function () {
             _id: req.body.fireId
         })
             .then(function (user) {
-            var calories = body_metrics_1.finalCalculus(user);
+            var calories = bodyMetrics_1.finalCalculus(user);
             console.log(calories);
             user.calories = calories;
             user.save(function () {
@@ -76,7 +76,7 @@ var UserController = /** @class */ (function () {
         UserModel_1.default
             .findById(req.body.userId)
             .then(function (user) {
-            var calories = body_metrics_1.finalCalculus(user);
+            var calories = bodyMetrics_1.finalCalculus(user);
             user.calories = calories;
             user.save(function () {
                 res.status(200).json({ user: user });
