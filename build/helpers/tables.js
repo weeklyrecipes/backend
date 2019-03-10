@@ -5,7 +5,7 @@ var diets = {
         breakfast: {
             carbs: 2,
             lact: 0.5,
-            prot: 1
+            protein: 1
         },
         snack1: {
             fruits: 1
@@ -13,7 +13,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 2,
-            prot: 2.5,
+            protein: 2.5,
             lipid: 1
         },
         snack2: {
@@ -24,7 +24,7 @@ var diets = {
         dinner: {
             veg: 1,
             carbs: 2,
-            prot: 2,
+            protein: 2,
             lipid: 1
         }
     },
@@ -40,18 +40,18 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 2,
-            prot: 2,
+            protein: 2,
             lipid: 1.5
         },
         snack2: {
             carbs: 1,
             lact: 0.5,
-            prot: 1
+            protein: 1
         },
         dinner: {
             veg: 1,
             carbs: 1,
-            prot: 2,
+            protein: 2,
             lipid: 1
         }
     },
@@ -59,7 +59,7 @@ var diets = {
         breakfast: {
             carbs: 2,
             lact: 0.5,
-            prot: 1
+            protein: 1
         },
         snack1: {
             fruits: 2
@@ -67,7 +67,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 3,
+            protein: 3,
             lipid: 1
         },
         snack2: {
@@ -77,7 +77,7 @@ var diets = {
         dinner: {
             veg: 1,
             carbs: 2,
-            prot: 2,
+            protein: 2,
             lipid: 1
         }
     },
@@ -93,7 +93,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 2,
-            prot: 3,
+            protein: 3,
             lipid: 1.5
         },
         snack2: {
@@ -104,7 +104,7 @@ var diets = {
         dinner: {
             veg: 1,
             carbs: 1.5,
-            prot: 2.5,
+            protein: 2.5,
             lipid: 1
         }
     },
@@ -112,7 +112,7 @@ var diets = {
         breakfast: {
             carbs: 2,
             lact: 0.5,
-            prot: 1,
+            protein: 1,
             lipid: 0.5
         },
         snack1: {
@@ -121,7 +121,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 2,
-            prot: 3,
+            protein: 3,
             lipid: 1
         },
         snack2: {
@@ -132,7 +132,7 @@ var diets = {
         dinner: {
             veg: 1,
             carbs: 2,
-            prot: 2,
+            protein: 2,
             lipid: 1
         }
     },
@@ -149,18 +149,18 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 2,
-            prot: 3,
+            protein: 3,
             lipid: 1
         },
         snack2: {
             fruits: 1,
             carbs: 1,
-            prot: 1
+            protein: 1
         },
         dinner: {
             veg: 1,
             carbs: 2,
-            prot: 2,
+            protein: 2,
             lipid: 1
         }
     },
@@ -168,7 +168,7 @@ var diets = {
         breakfast: {
             carbs: 2,
             lact: 0.5,
-            prot: 1,
+            protein: 1,
             lipid: 0.5
         },
         snack1: {
@@ -177,7 +177,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 2,
-            prot: 3,
+            protein: 3,
             lipid: 1
         },
         snack2: {
@@ -189,7 +189,7 @@ var diets = {
             veg: 1,
             carbs: 2,
             lact: 0.5,
-            prot: 2.5,
+            protein: 2.5,
             lipid: 1
         }
     },
@@ -206,19 +206,19 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 2,
-            prot: 3,
+            protein: 3,
             lipid: 1
         },
         snack2: {
             fruits: 1,
             carbs: 1.5,
-            prot: 0.5
+            protein: 0.5
         },
         dinner: {
             veg: 1,
             carbs: 2,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
@@ -226,7 +226,7 @@ var diets = {
         breakfast: {
             carbs: 2,
             lact: 0.5,
-            prot: 2,
+            protein: 2,
             lipid: 0.5
         },
         snack1: {
@@ -235,7 +235,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 2.5,
+            protein: 2.5,
             lipid: 1
         },
         snack2: {
@@ -247,7 +247,7 @@ var diets = {
             veg: 1,
             carbs: 2,
             lact: 0.5,
-            prot: 2.5,
+            protein: 2.5,
             lipid: 1
         }
     },
@@ -267,7 +267,7 @@ var diets = {
             fruits: 0,
             carbs: 3,
             lact: 0,
-            prot: 2.5,
+            protein: 2.5,
             lipid: 1
         },
         dinner: {
@@ -275,13 +275,13 @@ var diets = {
             fruits: 0,
             carbs: 2,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
     "A1700": {
         breakfast: {
-            prot: 1,
+            protein: 1,
             carbs: 2,
             lact: 1,
             lip: 0.5
@@ -292,7 +292,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 3,
+            protein: 3,
             lipid: 1.5
         },
         snack2: {
@@ -304,7 +304,7 @@ var diets = {
             veg: 1,
             carbs: 2.5,
             lact: 1,
-            prot: 2.5,
+            protein: 2.5,
             lipid: 1
         }
     },
@@ -322,19 +322,19 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 1.5
         },
         snack2: {
             fruits: 1.5,
             carbs: 1,
-            prot: 1
+            protein: 1
         },
         dinner: {
             veg: 1,
             carbs: 2,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
@@ -342,7 +342,7 @@ var diets = {
         breakfast: {
             carbs: 3,
             lact: 1,
-            prot: 2,
+            protein: 2,
             lip: 1
         },
         snack1: {
@@ -351,7 +351,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 3,
+            protein: 3,
             lipid: 1
         },
         snack2: {
@@ -363,7 +363,7 @@ var diets = {
             veg: 1,
             carbs: 2,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
@@ -381,19 +381,19 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 3,
+            protein: 3,
             lipid: 1.5
         },
         snack2: {
             fruits: 1,
             carbs: 2,
-            prot: 2
+            protein: 2
         },
         dinner: {
             veg: 1,
             carbs: 2,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
@@ -401,7 +401,7 @@ var diets = {
         breakfast: {
             carbs: 2,
             lact: 1,
-            prot: 2,
+            protein: 2,
             lipid: 1
         },
         snack1: {
@@ -410,7 +410,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 1
         },
         snack2: {
@@ -422,7 +422,7 @@ var diets = {
             veg: 1,
             carbs: 3,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
@@ -439,19 +439,19 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 3,
+            protein: 3,
             lipid: 1
         },
         snack2: {
             fruits: 1.5,
             carbs: 2,
-            prot: 1
+            protein: 1
         },
         dinner: {
             veg: 1,
             carbs: 2,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
@@ -459,7 +459,7 @@ var diets = {
         breakfast: {
             carbs: 2.5,
             lact: 1,
-            prot: 2,
+            protein: 2,
             lipid: 1
         },
         snack1: {
@@ -468,7 +468,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 4,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 1.5
         },
         snack2: {
@@ -480,7 +480,7 @@ var diets = {
             veg: 1,
             carbs: 4,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
@@ -488,7 +488,7 @@ var diets = {
         breakfast: {
             carbs: 2.5,
             lact: 1,
-            prot: 2,
+            protein: 2,
             lipid: 1
         },
         snack1: {
@@ -497,7 +497,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 4,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 1.5
         },
         snack2: {
@@ -509,7 +509,7 @@ var diets = {
             veg: 1,
             carbs: 4,
             lact: 0.5,
-            prot: 3,
+            protein: 3,
             lipid: 1
         }
     },
@@ -517,7 +517,7 @@ var diets = {
         breakfast: {
             carbs: 4,
             lact: 1,
-            prot: 2,
+            protein: 2,
             lipid: 1
         },
         snack1: {
@@ -526,7 +526,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 4,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 1.5
         },
         snack2: {
@@ -538,7 +538,7 @@ var diets = {
             veg: 1,
             carbs: 4,
             lact: 0.5,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 1
         }
     },
@@ -556,19 +556,19 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 2
         },
         snack2: {
             fruits: 1,
             carbs: 2,
-            prot: 2
+            protein: 2
         },
         dinner: {
             veg: 1,
             carbs: 3,
             lact: 0.5,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 1
         }
     },
@@ -576,7 +576,7 @@ var diets = {
         breakfast: {
             carbs: 3,
             lact: 1,
-            prot: 3,
+            protein: 3,
             lipid: 1
         },
         snack1: {
@@ -585,7 +585,7 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 4,
-            prot: 3.5,
+            protein: 3.5,
             lipid: 2
         },
         snack2: {
@@ -597,7 +597,7 @@ var diets = {
             veg: 1,
             carbs: 4,
             lact: 1,
-            prot: 3,
+            protein: 3,
             lipid: 1.5
         }
     },
@@ -615,19 +615,19 @@ var diets = {
         lunch: {
             veg: 1,
             carbs: 3,
-            prot: 4,
+            protein: 4,
             lipid: 2
         },
         snack2: {
             fruits: 1.5,
             carbs: 3,
-            prot: 1.5
+            protein: 1.5
         },
         dinner: {
             veg: 1,
             carbs: 3,
             lact: 0.5,
-            prot: 4,
+            protein: 4,
             lipid: 1.5
         }
     }
