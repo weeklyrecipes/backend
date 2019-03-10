@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var menus = {
-    "a1200": {
+var diets = {
+    "A1200": {
         breakfast: {
             carbs: 2,
             lact: 0.5,
@@ -28,7 +28,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b1200": {
+    "B1200": {
         breakfast: {
             fruits: 1,
             carbs: 2,
@@ -55,7 +55,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a1300": {
+    "A1300": {
         breakfast: {
             carbs: 2,
             lact: 0.5,
@@ -81,7 +81,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b1300": {
+    "B1300": {
         breakfast: {
             fruits: 0.5,
             carbs: 2,
@@ -108,7 +108,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a1400": {
+    "A1400": {
         breakfast: {
             carbs: 2,
             lact: 0.5,
@@ -136,7 +136,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b1400": {
+    "B1400": {
         breakfast: {
             fruits: 1,
             carbs: 2,
@@ -164,7 +164,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a1500": {
+    "A1500": {
         breakfast: {
             carbs: 2,
             lact: 0.5,
@@ -193,7 +193,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b1500": {
+    "B1500": {
         breakfast: {
             fruits: 1,
             carbs: 2,
@@ -222,7 +222,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a1600": {
+    "A1600": {
         breakfast: {
             carbs: 2,
             lact: 0.5,
@@ -251,7 +251,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b1600": {
+    "B1600": {
         breakfast: {
             fruits: 1,
             carbs: 2,
@@ -279,7 +279,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a1700": {
+    "A1700": {
         breakfast: {
             prot: 1,
             carbs: 2,
@@ -308,7 +308,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b1700": {
+    "B1700": {
         breakfast: {
             fruits: 1,
             carbs: 2,
@@ -338,7 +338,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a1800": {
+    "A1800": {
         breakfast: {
             carbs: 3,
             lact: 1,
@@ -367,7 +367,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b1800": {
+    "B1800": {
         breakfast: {
             fruits: 2,
             carbs: 2,
@@ -397,7 +397,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a1900": {
+    "A1900": {
         breakfast: {
             carbs: 2,
             lact: 1,
@@ -426,7 +426,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b1900": {
+    "B1900": {
         breakfast: {
             fruits: 1,
             carbs: 2.5,
@@ -455,7 +455,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a2000": {
+    "A2000": {
         breakfast: {
             carbs: 2.5,
             lact: 1,
@@ -484,7 +484,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b2000": {
+    "B2000": {
         breakfast: {
             carbs: 2.5,
             lact: 1,
@@ -513,7 +513,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a2100": {
+    "A2100": {
         breakfast: {
             carbs: 4,
             lact: 1,
@@ -542,7 +542,7 @@ var menus = {
             lipid: 1
         }
     },
-    "b2100": {
+    "B2100": {
         breakfast: {
             fruits: 1,
             carbs: 3,
@@ -572,7 +572,7 @@ var menus = {
             lipid: 1
         }
     },
-    "a2200": {
+    "A2200": {
         breakfast: {
             carbs: 3,
             lact: 1,
@@ -601,7 +601,7 @@ var menus = {
             lipid: 1.5
         }
     },
-    "b2200": {
+    "B2200": {
         breakfast: {
             fruits: 2,
             carbs: 3,
@@ -632,5 +632,5 @@ var menus = {
         }
     }
 };
-exports.diets = menus;
+exports.default = diets;
 //# sourceMappingURL=tables.js.map

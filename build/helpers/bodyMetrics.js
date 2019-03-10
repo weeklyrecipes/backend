@@ -33,22 +33,6 @@ function calculateAF(data) {
         return 1;
     }
 }
-var recipeWeekA = {
-    prot: [{ name: "Poulet", ratio: 0.2 }],
-    lip: [{ name: "Avocat", ratio: 0.125 }],
-    carbs: [{ name: "Pain", ratio: 0.5 }],
-    veg: [{ name: "Courgette", ratio: 0.04 }]
-};
-// function calculateRecipe() {
-//   var repas = "lunch";
-//   var ratios = semaineA1600["lunch"];
-//   var ingredients = [];
-//   ingredients.push({name: recipeWeekA.prot[0].name, quantity: (ratios.prot/recipeWeekA.prot[0].ratio) * 10});
-//   ingredients.push({name: recipeWeekA.lip[0].name, quantity: (ratios.lip/recipeWeekA.lip[0].ratio) * 10});
-//   ingredients.push({name: recipeWeekA.carbs[0].name, quantity: (ratios.carbs/recipeWeekA.carbs[0].ratio) * 10});
-//   ingredients.push({name: recipeWeekA.veg[0].name, quantity: (ratios.veg/recipeWeekA.veg[0].ratio) * 10});
-//   console.log(ingredients);
-// }
 function loseWeight(data) {
     return Math.round(caloriesNeeded(data) * 0.7);
 }
