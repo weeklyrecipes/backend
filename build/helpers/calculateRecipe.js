@@ -14,7 +14,7 @@ function calculateRecipe(diet, recipe, type) {
     for (var key in recipe.macro) {
         var macroLength = recipe.macro[key].length;
         while (i < macroLength) {
-            ingredients.push({ ingredient: recipe.macro[key][i], quantity: ((recipe.macro[key][i].ration / diet[type][key]) / macroLength) * 10 });
+            ingredients.push({ ingredient: recipe.macro[key][i], quantity: ((diet[type][key] / recipe.macro[key][i].ration) / macroLength) * 10 });
             i++;
         }
         i = 0;
