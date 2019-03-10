@@ -12,7 +12,6 @@ class RecipeController {
         RecipeModel
             .find({})
             .then((data) => {
-                calculateRecipes();
                 res.status(200).json({ data });
             })
             .catch((error: Error) => {

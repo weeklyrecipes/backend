@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var RecipeModel_1 = require("../models/RecipeModel");
-function calculateRecipes() {
-    findLunch("A", 1600);
+function calculateRecipes(user) {
+    findLunch(user.week, Math.ceil(user.calories / 100) * 100);
 }
 exports.calculateRecipes = calculateRecipes;
 function findBreakfast(week, calories, breakfasts) {
@@ -19,6 +19,7 @@ function findSnack1(week, calories, breakfasts) {
 exports.findSnack1 = findSnack1;
 function findLunch(week, calories) {
     RecipeModel_1.default.find({ type: 'lunch' }).then(function (recipes) {
+        console.log("RECIPES");
         console.log(recipes);
     });
 }

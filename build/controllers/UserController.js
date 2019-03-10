@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var UserModel_1 = require("../models/UserModel");
+var calculateRecipe_1 = require("../helpers/calculateRecipe");
 var bodyMetrics_1 = require("../helpers/bodyMetrics");
 var UserController = /** @class */ (function () {
     function UserController() {
@@ -17,9 +18,8 @@ var UserController = /** @class */ (function () {
             console.log(user);
             if (user) {
                 var calories = bodyMetrics_1.finalCalculus(user);
-                console.log("CALORIES");
-                console.log(calories);
                 user.calories = calories;
+                calculateRecipe_1.calculateRecipes(user);
                 user.save(function () {
                     res.status(200).json({ user: user });
                 });

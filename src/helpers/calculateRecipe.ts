@@ -1,7 +1,7 @@
 import RecipeModel from '../models/RecipeModel';
 
-export function calculateRecipes() {
-  findLunch("A", 1600);
+export function calculateRecipes(user: any) {
+  findLunch(user.week, Math.ceil(user.calories/100)*100);
 }
 
 
@@ -19,6 +19,7 @@ export function findSnack1(week: String, calories: Number, breakfasts: any) {
 
 export function findLunch(week: String, calories: Number) {
   RecipeModel.find({type: 'lunch'}).then((recipes) => {
+    console.log("RECIPES")
     console.log(recipes)
   })
 }

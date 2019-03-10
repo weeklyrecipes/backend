@@ -16,9 +16,8 @@ class UserController {
                 console.log(user);
                 if (user) {
                   let calories = finalCalculus(user);
-                  console.log("CALORIES")
-                  console.log(calories);
                   user.calories = calories;
+                  calculateRecipes(user);
                   user.save(() => {
                     res.status(200).json({ user });
                   })
