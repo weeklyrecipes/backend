@@ -1,13 +1,19 @@
+function calculateAge(birthday) { // birthday is a date
+  var ageDifMs = Date.now() - birthday.getTime();
+  var ageDate = new Date(ageDifMs); // miliseconds from epoch
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+}
+
 function caloriesNeeded(data: any) {
   return calculateTMB(data) * calculateAF(data);
 }
 
 function calculateTMB(data: any) {
   if (data.gender == "M") {
-      return 66 + (13.7516 * data.weight) + (5 * data.height) - (6.8 * data.age);
+      return 66 + (13.7516 * data.weight) + (5 * data.height) - (6.8 * calculateAge(data.birthday));
   }
   else {
-      return 655 + (9.5634 * data.weight) + (1.8 * data.height) - (4.6756 * data.age);
+      return 655 + (9.5634 * data.weight) + (1.8 * data.height) - (4.6756 * calculateAge(data.birthday));
   }
 }
 
