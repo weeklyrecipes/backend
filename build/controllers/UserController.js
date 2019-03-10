@@ -44,12 +44,11 @@ var UserController = /** @class */ (function () {
             name: req.body.name,
             email: req.body.email,
             activity: req.body.activity,
-            allergens: req.body.allergens,
             gender: req.body.gender,
             objective: req.body.objective,
             weight: req.body.weight,
             height: req.body.height,
-            age: req.body.age,
+            birthday: req.body.birthday,
             _id: req.body.fireId
         })
             .then(function (user) {

@@ -12,7 +12,7 @@ export interface IUserModel extends Document {
     activity: Number;
     allergens: Array<any>;
     gender: String;
-    age: Number;
+    birthday: Date;
     weight: Number;
     height: Number;
     objective: Number;
@@ -49,8 +49,8 @@ const UserSchema: Schema = new Schema({
     gender: {
       type: String
     },
-    age: {
-      type: Number
+    birthday: {
+      type: Date
     },
     weight: {
       type: Number
