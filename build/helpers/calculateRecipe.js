@@ -14,12 +14,13 @@ function calculateRecipe(diet, recipe, type) {
     for (var key in recipe.macro) {
         var macroLength = recipe.macro[key].length;
         while (i < macroLength) {
-            ingredients.push({ ingredient: recipe.macro[key][i], quantity: (recipe.macro[key][i].ration / diet[type][key]) * 10 });
+            ingredients.push({ ingredient: recipe.macro[key][i], quantity: ((recipe.macro[key][i].ration / diet[type][key]) / macroLength) * 10 });
             i++;
         }
         i = 0;
     }
-    console.log(ingredients);
+    return ingredients;
+    // console.log(ingredients);
 }
 function noDup(recipes, recipe) {
     var i = 0;
