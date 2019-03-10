@@ -63,16 +63,16 @@ function gainWeight(data) {
 }
 function finalCalculus(data) {
     if (data.objective == 0) {
-        return loseWeight(data);
+        return Math.floor(loseWeight(data));
     }
     else if (data.objective == 1) {
-        return remise(data);
+        return Math.floor(remise(data));
     }
     else if (data.objective == 2) {
-        return seche(data);
+        return Math.floor(seche(data));
     }
     else if (data.objective == 3) {
-        return gainWeight(data);
+        return Math.floor(gainWeight(data));
     }
 }
 exports.finalCalculus = finalCalculus;
