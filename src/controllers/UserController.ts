@@ -13,12 +13,16 @@ class UserController {
         UserModel
             .findById(req.params.id)
             .then((user) => {
-                // updatePass(user);
-                // updateMenus(user);
-                console.log(req.params.id)
                 console.log(user);
                 if (user) {
-                  res.status(200).json({ user });
+                  let calories = finalCalculus(user);
+                  console.log("CALORIES")
+                  console.log(calories);
+                  user.calories = calories;
+                  user.save(() => {
+                    res.status(200).json({ user });
+                  })
+                  // res.status(200).json({ user });
                 }
                 else {
                   res.status(400).json({error: "update-payment"})

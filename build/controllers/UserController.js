@@ -14,12 +14,16 @@ var UserController = /** @class */ (function () {
         UserModel_1.default
             .findById(req.params.id)
             .then(function (user) {
-            // updatePass(user);
-            // updateMenus(user);
-            console.log(req.params.id);
             console.log(user);
             if (user) {
-                res.status(200).json({ user: user });
+                var calories = bodyMetrics_1.finalCalculus(user);
+                console.log("CALORIES");
+                console.log(calories);
+                user.calories = calories;
+                user.save(function () {
+                    res.status(200).json({ user: user });
+                });
+                // res.status(200).json({ user });
             }
             else {
                 res.status(400).json({ error: "update-payment" });
