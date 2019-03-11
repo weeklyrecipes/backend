@@ -628,6 +628,65 @@ let diets = {
       protein: 4,
       lipid: 1.5
     }
+  },
+  "A2300": {
+    breakfast: {
+      carb: 3,
+      lact: 1,
+      protein: 2.5,
+      lipid: 1
+    },
+    snack1: {
+      fruits: 3,
+      lact: 1
+    },
+    lunch: {
+        veg: 1,
+        carb: 4,
+        protein: 4,
+        lipid: 2
+    },
+    snack2: {
+      fruits: 2,
+      carb: 3,
+      lact: 0.5
+    },
+    dinner: {
+      veg: 1,
+      carb: 4,
+      protein: 3.5,
+      lipid: 1
+    }
+  },
+  "B2300": {
+    breakfast: {
+      fruits: 2,
+      carb: 3,
+      lact: 1
+    },
+    snack1: {
+      fruits: 1.5,
+      lact: 1,
+      lipid: 1
+    },
+    lunch: {
+        veg: 1,
+        carb: 4,
+        protein: 4,
+        lipid: 2
+    },
+    snack2: {
+      fruits: 1,
+      carb: 3,
+      protein: 3
+    },
+    dinner: {
+      veg: 1,
+      carb: 3,
+      lact: 0.5,
+      protein: 3,
+      lipid: 1.5
+    }
   }
 }
 
