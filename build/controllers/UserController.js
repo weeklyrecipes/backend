@@ -83,7 +83,7 @@ class UserController {
      */
     editUser(req, res, next) {
         UserModel_1.default
-            .findById(req.body.userId)
+            .findById(req.params.id)
             .then((user) => {
             user.menus = {};
             user.objective = req.body.objective;

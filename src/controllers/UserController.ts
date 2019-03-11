@@ -85,7 +85,7 @@ class UserController {
      */
     public editUser(req: express.Request, res: express.Response, next: express.NextFunction): void {
         UserModel
-            .findById(req.body.userId)
+            .findById(req.params.id)
             .then((user) => {
                 user.menus = {};
                 user.objective = req.body.objective;
