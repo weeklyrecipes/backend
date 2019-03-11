@@ -52,59 +52,24 @@ function getDates(startDate, daysToAdd) {
     return aryDates;
 }
 
-export async function calculateRecipes(user: any) {
-  let dates = getDates(new Date(), 4);
-  let i = 0;
-  let finished = false;
-  let toFind = {breakfast: 0, snack1: 0, lunch: 0, snack2: 0, dinner: 0};
-  while (dates[i]) {
-    if (!user.menus[dates[i]]) user.menus[dates[i]] = {breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false};
-    for (let key in user.menus[dates[i]]) {
-      if (!user.menus[dates[i]][key]) toFind[key]++;
+export function calculateRecipes(user: any) {
+  return new Promise((resolve) => {
+    let dates = getDates(new Date(), 4);
+    let i = 0;
+    let toFind = {breakfast: 0, snack1: 0, lunch: 0, snack2: 0, dinner: 0};
+    while (dates[i]) {
+      if (!user.menus[dates[i]]) user.menus[dates[i]] = {breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false};
+      for (let key in user.menus[dates[i]]) {
+        if (!user.menus[dates[i]][key]) toFind[key]++;
+      }
+      i++;
     }
-    i++;
-  }
-  console.log("ALL MENUS");
-  console.log(user.menus);
-  for (let i of Array(toFind.lunch)) {
-    let recipe = await findLunch(user);
-    console.log("RECIPE")
-    console.log(recipe);
-  }
-  // for (let i of Array(toFind.dinner)) {
-  //   await findDinner(user);
-  // }
+    for (let j of Array(toFind.lunch)) {
+      let recipes = findLunch(user);
+    }
+    resolve(user.menus)
+  })
 }
-
-// function lunches(user, toFind) : any {
-//   let i = 0;
-//   return new Promise(() => {
-//     let int = setInterval(() => {
-//       if (i >= toFind.lunch) {
-//         clearInterval(int);
-//         resolve(true);
-//       }
-//       if (!critical) {
-//         findLunch(user);
-//         i++;
-//       }
-//     }, 200)
-//   })
-// }
-//
-// function dinners(user, toFind) : any {
-//   let i = 0;
-//   let int = setInterval(() => {
-//     if (i >= toFind.lunch) {
-//       clearInterval(int);
-//     }
-//     if (!critical) {
-//       findDinner(user);
-//       i++;
-//     }
-//   }, 200)
-// }
-
 
 export function findBreakfast(week: String, calories: Number) {
   RecipeModel.find({type: 'breakfast'}).then((recipes) => {
@@ -118,7 +83,7 @@ export function findSnack1(week: String, calories: Number) {
   })
 }
 
-function findLunch(user: any) : any {
+function findLunch(user: any) : Promise<any> {
   return new Promise((resolve) => {
     let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
     RecipeModel.count({type: 'lunch'}).exec(function (err, count) {
@@ -129,9 +94,7 @@ function findLunch(user: any) : any {
           for (let key in user.menus) {
             if (!user.menus[key]['lunch']) {
               user.menus[key]['lunch'] = final;
-              user.save(() => {
-                resolve(final)
-              });
+              resolve(final)
               break;
             }
           }
@@ -149,7 +112,7 @@ export function findSnack2(week: String, calories: Number) {
 
 }
 
-function findDinner(user: any) : any {
+function findDinner(user: any) : Promise<any> {
   return new Promise((resolve) => {
     let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
     RecipeModel.count({type: 'dinner'}).exec(function (err, count) {
@@ -159,10 +122,8 @@ function findDinner(user: any) : any {
           let final = calculateRecipe(diet, recipe, "dinner");
           for (let key in user.menus) {
             if (!user.menus[key]['dinner']) user.menus[key]['dinner'] = final;
-            console.log("RECIPE");
-            console.log(final);
             user.save(() => {
-              resolve(final)
+              resolve(user.menus)
             });
           }
 

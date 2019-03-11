@@ -1,12 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const RecipeModel_1 = require("../models/RecipeModel");
 const tables_1 = require("./tables");
@@ -57,10 +49,9 @@ function getDates(startDate, daysToAdd) {
     return aryDates;
 }
 function calculateRecipes(user) {
-    return __awaiter(this, void 0, void 0, function* () {
+    return new Promise((resolve) => {
         let dates = getDates(new Date(), 4);
         let i = 0;
-        let finished = false;
         let toFind = { breakfast: 0, snack1: 0, lunch: 0, snack2: 0, dinner: 0 };
         while (dates[i]) {
             if (!user.menus[dates[i]])
@@ -71,47 +62,13 @@ function calculateRecipes(user) {
             }
             i++;
         }
-        console.log("ALL MENUS");
-        console.log(user.menus);
-        for (let i of Array(toFind.lunch)) {
-            let recipe = yield findLunch(user);
-            console.log("RECIPE");
-            console.log(recipe);
+        for (let j of Array(toFind.lunch)) {
+            let recipes = findLunch(user);
         }
-        // for (let i of Array(toFind.dinner)) {
-        //   await findDinner(user);
-        // }
+        resolve(user.menus);
     });
 }
 exports.calculateRecipes = calculateRecipes;
-// function lunches(user, toFind) : any {
-//   let i = 0;
-//   return new Promise(() => {
-//     let int = setInterval(() => {
-//       if (i >= toFind.lunch) {
-//         clearInterval(int);
-//         resolve(true);
-//       }
-//       if (!critical) {
-//         findLunch(user);
-//         i++;
-//       }
-//     }, 200)
-//   })
-// }
-//
-// function dinners(user, toFind) : any {
-//   let i = 0;
-//   let int = setInterval(() => {
-//     if (i >= toFind.lunch) {
-//       clearInterval(int);
-//     }
-//     if (!critical) {
-//       findDinner(user);
-//       i++;
-//     }
-//   }, 200)
-// }
 function findBreakfast(week, calories) {
     RecipeModel_1.default.find({ type: 'breakfast' }).then((recipes) => {
         console.log(recipes);
@@ -135,9 +92,7 @@ function findLunch(user) {
                     for (let key in user.menus) {
                         if (!user.menus[key]['lunch']) {
                             user.menus[key]['lunch'] = final;
-                            user.save(() => {
-                                resolve(final);
-                            });
+                            resolve(final);
                             break;
                         }
                     }
@@ -163,10 +118,8 @@ function findDinner(user) {
                     for (let key in user.menus) {
                         if (!user.menus[key]['dinner'])
                             user.menus[key]['dinner'] = final;
-                        console.log("RECIPE");
-                        console.log(final);
                         user.save(() => {
-                            resolve(final);
+                            resolve(user.menus);
                         });
                     }
                 }
