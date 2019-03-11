@@ -17,6 +17,8 @@ class UserController {
                 let calories = bodyMetrics_1.finalCalculus(user);
                 user.calories = (calories > 1200 ? calories : 1200);
                 calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                    console.log(recipes);
+                    console.log(user);
                     user.menus = recipes;
                     user.save(() => {
                         res.status(200).json({ user });
