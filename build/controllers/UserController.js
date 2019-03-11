@@ -61,8 +61,9 @@ class UserController {
             user.calories = (calories > 1200 ? calories : 1200);
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                 user.menus = recipes;
-                user.save((user) => {
-                    res.json(user);
+                user.markModified('menus');
+                user.save((saved) => {
+                    res.status(200).json(saved);
                 });
             });
             // res.status(200).json({ data });
@@ -84,12 +85,18 @@ class UserController {
         UserModel_1.default
             .findById(req.body.userId)
             .then((user) => {
+            user.menus = {};
+            user.objective = req.body.objective;
+            user.activity = req.body.activity;
+            user.weight = req.body.weight;
             let calories = bodyMetrics_1.finalCalculus(user);
             user.calories = (calories > 1200 ? calories : 1200);
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                 user.menus = recipes;
-                res.status(200).json({ user });
-                user.save();
+                user.markModified('menus');
+                user.save((saved) => {
+                    res.status(200).json(saved);
+                });
             });
         })
             .catch((error) => {

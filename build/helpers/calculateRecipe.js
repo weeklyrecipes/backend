@@ -50,12 +50,14 @@ function getDates(startDate, daysToAdd) {
     return aryDates;
 }
 function calculateRecipes(user) {
+    let diet = tables_1.default[user.week + String(Math.floor(user.calories / 100) * 100)];
+    user.diet = diet;
     return new Promise((resolve) => {
-        let dates = getDates(new Date(), 4);
+        let dates = getDates(new Date(), 14);
         let i = 0;
         let toFind = { breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [] };
         while (dates[i]) {
-            if (!user.menus || !user.menus[dates[i]]) {
+            if (!user.menus[dates[i]]) {
                 user.menus[dates[i]] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false };
             }
             for (let key in user.menus[dates[i]]) {
@@ -88,12 +90,11 @@ function findSnack1(week, calories) {
 exports.findSnack1 = findSnack1;
 function findLunch(user, date) {
     return new Promise((resolve) => {
-        let diet = tables_1.default[user.week + String(Math.floor(user.calories / 100) * 100)];
         RecipeModel_1.default.count({ type: 'lunch' }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);
             RecipeModel_1.default.findOne({ type: 'lunch' }).skip(random).exec((err, recipe) => {
                 if (recipe && noDup(user.menus, recipe)) {
-                    let final = calculateRecipe(diet, recipe, "lunch");
+                    let final = calculateRecipe(user.diet, recipe, "lunch");
                     user.menus[date]["lunch"] = final;
                     user.save(() => {
                         resolve(final);

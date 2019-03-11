@@ -18,6 +18,7 @@ export interface IUserModel extends Document {
     objective: Number;
     calories: Number;
     week: String;
+    diet: Object;
 }
 
 const UserSchema: Schema = new Schema({
@@ -34,6 +35,9 @@ const UserSchema: Schema = new Schema({
       required: true
     },
     menus: {
+      type: Object
+    },
+    diet: {
       type: Object
     },
     pass: {
