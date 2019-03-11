@@ -19,10 +19,9 @@ class UserController {
                 user.calories = (calories > 1200 ? calories : 1200);
                 calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                     user.menus = recipes;
+                    user.markModified('menus');
                     user.save((err, saved) => {
                         res.status(200).json(saved);
-                        console.log(err);
-                        console.log(saved);
                     });
                 });
                 // res.status(200).json({ user });
