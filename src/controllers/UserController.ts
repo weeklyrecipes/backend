@@ -63,7 +63,7 @@ class UserController {
                 calculateRecipes(user).then((recipes) => {
                   user.menus = recipes;
                   user.markModified('menus');
-                  user.save((saved) => {
+                  user.save((err, saved) => {
                     res.status(200).json(saved);
                   })
                 })
@@ -96,7 +96,7 @@ class UserController {
                 calculateRecipes(user).then((recipes) => {
                   user.menus = recipes;
                   user.markModified('menus');
-                  user.save((saved) => {
+                  user.save((err, saved) => {
                     res.status(200).json(saved);
                   })
                 })
