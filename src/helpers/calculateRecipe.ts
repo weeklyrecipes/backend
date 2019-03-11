@@ -55,6 +55,9 @@ function getDates(startDate, daysToAdd) {
 
 export function calculateRecipes(user: any) {
   let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
+  console.log("DIET")
+  console.log(user.diet)
+  console.log(user.calories);
   user.diet = diet;
   return new Promise((resolve) => {
     let dates = getDates(new Date(), 3);
