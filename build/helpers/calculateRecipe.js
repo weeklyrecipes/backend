@@ -55,8 +55,9 @@ function calculateRecipes(user) {
         let i = 0;
         let toFind = { breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [] };
         while (dates[i]) {
-            if (!user.menus || !user.menus[dates[i]])
+            if (!user.menus || !user.menus[dates[i]]) {
                 user.menus[dates[i]] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false };
+            }
             for (let key in user.menus[dates[i]]) {
                 console.log("THE KEY");
                 console.log(key);
