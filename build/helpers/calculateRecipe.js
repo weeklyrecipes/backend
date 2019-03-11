@@ -22,7 +22,8 @@ function calculateRecipe(diet, recipe, type) {
         }
         i = 0;
     }
-    return ingredients;
+    recipe.ingredients = ingredients;
+    return recipe;
     // console.log(ingredients);
 }
 function noDup(menus, recipe) {

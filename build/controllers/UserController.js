@@ -13,11 +13,11 @@ class UserController {
         UserModel_1.default
             .findById(req.params.id)
             .then((user) => {
-            console.log(user);
             if (user) {
                 let calories = bodyMetrics_1.finalCalculus(user);
                 user.calories = (calories > 1200 ? calories : 1200);
                 calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                    user.menus = recipes;
                     user.save(() => {
                         res.status(200).json({ user });
                     });
@@ -56,10 +56,12 @@ class UserController {
         })
             .then((user) => {
             let calories = bodyMetrics_1.finalCalculus(user);
-            console.log(calories);
             user.calories = (calories > 1200 ? calories : 1200);
-            user.save(() => {
-                res.status(200).json({ user });
+            calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                user.menus = recipes;
+                user.save(() => {
+                    res.status(200).json({ user });
+                });
             });
             // res.status(200).json({ data });
         })
@@ -82,8 +84,11 @@ class UserController {
             .then((user) => {
             let calories = bodyMetrics_1.finalCalculus(user);
             user.calories = (calories > 1200 ? calories : 1200);
-            user.save(() => {
-                res.status(200).json({ user });
+            calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                user.menus = recipes;
+                user.save(() => {
+                    res.status(200).json({ user });
+                });
             });
         })
             .catch((error) => {

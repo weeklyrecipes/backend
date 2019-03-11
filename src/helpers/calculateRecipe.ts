@@ -22,7 +22,8 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
     }
     i = 0;
   }
-  return ingredients;
+  recipe.ingredients = ingredients;
+  return recipe;
   // console.log(ingredients);
 }
 
