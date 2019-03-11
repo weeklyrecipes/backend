@@ -21,7 +21,7 @@ class UserController {
                     console.log("USER");
                     console.log(user);
                     user.menus = recipes;
-                    user.save(() => {
+                    user.save((user) => {
                       res.status(200).json({ user });
                     })
                   })
@@ -63,7 +63,7 @@ class UserController {
                 user.calories =  (calories > 1200 ? calories : 1200);
                 calculateRecipes(user).then((recipes) => {
                   user.menus = recipes;
-                  user.save(() => {
+                  user.save((user) => {
                     res.status(200).json({ user });
                   })
                 })
