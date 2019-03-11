@@ -82,7 +82,7 @@ class UserController {
             .findById(req.body.userId)
             .then((user) => {
                 let calories = finalCalculus(user);
-                user.calories = calories;
+                user.calories =  (calories > 1200 ? calories : 1200);
                 user.save(() => {
                   res.status(200).json({ user });
                 })
