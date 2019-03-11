@@ -34,8 +34,7 @@ const UserSchema: Schema = new Schema({
       required: true
     },
     menus: {
-        type: Object,
-        default: {}
+      type: Object
     },
     pass: {
         type: Object,

@@ -22,6 +22,7 @@ class UserController {
                     res.status(200).json(user);
                     user.save((err, user) => {
                         console.log(err);
+                        console.log(user);
                     });
                 });
                 // res.status(200).json({ user });

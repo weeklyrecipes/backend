@@ -16,8 +16,7 @@ const UserSchema = new mongoose_1.Schema({
         required: true
     },
     menus: {
-        type: Object,
-        default: {}
+        type: Object
     },
     pass: {
         type: Object,
