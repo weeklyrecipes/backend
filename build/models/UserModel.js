@@ -57,16 +57,6 @@ const UserSchema = new mongoose_1.Schema({
 }, {
     collection: 'usermodel',
     versionKey: false
-}).pre('save', (next) => {
-    // this will run before saving
-    console.log(this._doc);
-    const now = new Date();
-    if (!this.createdAt) {
-        this.createdAt = now;
-    }
-    this.updatedAt = now;
-    next();
-    return this;
 });
 exports.default = connections.db.model('UserModel', UserSchema);
 //# sourceMappingURL=UserModel.js.map
