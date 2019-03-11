@@ -14,12 +14,10 @@ class UserController {
             .findById(req.params.id)
             .then((user) => {
             if (user) {
+                console.log(user);
                 let calories = bodyMetrics_1.finalCalculus(user);
                 user.calories = (calories > 1200 ? calories : 1200);
                 calculateRecipe_1.calculateRecipes(user).then((recipes) => {
-                    // console.log(recipes)
-                    console.log("USER");
-                    console.log(user);
                     user.menus = recipes;
                     res.status(200).json(user);
                     user.save();
