@@ -57,7 +57,7 @@ export function calculateRecipes(user: any) {
   let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
   user.diet = diet;
   return new Promise((resolve) => {
-    let dates = getDates(new Date(), 14);
+    let dates = getDates(new Date(), 3);
     let i = 0;
     let toFind = {breakfast: [], snack1: [], lunch: [], snack2: [], dinner: []};
     while (dates[i]) {
@@ -72,6 +72,9 @@ export function calculateRecipes(user: any) {
     let promises = [];
     for (let date of toFind.lunch) {
       promises.push(findLunch(user, date));
+    }
+    for (let date of toFind.dinner) {
+      promises.push(findDinner(user, date));
     }
     Promise.all(promises).then(() => {
       resolve(user.menus)
@@ -115,23 +118,20 @@ export function findSnack2(week: String, calories: Number) {
 
 }
 
-function findDinner(user: any) : Promise<any> {
+function findDinner(user: any, date: any) : Promise<any> {
   return new Promise((resolve) => {
-    let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
     RecipeModel.count({type: 'dinner'}).exec(function (err, count) {
       let random = Math.floor(Math.random() * count)
       RecipeModel.findOne({type: 'dinner'}).skip(random).exec((err, recipe) => {
         if (recipe && noDup(user.menus, recipe)) {
-          let final = calculateRecipe(diet, recipe, "dinner");
-          for (let key in user.menus) {
-            if (!user.menus[key]['dinner']) user.menus[key]['dinner'] = final;
-            user.save(() => {
-              resolve(user.menus)
-            });
-          }
+          let final = calculateRecipe(user.diet, recipe, "dinner");
+          user.menus[date]["dinner"] = final;
+          user.save(() => {
+            resolve(final);
+          })
         }
         else {
-          resolve(findDinner(user));
+          resolve(findLunch(user, date));
         }
       })
     })
