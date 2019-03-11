@@ -75,15 +75,11 @@ const UserSchema: Schema = new Schema({
     versionKey: false
 }).pre('save', (next) => {
     // this will run before saving
-    if (this._doc) {
-        const doc: IUserModel = this._doc;
-        const now: Date = new Date();
-
-        if (!doc.createdAt) {
-            doc.createdAt = now;
-        }
-        doc.updatedAt = now;
+    const now: Date = new Date();
+    if (!this.createdAt) {
+      this.createdAt = now;
     }
+    this.updatedAt = now;
     next();
 
     return this;

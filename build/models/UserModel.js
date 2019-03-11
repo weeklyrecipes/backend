@@ -57,14 +57,11 @@ const UserSchema = new mongoose_1.Schema({
     versionKey: false
 }).pre('save', (next) => {
     // this will run before saving
-    if (this._doc) {
-        const doc = this._doc;
-        const now = new Date();
-        if (!doc.createdAt) {
-            doc.createdAt = now;
-        }
-        doc.updatedAt = now;
+    const now = new Date();
+    if (!this.createdAt) {
+        this.createdAt = now;
     }
+    this.updatedAt = now;
     next();
     return this;
 });
