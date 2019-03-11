@@ -689,6 +689,419 @@ let diets = {
             protein: 3,
             lipid: 1.5
         }
+    },
+    "A2400": {
+        breakfast: {
+            carb: 4,
+            lact: 1,
+            protein: 2.5,
+            lipid: 1
+        },
+        snack1: {
+            fruits: 3,
+            lact: 0.5
+        },
+        lunch: {
+            veg: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 2.5,
+            carb: 4,
+            lact: 1
+        },
+        dinner: {
+            veg: 1,
+            carb: 3,
+            protein: 4,
+            lipid: 1.5
+        }
+    },
+    "B2400": {
+        breakfast: {
+            fruits: 2,
+            carb: 3,
+            lact: 1
+        },
+        snack1: {
+            fruits: 2,
+            lact: 1,
+            lipid: 1
+        },
+        lunch: {
+            veg: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 1.5,
+            carb: 3,
+            protein: 2.5
+        },
+        dinner: {
+            veg: 1,
+            carb: 3,
+            lact: 0.5,
+            protein: 4,
+            lipid: 1.5
+        }
+    },
+    "A2500": {
+        breakfast: {
+            carb: 4,
+            lact: 1,
+            protein: 3.5,
+            lipid: 1
+        },
+        snack1: {
+            fruits: 3
+        },
+        lunch: {
+            veg: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 3,
+            carb: 3.5,
+            lact: 1
+        },
+        dinner: {
+            veg: 1,
+            fruits: 1,
+            carb: 4,
+            lact: 0.5,
+            protein: 3.5,
+            lipid: 1
+        }
+    },
+    "B2500": {
+        breakfast: {
+            fruits: 2,
+            carb: 4,
+            lact: 1
+        },
+        snack1: {
+            fruits: 2,
+            lact: 1,
+            lipid: 1.5
+        },
+        lunch: {
+            veg: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 1,
+            carb: 3,
+            protein: 3
+        },
+        dinner: {
+            veg: 1,
+            carb: 3,
+            lact: 0.5,
+            protein: 4,
+            lipid: 1.5
+        }
+    },
+    "A2600": {
+        breakfast: {
+            carb: 4,
+            lact: 1,
+            protein: 3.5,
+            lipid: 1
+        },
+        snack1: {
+            fruits: 3
+        },
+        lunch: {
+            veg: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 3,
+            carb: 4,
+            lact: 1
+        },
+        dinner: {
+            veg: 1,
+            carb: 4,
+            lact: 1,
+            protein: 3.5,
+            lipid: 1.5
+        }
+    },
+    "B2600": {
+        breakfast: {
+            fruits: 2,
+            carb: 4,
+            lact: 1
+        },
+        snack1: {
+            fruits: 2,
+            lact: 1
+        },
+        lunch: {
+            protein: 4,
+            veg: 1,
+            carb: 4,
+            lipid: 2.5
+        },
+        snack2: {
+            fruits: 1,
+            carb: 2,
+            protein: 3
+        },
+        dinner: {
+            veg: 1,
+            carb: 4,
+            lact: 1,
+            protein: 4,
+            lipid: 1.5
+        }
+    },
+    "A2700": {
+        breakfast: {
+            carb: 4,
+            lact: 1,
+            protein: 4,
+            lipid: 1
+        },
+        snack1: {
+            fruits: 3
+        },
+        lunch: {
+            veg: 1,
+            carb: 5,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 3,
+            carb: 4,
+            lact: 1
+        },
+        dinner: {
+            veg: 1,
+            carb: 4,
+            lact: 1,
+            protein: 4,
+            lipid: 1.5
+        }
+    },
+    "B2700": {
+        breakfast: {
+            fruits: 2,
+            lact: 1.5,
+            carb: 4
+        },
+        snack1: {
+            fruits: 2,
+            lact: 1,
+            lipid: 1
+        },
+        lunch: {
+            veg: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 1.5,
+            carb: 4,
+            protein: 4
+        },
+        dinner: {
+            veg: 1,
+            carb: 3,
+            lact: 0.5,
+            protein: 4,
+            lipid: 2
+        }
+    },
+    "A2800": {
+        breakfast: {
+            lact: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 1
+        },
+        snack1: {
+            fruits: 3.5
+        },
+        lunch: {
+            veg: 1,
+            carb: 5,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 3,
+            carb: 4,
+            lact: 1
+        },
+        dinner: {
+            veg: 1,
+            carb: 4,
+            lact: 1,
+            protein: 4,
+            lipid: 1.5
+        }
+    },
+    "B2800": {
+        breakfast: {
+            lact: 1,
+            carb: 4,
+            fruits: 2
+        },
+        snack1: {
+            fruits: 2,
+            lact: 1,
+            lipid: 1
+        },
+        lunch: {
+            veg: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 2.5
+        },
+        snack2: {
+            fruits: 1.5,
+            carb: 4,
+            protein: 4
+        },
+        dinner: {
+            veg: 1,
+            carb: 4,
+            lact: 1,
+            protein: 4,
+            lipid: 2
+        }
+    },
+    "A2900": {
+        breakfast: {
+            carb: 5,
+            lact: 1.5,
+            protein: 4,
+            lipid: 1
+        },
+        snack1: {
+            fruits: 4
+        },
+        lunch: {
+            veg: 1,
+            carb: 5,
+            protein: 4,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 3,
+            carb: 4,
+            lact: 1
+        },
+        dinner: {
+            veg: 1,
+            carb: 4,
+            lact: 0.5,
+            protein: 4,
+            lipid: 2
+        }
+    },
+    "B2900": {
+        breakfast: {
+            fruits: 2,
+            carb: 4,
+            lact: 1
+        },
+        snack1: {
+            fruits: 2,
+            lact: 1,
+            lipid: 1
+        },
+        lunch: {
+            veg: 1,
+            carb: 4,
+            protein: 4,
+            lipid: 2.5
+        },
+        snack2: {
+            fruits: 2,
+            carb: 4,
+            protein: 4
+        },
+        dinner: {
+            veg: 1,
+            carb: 4,
+            lact: 1,
+            protein: 4,
+            lipid: 2
+        }
+    },
+    "A3000": {
+        breakfast: {
+            lact: 1,
+            carb: 5,
+            protein: 4,
+            lipid: 1
+        },
+        snack1: {
+            fruits: 4
+        },
+        lunch: {
+            veg: 1,
+            carb: 5,
+            protein: 5,
+            lipid: 2
+        },
+        snack2: {
+            fruits: 3,
+            carb: 4,
+            lact: 1
+        },
+        dinner: {
+            veg: 1,
+            carb: 5,
+            lact: 1,
+            protein: 4,
+            lipid: 2
+        }
+    },
+    "B3000": {
+        breakfast: {
+            fruits: 2,
+            carb: 4,
+            lact: 1
+        },
+        snack1: {
+            fruits: 2,
+            lact: 1,
+            lipid: 1
+        },
+        lunch: {
+            veg: 1,
+            carb: 5,
+            protein: 5,
+            lipid: 3
+        },
+        snack2: {
+            fruits: 2,
+            carb: 4,
+            protein: 4
+        },
+        dinner: {
+            veg: 1,
+            carb: 4,
+            lact: 1,
+            protein: 4,
+            lipid: 2
+        }
     }
 };
 exports.default = diets;
