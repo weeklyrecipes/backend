@@ -21,7 +21,7 @@ class UserController {
                     console.log("USER");
                     console.log(user);
                     user.menus = recipes;
-                    res.status(200).json({ user });
+                    res.status(200).json(user);
                     user.save();
                 });
                 // res.status(200).json({ user });
@@ -62,7 +62,7 @@ class UserController {
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                 user.menus = recipes;
                 user.save((user) => {
-                    res.status(200).json({ user });
+                    res.json(user);
                 });
             });
             // res.status(200).json({ data });
@@ -88,9 +88,8 @@ class UserController {
             user.calories = (calories > 1200 ? calories : 1200);
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                 user.menus = recipes;
-                user.save(() => {
-                    res.status(200).json({ user });
-                });
+                res.status(200).json({ user });
+                user.save();
             });
         })
             .catch((error) => {
