@@ -51,7 +51,9 @@ const UserSchema = new mongoose_1.Schema({
     week: {
         type: String,
         default: "A"
-    }
+    },
+    createdAt: Date,
+    updatedAt: Date
 }, {
     collection: 'usermodel',
     versionKey: false

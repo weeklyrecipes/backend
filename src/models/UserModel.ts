@@ -69,7 +69,9 @@ const UserSchema: Schema = new Schema({
     week: {
       type: String,
       default: "A"
-    }
+    },
+    createdAt: Date,
+    updatedAt: Date
 }, {
     collection: 'usermodel',
     versionKey: false
