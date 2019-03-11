@@ -96,7 +96,9 @@ function findLunch(user: any, date: any) : Promise<any> {
         if (recipe && noDup(user.menus, recipe)) {
           let final = calculateRecipe(diet, recipe, "lunch");
           user.menus[date] = final;
-          resolve(final);
+          user.save(() => {
+            resolve(final);
+          })
         }
         else {
           resolve(findLunch(user, date));
