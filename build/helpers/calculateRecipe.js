@@ -133,11 +133,13 @@ function findLunch(user) {
                 if (recipe && noDup(user.menus, recipe)) {
                     let final = calculateRecipe(diet, recipe, "lunch");
                     for (let key in user.menus) {
-                        if (!user.menus[key]['lunch'])
+                        if (!user.menus[key]['lunch']) {
                             user.menus[key]['lunch'] = final;
-                        user.save(() => {
-                            resolve(final);
-                        });
+                            user.save(() => {
+                                resolve(final);
+                            });
+                            break;
+                        }
                     }
                 }
                 else {
