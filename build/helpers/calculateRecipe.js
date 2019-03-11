@@ -59,16 +59,12 @@ function calculateRecipes(user) {
                 user.menus[dates[i]] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false };
             }
             for (let key in user.menus[dates[i]]) {
-                console.log("THE KEY");
-                console.log(key);
                 if (!user.menus[dates[i]][key])
                     toFind[key].push(dates[i]);
             }
             i++;
         }
         let promises = [];
-        console.log("DATESSS");
-        console.log(JSON.stringify(toFind.lunch));
         for (let date of toFind.lunch) {
             promises.push(findLunch(user, date));
         }
