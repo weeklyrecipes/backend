@@ -1,21 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var RecipeModel_1 = require("../models/RecipeModel");
-var RecipeController = /** @class */ (function () {
-    function RecipeController() {
-    }
+const RecipeModel_1 = require("../models/RecipeModel");
+class RecipeController {
     /**
     * @param  {express.Request} req
     * @param  {express.Response} res
     * @param  {express.NextFunction} next
     */
-    RecipeController.prototype.getRecipes = function (req, res, next) {
+    getRecipes(req, res, next) {
         RecipeModel_1.default
             .find({})
-            .then(function (data) {
-            res.status(200).json({ data: data });
+            .then((data) => {
+            res.status(200).json({ data });
         })
-            .catch(function (error) {
+            .catch((error) => {
             console.log("error");
             console.log(error);
             res.status(500).json({
@@ -24,16 +22,16 @@ var RecipeController = /** @class */ (function () {
             });
             next(error);
         });
-    };
+    }
     /**
      * @param  {express.Request} req
      * @param  {express.Response} res
      * @param  {express.NextFunction} next
      */
-    RecipeController.prototype.createRecipe = function (req, res, next) {
-        var ingredients = req.body.ingredients;
-        var macros = {};
-        var i = 0;
+    createRecipe(req, res, next) {
+        let ingredients = req.body.ingredients;
+        let macros = {};
+        let i = 0;
         console.log("INGREDIENTS");
         console.log(JSON.stringify(ingredients));
         while (ingredients[i]) {
@@ -54,33 +52,32 @@ var RecipeController = /** @class */ (function () {
             type: req.body.type,
             macro: macros
         })
-            .then(function (recipe) {
+            .then((recipe) => {
             // calculateRecipe(recipe);
             // recipe.save();
-            res.status(200).json({ recipe: recipe });
+            res.status(200).json({ recipe });
         })
-            .catch(function (error) {
+            .catch((error) => {
             res.status(500).json({
                 error: error.message,
                 errorStack: error.stack
             });
             next(error);
         });
-    };
-    RecipeController.prototype.deleteRecipe = function (req, res, next) {
+    }
+    deleteRecipe(req, res, next) {
         RecipeModel_1.default.remove({ _id: req.params.id })
-            .then(function (recipe) {
-            res.status(200).json({ recipe: recipe });
+            .then((recipe) => {
+            res.status(200).json({ recipe });
         })
-            .catch(function (error) {
+            .catch((error) => {
             res.status(500).json({
                 error: error.message,
                 errorStack: error.stack
             });
             next(error);
         });
-    };
-    return RecipeController;
-}());
+    }
+}
 exports.default = new RecipeController();
 //# sourceMappingURL=RecipeController.js.map

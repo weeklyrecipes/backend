@@ -1,23 +1,22 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var IngredientController_1 = require("../controllers/IngredientController");
-var express_1 = require("express");
+const IngredientController_1 = require("../controllers/IngredientController");
+const express_1 = require("express");
 /**
  * @class IngredientRouter
  */
-var IngredientRouter = /** @class */ (function () {
-    function IngredientRouter() {
+class IngredientRouter {
+    constructor() {
         this.router = express_1.Router();
         this.routes();
     }
-    IngredientRouter.prototype.routes = function () {
+    routes() {
         this.router.get('/', IngredientController_1.default.getIngredients);
         this.router.get('/search', IngredientController_1.default.searchIngredients);
         // this.router.get('/:id', IngredientController.getIngredient);
         // this.router.put('/:id', IngredientController.editIngredient);
         // this.router.delete('/:id', IngredientController.deleteIngredient);
-    };
-    return IngredientRouter;
-}());
+    }
+}
 exports.default = IngredientRouter;
 //# sourceMappingURL=IngredientRouter.js.map

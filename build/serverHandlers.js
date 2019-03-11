@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var debug = require("debug");
+const debug = require("debug");
 /**
  * @param  {number|string} val
  */
 function normalizePort(val) {
-    var port = (typeof val === 'string') ? parseInt(val, 10) : val;
+    const port = (typeof val === 'string') ? parseInt(val, 10) : val;
     if (isNaN(port)) {
         return val;
     }
@@ -24,14 +24,14 @@ function onError(error, port) {
     if (error.syscall !== 'listen') {
         throw error;
     }
-    var bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
+    const bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + port;
     switch (error.code) {
         case 'EACCES':
-            console.error(bind + " requires elevated privileges");
+            console.error(`${bind} requires elevated privileges`);
             process.exit(1);
             break;
         case 'EADDRINUSE':
-            console.error(bind + " is already in use");
+            console.error(`${bind} is already in use`);
             process.exit(1);
             break;
         default:
@@ -40,9 +40,9 @@ function onError(error, port) {
 }
 exports.onError = onError;
 function onListening() {
-    var addr = this.address();
-    var bind = (typeof addr === 'string') ? "pipe " + addr : "port " + addr.port;
-    debug("Listening on " + bind);
+    const addr = this.address();
+    const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
+    debug(`Listening on ${bind}`);
 }
 exports.onListening = onListening;
 //# sourceMappingURL=serverHandlers.js.map

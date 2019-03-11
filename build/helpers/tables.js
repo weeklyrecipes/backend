@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var diets = {
+let diets = {
     "A1200": {
         breakfast: {
             carb: 2,

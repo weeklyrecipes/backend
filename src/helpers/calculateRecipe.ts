@@ -52,7 +52,7 @@ function getDates(startDate, daysToAdd) {
     return aryDates;
 }
 
-export function calculateRecipes(user: any) {
+export async function calculateRecipes(user: any) {
   let dates = getDates(new Date(), 4);
   let i = 0;
   let finished = false;
@@ -64,36 +64,46 @@ export function calculateRecipes(user: any) {
     }
     i++;
   }
-  i=0;
-  lunches(user, toFind);
+  console.log("ALL MENUS");
+  console.log(user.menus);
+  for (let i of Array(toFind.lunch)) {
+    let recipe = await findLunch(user);
+    console.log("RECIPE")
+    console.log(recipe);
+  }
+  // for (let i of Array(toFind.dinner)) {
+  //   await findDinner(user);
+  // }
 }
 
-function lunches(user, toFind) {
-  let i = 0;
-  let int = setInterval(() => {
-    if (i >= toFind.lunch) {
-      clearInterval(int);
-      dinners(user, toFind);
-    }
-    if (!critical) {
-      findLunch(user);
-      i++;
-    }
-  }, 200)
-}
-
-function dinners(user, toFind) {
-  let i = 0;
-  let int = setInterval(() => {
-    if (i >= toFind.lunch) {
-      clearInterval(int);
-    }
-    if (!critical) {
-      findDinner(user);
-      i++;
-    }
-  }, 200)
-}
+// function lunches(user, toFind) : any {
+//   let i = 0;
+//   return new Promise(() => {
+//     let int = setInterval(() => {
+//       if (i >= toFind.lunch) {
+//         clearInterval(int);
+//         resolve(true);
+//       }
+//       if (!critical) {
+//         findLunch(user);
+//         i++;
+//       }
+//     }, 200)
+//   })
+// }
+//
+// function dinners(user, toFind) : any {
+//   let i = 0;
+//   let int = setInterval(() => {
+//     if (i >= toFind.lunch) {
+//       clearInterval(int);
+//     }
+//     if (!critical) {
+//       findDinner(user);
+//       i++;
+//     }
+//   }, 200)
+// }
 
 
 export function findBreakfast(week: String, calories: Number) {
@@ -108,52 +118,56 @@ export function findSnack1(week: String, calories: Number) {
   })
 }
 
-function findLunch(user: any) {
-  critical = true;
-  let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
-  RecipeModel.count({type: 'lunch'}).exec(function (err, count) {
-    let random = Math.floor(Math.random() * count)
-    RecipeModel.findOne({type: 'lunch'}).skip(random).exec((err, recipe) => {
-      if (recipe && noDup(user.menus, recipe)) {
-        let final = calculateRecipe(diet, recipe, "lunch");
-        for (let key in user.menus) {
-          if (!user.menus[key]['lunch']) user.menus[key]['lunch'] = final;
-          user.save(() => {
-            critical = false;
-          });
-        }
+function findLunch(user: any) : any {
+  return new Promise((resolve) => {
+    let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
+    RecipeModel.count({type: 'lunch'}).exec(function (err, count) {
+      let random = Math.floor(Math.random() * count)
+      RecipeModel.findOne({type: 'lunch'}).skip(random).exec((err, recipe) => {
+        if (recipe && noDup(user.menus, recipe)) {
+          let final = calculateRecipe(diet, recipe, "lunch");
+          for (let key in user.menus) {
+            if (!user.menus[key]['lunch']) user.menus[key]['lunch'] = final;
+            user.save(() => {
+              resolve(final)
+            });
+          }
 
-      }
-      else {
-        return findLunch(user);
-      }
+        }
+        else {
+          resolve(findLunch(user));
+        }
+      })
     })
-    })
+  })
 }
 
 export function findSnack2(week: String, calories: Number) {
 
 }
 
-function findDinner(user: any) {
-  critical = true;
-  let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
-  RecipeModel.count({type: 'dinner'}).exec(function (err, count) {
-    let random = Math.floor(Math.random() * count)
-    RecipeModel.findOne({type: 'dinner'}).skip(random).exec((err, recipe) => {
-      if (recipe && noDup(user.menus, recipe)) {
-        let final = calculateRecipe(diet, recipe, "dinner");
-        for (let key in user.menus) {
-          if (!user.menus[key]['dinner']) user.menus[key]['dinner'] = final;
-          user.save(() => {
-            critical = false;
-          });
-        }
+function findDinner(user: any) : any {
+  return new Promise((resolve) => {
+    let diet = diets[user.week+String(Math.floor(user.calories/100)*100)];
+    RecipeModel.count({type: 'dinner'}).exec(function (err, count) {
+      let random = Math.floor(Math.random() * count)
+      RecipeModel.findOne({type: 'dinner'}).skip(random).exec((err, recipe) => {
+        if (recipe && noDup(user.menus, recipe)) {
+          let final = calculateRecipe(diet, recipe, "dinner");
+          for (let key in user.menus) {
+            if (!user.menus[key]['dinner']) user.menus[key]['dinner'] = final;
+            console.log("RECIPE");
+            console.log(final);
+            user.save(() => {
+              resolve(final)
+            });
+          }
 
-      }
-      else {
-        return findLunch(user);
-      }
+        }
+        else {
+          resolve(findLunch(user));
+        }
+      })
     })
-    })
+  })
 }

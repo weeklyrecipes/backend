@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var connections = require("../config/connection");
-var mongoose_1 = require("mongoose");
-var PromoSchema = new mongoose_1.Schema({
+const connections = require("../config/connection");
+const mongoose_1 = require("mongoose");
+const PromoSchema = new mongoose_1.Schema({
     value: {
         type: String,
         required: true

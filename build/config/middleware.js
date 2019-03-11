@@ -1,14 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var bodyParser = require("body-parser");
-var compression = require("compression");
-var cookieParser = require("cookie-parser");
-var cors = require("cors");
-var helmet = require("helmet");
-var Middleware = /** @class */ (function () {
-    function Middleware() {
-    }
-    Middleware.init = function (server) {
+const bodyParser = require("body-parser");
+const compression = require("compression");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const helmet = require("helmet");
+class Middleware {
+    static init(server) {
         // express middleware
         server.app.use(bodyParser.urlencoded({ extended: false }));
         server.app.use(bodyParser.json());
@@ -17,7 +15,7 @@ var Middleware = /** @class */ (function () {
         server.app.use(helmet());
         server.app.use(cors());
         // cors
-        server.app.use(function (req, res, next) {
+        server.app.use((req, res, next) => {
             res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS ');
             res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With,' +
                 ' Content-Type, Accept,' +
@@ -26,8 +24,7 @@ var Middleware = /** @class */ (function () {
             res.header('Access-Control-Allow-Credentials', 'true');
             next();
         });
-    };
-    return Middleware;
-}());
+    }
+}
 exports.default = Middleware;
 //# sourceMappingURL=middleware.js.map

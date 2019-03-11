@@ -1,7 +1,7 @@
 "use strict";
 // default config
 Object.defineProperty(exports, "__esModule", { value: true });
-var config = {
+const config = {
     port: process.env.PORT || 29027,
     env: 'development',
     database: {

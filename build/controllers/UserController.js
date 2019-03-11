@@ -1,27 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var UserModel_1 = require("../models/UserModel");
-var calculateRecipe_1 = require("../helpers/calculateRecipe");
-var bodyMetrics_1 = require("../helpers/bodyMetrics");
-var UserController = /** @class */ (function () {
-    function UserController() {
-    }
+const UserModel_1 = require("../models/UserModel");
+const calculateRecipe_1 = require("../helpers/calculateRecipe");
+const bodyMetrics_1 = require("../helpers/bodyMetrics");
+class UserController {
     /**
      * @param  {express.Request} req
      * @param  {express.Response} res
      * @param  {express.NextFunction} next
      */
-    UserController.prototype.getUser = function (req, res, next) {
+    getUser(req, res, next) {
         UserModel_1.default
             .findById(req.params.id)
-            .then(function (user) {
+            .then((user) => {
             console.log(user);
             if (user) {
-                var calories = bodyMetrics_1.finalCalculus(user);
+                let calories = bodyMetrics_1.finalCalculus(user);
                 user.calories = calories;
                 calculateRecipe_1.calculateRecipes(user);
-                user.save(function () {
-                    res.status(200).json({ user: user });
+                user.save(() => {
+                    res.status(200).json({ user });
                 });
                 // res.status(200).json({ user });
             }
@@ -29,20 +27,20 @@ var UserController = /** @class */ (function () {
                 res.status(400).json({ error: "update-payment" });
             }
         })
-            .catch(function (error) {
+            .catch((error) => {
             res.status(500).json({
                 error: error.message,
                 errorStack: error.stack
             });
             next(error);
         });
-    };
+    }
     /**
      * @param  {express.Request} req
      * @param  {express.Response} res
      * @param  {express.NextFunction} next
      */
-    UserController.prototype.createUser = function (req, res, next) {
+    createUser(req, res, next) {
         UserModel_1.default
             .create({
             name: req.body.name,
@@ -55,47 +53,46 @@ var UserController = /** @class */ (function () {
             birthday: req.body.birthday,
             _id: req.body.fireId
         })
-            .then(function (user) {
-            var calories = bodyMetrics_1.finalCalculus(user);
+            .then((user) => {
+            let calories = bodyMetrics_1.finalCalculus(user);
             console.log(calories);
             user.calories = calories;
-            user.save(function () {
-                res.status(200).json({ user: user });
+            user.save(() => {
+                res.status(200).json({ user });
             });
             // res.status(200).json({ data });
         })
-            .catch(function (error) {
+            .catch((error) => {
             res.status(500).json({
                 error: error.message,
                 errorStack: error.stack
             });
             next(error);
         });
-    };
+    }
     /**
      * @param  {express.Request} req
      * @param  {express.Response} res
      * @param  {express.NextFunction} next
      */
-    UserController.prototype.editUser = function (req, res, next) {
+    editUser(req, res, next) {
         UserModel_1.default
             .findById(req.body.userId)
-            .then(function (user) {
-            var calories = bodyMetrics_1.finalCalculus(user);
+            .then((user) => {
+            let calories = bodyMetrics_1.finalCalculus(user);
             user.calories = calories;
-            user.save(function () {
-                res.status(200).json({ user: user });
+            user.save(() => {
+                res.status(200).json({ user });
             });
         })
-            .catch(function (error) {
+            .catch((error) => {
             res.status(500).json({
                 error: error.message,
                 errorStack: error.stack
             });
             next(error);
         });
-    };
-    return UserController;
-}());
+    }
+}
 exports.default = new UserController();
 //# sourceMappingURL=UserController.js.map

@@ -1,9 +1,8 @@
 "use strict";
-var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var connections = require("../config/connection");
-var mongoose_1 = require("mongoose");
-var IngredientSchema = new mongoose_1.Schema({
+const connections = require("../config/connection");
+const mongoose_1 = require("mongoose");
+const IngredientSchema = new mongoose_1.Schema({
     name: String,
     kcal: Number,
     kj: Number,
@@ -20,18 +19,18 @@ var IngredientSchema = new mongoose_1.Schema({
 }, {
     collection: 'ingredientmodel',
     versionKey: false
-}).pre('save', function (next) {
+}).pre('save', (next) => {
     // this will run before saving
-    if (_this._doc) {
-        var doc = _this._doc;
-        var now = new Date();
+    if (this._doc) {
+        const doc = this._doc;
+        const now = new Date();
         if (!doc.createdAt) {
             doc.createdAt = now;
         }
         doc.updatedAt = now;
     }
     next();
-    return _this;
+    return this;
 });
 exports.default = connections.db.model('IngredientModel', IngredientSchema);
 //# sourceMappingURL=IngredientModel.js.map
