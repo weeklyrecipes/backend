@@ -95,7 +95,7 @@ function findLunch(user: any, date: any) : Promise<any> {
       RecipeModel.findOne({type: 'lunch'}).skip(random).exec((err, recipe) => {
         if (recipe && noDup(user.menus, recipe)) {
           let final = calculateRecipe(diet, recipe, "lunch");
-          user.menus[date] = final;
+          user.menus[date]["lunch"] = final;
           user.save(() => {
             resolve(final);
           })
