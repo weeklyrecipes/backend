@@ -77,7 +77,7 @@ const UserSchema: Schema = new Schema({
     versionKey: false
 }).pre('save', (next) => {
     // this will run before saving
-    console.log(this);
+    console.log(this._doc);
     const now: Date = new Date();
     if (!this.createdAt) {
       this.createdAt = now;
