@@ -21,9 +21,8 @@ class UserController {
                     console.log("USER");
                     console.log(user);
                     user.menus = recipes;
-                    user.save((user) => {
-                      res.status(200).json({ user });
-                    })
+                    res.status(200).json({ user });
+                    user.save();
                   })
                   // res.status(200).json({ user });
                 }
