@@ -66,6 +66,8 @@ export function calculateRecipes(user: any) {
       i++;
     }
     let promises = [];
+    console.log("DATESSS")
+    console.log(JSON.stringify(toFind.lunch))
     for (let date of toFind.lunch) {
       promises.push(findLunch(user, date));
     }
@@ -126,7 +128,6 @@ function findDinner(user: any) : Promise<any> {
               resolve(user.menus)
             });
           }
-
         }
         else {
           resolve(findDinner(user));
