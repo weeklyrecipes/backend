@@ -20,7 +20,9 @@ class UserController {
                   calculateRecipes(user).then((recipes) => {
                     user.menus = recipes;
                     res.status(200).json(user);
-                    user.save();
+                    user.save((err, user) => {
+                      console.log(err)
+                    });
                   })
                   // res.status(200).json({ user });
                 }
