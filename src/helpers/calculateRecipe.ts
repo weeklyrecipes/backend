@@ -11,7 +11,7 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
     let quantityDifference = 0;
     while (i < macroLength) {
       let quantity = Math.floor(((diet[type][key]/recipe.macro[key][i].ration) / macroLength)*10);
-      if (macroLength > 1 && quantity%50 > 10) {
+      if (macroLength > 1 && quantity > 50 && quantity%50 > 10) {
         quantity = (i%2 == 0 ? Math.floor(quantity / 50) * 50 : Math.ceil(quantity / 50) * 50);
       }
       else {
