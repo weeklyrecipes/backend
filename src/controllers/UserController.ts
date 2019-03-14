@@ -60,6 +60,7 @@ class UserController {
             .then((user) => {
                 let calories = finalCalculus(user);
                 user.calories =  (calories > 1200 ? calories : 1200);
+                user.menus = {};
                 calculateRecipes(user).then((recipes) => {
                   user.menus = recipes;
                   user.markModified('menus');
