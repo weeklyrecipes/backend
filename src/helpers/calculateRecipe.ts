@@ -60,7 +60,9 @@ export function calculateRecipes(user: any) {
   console.log(user.calories);
   user.diet = diet;
   return new Promise((resolve) => {
+    console.log("BEFORE")
     let dates = getDates(new Date(), 3);
+    console.log(dates);
     let i = 0;
     let toFind = {breakfast: [], snack1: [], lunch: [], snack2: [], dinner: []};
     while (dates[i]) {
