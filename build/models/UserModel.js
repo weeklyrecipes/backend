@@ -16,7 +16,8 @@ const UserSchema = new mongoose_1.Schema({
         required: true
     },
     menus: {
-        type: Object
+        type: Object,
+        default: {}
     },
     diet: {
         type: Object
@@ -60,6 +61,18 @@ const UserSchema = new mongoose_1.Schema({
 }, {
     collection: 'usermodel',
     versionKey: false
+}).pre('save', (next) => {
+    // this will run before saving
+    if (this._doc) {
+        const doc = this._doc;
+        const now = new Date();
+        if (!doc.createdAt) {
+            doc.createdAt = now;
+        }
+        doc.updatedAt = now;
+    }
+    next();
+    return this;
 });
 exports.default = connections.db.model('UserModel', UserSchema);
 //# sourceMappingURL=UserModel.js.map

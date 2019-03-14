@@ -59,6 +59,7 @@ class UserController {
             .then((user) => {
             let calories = bodyMetrics_1.finalCalculus(user);
             user.calories = (calories > 1200 ? calories : 1200);
+            user.menus = {};
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                 user.menus = recipes;
                 user.markModified('menus');

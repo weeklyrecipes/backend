@@ -32,7 +32,9 @@ const RecipeSchema = new mongoose_1.Schema({
     },
     instructions: {
         type: String
-    }
+    },
+    createdAt: Date,
+    updatedAt: Date
 }, {
     collection: 'recipemodel',
     versionKey: false
