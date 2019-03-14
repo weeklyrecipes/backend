@@ -35,7 +35,8 @@ const UserSchema: Schema = new Schema({
       required: true
     },
     menus: {
-      type: Object
+      type: Object,
+      default: {}
     },
     diet: {
       type: Object
