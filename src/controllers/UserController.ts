@@ -98,7 +98,7 @@ class UserController {
                   user.markModified('menus');
                   user.save((err, saved) => {
                     res.status(200).json(saved);
-                  })
+                  });
                 })
             })
             .catch((error: Error) => {

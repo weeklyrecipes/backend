@@ -79,6 +79,20 @@ const UserSchema: Schema = new Schema({
 }, {
     collection: 'usermodel',
     versionKey: false
-})
+}).pre('save', (next) => {
+    // this will run before saving
+    if (this._doc) {
+        const doc: IUserModel = this._doc;
+        const now: Date = new Date();
+
+        if (!doc.createdAt) {
+            doc.createdAt = now;
+        }
+        doc.updatedAt = now;
+    }
+    next();
+
+    return this;
+});
 
 export default connections.db.model < IUserModel >('UserModel', UserSchema);

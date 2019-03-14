@@ -44,7 +44,9 @@ const RecipeSchema: Schema = new Schema({
     },
     instructions: {
       type: String
-    }
+    },
+    createdAt: Date,
+    updatedAt: Date
 }, {
     collection: 'recipemodel',
     versionKey: false
