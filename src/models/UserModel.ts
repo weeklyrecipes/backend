@@ -80,7 +80,7 @@ const UserSchema: Schema = new Schema({
 }, {
     collection: 'usermodel',
     versionKey: false
-}).pre('save', (doc, next) => {
+}).pre('save', (next) => {
     // this will run before saving
     const now: Date = new Date();
     if (this._doc) {
@@ -92,7 +92,7 @@ const UserSchema: Schema = new Schema({
         doc.updatedAt = now;
     }
     if (!this.createdAt) {
-          this.createdAt = now;
+      this.createdAt = now;
     }
     next();
 
