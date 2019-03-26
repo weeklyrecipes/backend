@@ -45,38 +45,51 @@ function getDates(startDate, daysToAdd) {
     for (var i = 0; i <= daysToAdd; i++) {
         var currentDate = new Date();
         currentDate.setDate(startDate.getDate() + i);
-        aryDates.push(currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear());
+        aryDates.push({ formatted: currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear(), raw: currentDate });
     }
     return aryDates;
 }
+function weeksBetween(d1, d2) {
+    return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
+}
 function calculateRecipes(user) {
-    let diet = tables_1.default[user.week + String(Math.floor(user.calories / 100) * 100)];
-    console.log("DIET");
-    console.log(user.diet);
-    console.log(user.calories);
+    let week = weeksBetween(user.createdAt, new Date()) % 2 ? "A" : "B";
+    let diet = tables_1.default[week + String(Math.floor(user.calories / 100) * 100)];
     user.diet = diet;
     return new Promise((resolve) => {
-        console.log("BEFORE");
         let dates = getDates(new Date(), 3);
-        console.log(dates);
         let i = 0;
         let toFind = { breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [] };
         while (dates[i]) {
-            if (!user.menus[dates[i]]) {
-                user.menus[dates[i]] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false };
+            if (!user.menus[dates[i].formatted]) {
+                user.menus[dates[i].formatted] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false };
             }
-            for (let key in user.menus[dates[i]]) {
-                if (!user.menus[dates[i]][key])
-                    toFind[key].push(dates[i]);
+            for (let key in user.menus[dates[i].formatted]) {
+                if (!user.menus[dates[i]][key].formatted)
+                    toFind[key].push({ date: dates[i].formatted, week: weeksBetween(user.createdAt, dates[i].raw) % 2 ? "A" : "B" });
             }
             i++;
         }
         let promises = [];
-        for (let date of toFind.lunch) {
-            promises.push(findLunch(user, date));
+        // for (let breakfast of toFind.breakfast) {
+        //   let diet = diets[breakfast.week+String(Math.floor(user.calories/100)*100)];
+        //   promises.push(findBreakfast(user, breakfast.date, diet, breakfast.week));
+        // }
+        // for (let snack1 of toFind.snack1) {
+        //   let diet = diets[snack1.week+String(Math.floor(user.calories/100)*100)];
+        //   promises.push(findSnack1(user, snack1.date, diet));
+        // }
+        for (let lunch of toFind.lunch) {
+            let diet = tables_1.default[lunch.week + String(Math.floor(user.calories / 100) * 100)];
+            promises.push(findLunch(user, lunch.date, diet));
         }
-        for (let date of toFind.dinner) {
-            promises.push(findDinner(user, date));
+        // for (let snack2 of toFind.snack2) {
+        //   let diet = diets[snack2.week+String(Math.floor(user.calories/100)*100)];
+        //   promises.push(findSnack2(user, snack2.date, diet));
+        // }
+        for (let dinner of toFind.dinner) {
+            let diet = tables_1.default[dinner.week + String(Math.floor(user.calories / 100) * 100)];
+            promises.push(findDinner(user, dinner.date, diet));
         }
         Promise.all(promises).then(() => {
             resolve(user.menus);
@@ -84,54 +97,96 @@ function calculateRecipes(user) {
     });
 }
 exports.calculateRecipes = calculateRecipes;
-function findBreakfast(week, calories) {
-    RecipeModel_1.default.find({ type: 'breakfast' }).then((recipes) => {
-        console.log(recipes);
+function findBreakfast(user, date, diet, week) {
+    return new Promise((resolve) => {
+        RecipeModel_1.default.count({ type: 'breakfast' + week }).exec(function (err, count) {
+            let random = Math.floor(Math.random() * count);
+            RecipeModel_1.default.findOne({ type: 'breakfast' + week }).skip(random).exec((err, recipe) => {
+                if (recipe) {
+                    let final = calculateRecipe(diet, recipe, "breakfast");
+                    user.menus[date]["breakfast"] = final;
+                    user.save(() => {
+                        resolve(final);
+                    });
+                }
+                else {
+                    resolve(findBreakfast(user, date, diet, week));
+                }
+            });
+        });
     });
 }
-exports.findBreakfast = findBreakfast;
-function findSnack1(week, calories) {
-    RecipeModel_1.default.find({ type: 'snack1' }).then((recipes) => {
-        console.log(recipes);
+function findSnack1(user, date, diet, week) {
+    return new Promise((resolve) => {
+        RecipeModel_1.default.count({ type: 'snack1' + week }).exec(function (err, count) {
+            let random = Math.floor(Math.random() * count);
+            RecipeModel_1.default.findOne({ type: 'snack1' + week }).skip(random).exec((err, recipe) => {
+                if (recipe && noDup(user.menus, recipe)) {
+                    let final = calculateRecipe(diet, recipe, "snack1");
+                    user.menus[date]["snack1"] = final;
+                    user.save(() => {
+                        resolve(final);
+                    });
+                }
+                else {
+                    resolve(findBreakfast(user, date, diet, week));
+                }
+            });
+        });
     });
 }
-exports.findSnack1 = findSnack1;
-function findLunch(user, date) {
+function findLunch(user, date, diet) {
     return new Promise((resolve) => {
         RecipeModel_1.default.count({ type: 'lunch' }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);
             RecipeModel_1.default.findOne({ type: 'lunch' }).skip(random).exec((err, recipe) => {
                 if (recipe && noDup(user.menus, recipe)) {
-                    let final = calculateRecipe(user.diet, recipe, "lunch");
+                    let final = calculateRecipe(diet, recipe, "lunch");
                     user.menus[date]["lunch"] = final;
                     user.save(() => {
                         resolve(final);
                     });
                 }
                 else {
-                    resolve(findLunch(user, date));
+                    resolve(findLunch(user, date, diet));
                 }
             });
         });
     });
 }
-function findSnack2(week, calories) {
+function findSnack2(user, date, diet, week) {
+    return new Promise((resolve) => {
+        RecipeModel_1.default.count({ type: 'snack2' + week }).exec(function (err, count) {
+            let random = Math.floor(Math.random() * count);
+            RecipeModel_1.default.findOne({ type: 'snack2' + week }).skip(random).exec((err, recipe) => {
+                if (recipe && noDup(user.menus, recipe)) {
+                    let final = calculateRecipe(diet, recipe, "snack2");
+                    user.menus[date]["snack2"] = final;
+                    user.save(() => {
+                        resolve(final);
+                    });
+                }
+                else {
+                    resolve(findBreakfast(user, date, diet, week));
+                }
+            });
+        });
+    });
 }
-exports.findSnack2 = findSnack2;
-function findDinner(user, date) {
+function findDinner(user, date, diet) {
     return new Promise((resolve) => {
         RecipeModel_1.default.count({ type: 'dinner' }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);
             RecipeModel_1.default.findOne({ type: 'dinner' }).skip(random).exec((err, recipe) => {
                 if (recipe && noDup(user.menus, recipe)) {
-                    let final = calculateRecipe(user.diet, recipe, "dinner");
+                    let final = calculateRecipe(diet, recipe, "dinner");
                     user.menus[date]["dinner"] = final;
                     user.save(() => {
                         resolve(final);
                     });
                 }
                 else {
-                    resolve(findLunch(user, date));
+                    resolve(findLunch(user, date, diet));
                 }
             });
         });
