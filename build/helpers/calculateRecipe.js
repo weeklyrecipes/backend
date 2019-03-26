@@ -65,7 +65,7 @@ function calculateRecipes(user) {
                 user.menus[dates[i].formatted] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false };
             }
             for (let key in user.menus[dates[i].formatted]) {
-                if (!user.menus[dates[i]][key].formatted)
+                if (!user.menus[dates[i].formatted][key])
                     toFind[key].push({ date: dates[i].formatted, week: weeksBetween(user.createdAt, dates[i].raw) % 2 ? "A" : "B" });
             }
             i++;
