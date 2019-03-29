@@ -81,6 +81,22 @@ class RecipeController {
                 next(error);
             });
     }
+
+    public editRecipe(req: express.Request, res: express.Response, next: express.NextFunction): void {
+        RecipeModel.findOne({_id: req.params.id})
+            .then((recipe) => {
+                recipe.type = req.body.type;
+                recipe.save();
+                res.status(200).json({ recipe });
+            })
+            .catch((error: Error) => {
+                res.status(500).json({
+                    error: error.message,
+                    errorStack: error.stack
+                });
+                next(error);
+            });
+    }
 }
 
 export default new RecipeController();

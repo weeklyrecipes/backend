@@ -80,6 +80,21 @@ class RecipeController {
             next(error);
         });
     }
+    editRecipe(req, res, next) {
+        RecipeModel_1.default.findOne({ _id: req.params.id })
+            .then((recipe) => {
+            recipe.type = req.body.type;
+            recipe.save();
+            res.status(200).json({ recipe });
+        })
+            .catch((error) => {
+            res.status(500).json({
+                error: error.message,
+                errorStack: error.stack
+            });
+            next(error);
+        });
+    }
 }
 exports.default = new RecipeController();
 //# sourceMappingURL=RecipeController.js.map

@@ -71,22 +71,22 @@ function calculateRecipes(user) {
             i++;
         }
         let promises = [];
-        // for (let breakfast of toFind.breakfast) {
-        //   let diet = diets[breakfast.week+String(Math.floor(user.calories/100)*100)];
-        //   promises.push(findBreakfast(user, breakfast.date, diet, breakfast.week));
-        // }
-        // for (let snack1 of toFind.snack1) {
-        //   let diet = diets[snack1.week+String(Math.floor(user.calories/100)*100)];
-        //   promises.push(findSnack1(user, snack1.date, diet));
-        // }
+        for (let breakfast of toFind.breakfast) {
+            let diet = tables_1.default[breakfast.week + String(Math.floor(user.calories / 100) * 100)];
+            promises.push(findBreakfast(user, breakfast.date, diet, breakfast.week));
+        }
+        for (let snack1 of toFind.snack1) {
+            let diet = tables_1.default[snack1.week + String(Math.floor(user.calories / 100) * 100)];
+            promises.push(findSnack1(user, snack1.date, diet, snack1.week));
+        }
         for (let lunch of toFind.lunch) {
             let diet = tables_1.default[lunch.week + String(Math.floor(user.calories / 100) * 100)];
             promises.push(findLunch(user, lunch.date, diet));
         }
-        // for (let snack2 of toFind.snack2) {
-        //   let diet = diets[snack2.week+String(Math.floor(user.calories/100)*100)];
-        //   promises.push(findSnack2(user, snack2.date, diet));
-        // }
+        for (let snack2 of toFind.snack2) {
+            let diet = tables_1.default[snack2.week + String(Math.floor(user.calories / 100) * 100)];
+            promises.push(findSnack2(user, snack2.date, diet, snack2.week));
+        }
         for (let dinner of toFind.dinner) {
             let diet = tables_1.default[dinner.week + String(Math.floor(user.calories / 100) * 100)];
             promises.push(findDinner(user, dinner.date, diet));
@@ -103,6 +103,7 @@ function findBreakfast(user, date, diet, week) {
             let random = Math.floor(Math.random() * count);
             RecipeModel_1.default.findOne({ type: 'breakfast' + week }).skip(random).exec((err, recipe) => {
                 if (recipe) {
+                    // && noDup(user.menus, recipe)
                     let final = calculateRecipe(diet, recipe, "breakfast");
                     user.menus[date]["breakfast"] = final;
                     user.save(() => {
@@ -121,7 +122,8 @@ function findSnack1(user, date, diet, week) {
         RecipeModel_1.default.count({ type: 'snack1' + week }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);
             RecipeModel_1.default.findOne({ type: 'snack1' + week }).skip(random).exec((err, recipe) => {
-                if (recipe && noDup(user.menus, recipe)) {
+                if (recipe) {
+                    // && noDup(user.menus, recipe)
                     let final = calculateRecipe(diet, recipe, "snack1");
                     user.menus[date]["snack1"] = final;
                     user.save(() => {
@@ -159,7 +161,8 @@ function findSnack2(user, date, diet, week) {
         RecipeModel_1.default.count({ type: 'snack2' + week }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);
             RecipeModel_1.default.findOne({ type: 'snack2' + week }).skip(random).exec((err, recipe) => {
-                if (recipe && noDup(user.menus, recipe)) {
+                if (recipe) {
+                    // && noDup(user.menus, recipe)
                     let final = calculateRecipe(diet, recipe, "snack2");
                     user.menus[date]["snack2"] = final;
                     user.save(() => {
