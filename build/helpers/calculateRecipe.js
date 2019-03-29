@@ -11,11 +11,11 @@ function calculateRecipe(diet, recipe, type) {
         let quantityDifference = 0;
         while (i < macroLength) {
             let quantity = Math.floor(((diet[type][key] / recipe.macro[key][i].ration) / macroLength) * 10);
-            if (macroLength > 1 && quantity > 50 && quantity % 50 > 10) {
-                quantity = (i % 2 == 0 ? Math.floor(quantity / 50) * 50 : Math.ceil(quantity / 50) * 50);
+            if (macroLength > 1 && quantity > 25 && quantity % 25 > 10) {
+                quantity = (i % 2 == 0 ? Math.floor(quantity / 25) * 25 : Math.ceil(quantity / 25) * 25);
             }
             else {
-                quantity = Math.round(quantity / 10) * 10;
+                quantity = Math.round(quantity / 5) * 5;
             }
             ingredients.push({ ingredient: recipe.macro[key][i], quantity: quantity });
             i++;
