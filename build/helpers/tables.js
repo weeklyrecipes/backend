@@ -8,7 +8,7 @@ let diets = {
             protein: 1
         },
         snack1: {
-            fruits: 1
+            fruit: 1
         },
         lunch: {
             veg: 1,
@@ -17,7 +17,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 1.5,
+            fruit: 1.5,
             carb: 1,
             lact: 0.5
         },
@@ -30,12 +30,12 @@ let diets = {
     },
     "B1200": {
         breakfast: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             lact: 0.5
         },
         snack1: {
-            fruits: 1.5
+            fruit: 1.5
         },
         lunch: {
             veg: 1,
@@ -62,7 +62,7 @@ let diets = {
             protein: 1
         },
         snack1: {
-            fruits: 2
+            fruit: 2
         },
         lunch: {
             veg: 1,
@@ -71,7 +71,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             lact: 0.5
         },
         dinner: {
@@ -83,12 +83,12 @@ let diets = {
     },
     "B1300": {
         breakfast: {
-            fruits: 0.5,
+            fruit: 0.5,
             carb: 2,
             lact: 0.5
         },
         snack1: {
-            fruits: 1
+            fruit: 1
         },
         lunch: {
             veg: 1,
@@ -97,7 +97,7 @@ let diets = {
             lipid: 1.5
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 1,
             lact: 0.5
         },
@@ -116,7 +116,7 @@ let diets = {
             lipid: 0.5
         },
         snack1: {
-            fruits: 2
+            fruit: 2
         },
         lunch: {
             veg: 1,
@@ -125,7 +125,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             lact: 0.5
         },
@@ -138,12 +138,12 @@ let diets = {
     },
     "B1400": {
         breakfast: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             lact: 0.5
         },
         snack1: {
-            fruits: 1,
+            fruit: 1,
             lact: 0.5
         },
         lunch: {
@@ -153,7 +153,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 1,
             protein: 1
         },
@@ -172,7 +172,7 @@ let diets = {
             lipid: 0.5
         },
         snack1: {
-            fruits: 1.5
+            fruit: 1.5
         },
         lunch: {
             veg: 1,
@@ -181,7 +181,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 2,
             lact: 0.5
         },
@@ -195,12 +195,12 @@ let diets = {
     },
     "B1500": {
         breakfast: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             lact: 0.5
         },
         snack1: {
-            fruits: 1,
+            fruit: 1,
             lact: 0.5
         },
         lunch: {
@@ -210,7 +210,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 1.5,
             protein: 0.5
         },
@@ -230,7 +230,7 @@ let diets = {
             lipid: 0.5
         },
         snack1: {
-            fruits: 1.5
+            fruit: 1.5
         },
         lunch: {
             veg: 1,
@@ -239,7 +239,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 2,
             lact: 0.5
         },
@@ -253,18 +253,18 @@ let diets = {
     },
     "B1600": {
         breakfast: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             lact: 0.5
         },
         snack1: {
-            fruits: 1,
+            fruit: 1,
             lact: 0.5,
             lipid: 1
         },
         lunch: {
             veg: 1,
-            fruits: 0,
+            fruit: 0,
             carb: 3,
             lact: 0,
             protein: 2.5,
@@ -272,7 +272,7 @@ let diets = {
         },
         dinner: {
             veg: 1,
-            fruits: 0,
+            fruit: 0,
             carb: 2,
             lact: 0.5,
             protein: 3,
@@ -287,7 +287,7 @@ let diets = {
             lip: 0.5
         },
         snack1: {
-            fruits: 2
+            fruit: 2
         },
         lunch: {
             veg: 1,
@@ -296,7 +296,7 @@ let diets = {
             lipid: 1.5
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 2,
             lact: 0.5
         },
@@ -310,12 +310,12 @@ let diets = {
     },
     "B1700": {
         breakfast: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             lact: 1
         },
         snack1: {
-            fruits: 1,
+            fruit: 1,
             lact: 0.5,
             lipid: 1
         },
@@ -326,7 +326,7 @@ let diets = {
             lipid: 1.5
         },
         snack2: {
-            fruits: 1.5,
+            fruit: 1.5,
             carb: 1,
             protein: 1
         },
@@ -346,7 +346,7 @@ let diets = {
             lip: 1
         },
         snack1: {
-            fruits: 2
+            fruit: 2
         },
         lunch: {
             veg: 1,
@@ -355,7 +355,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 2,
             lact: 0.5
         },
@@ -369,12 +369,12 @@ let diets = {
     },
     "B1800": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             carb: 2,
             lact: 1
         },
         snack1: {
-            fruits: 1,
+            fruit: 1,
             lact: 0.5,
             lipid: 1
         },
@@ -385,7 +385,7 @@ let diets = {
             lipid: 1.5
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             protein: 2
         },
@@ -405,7 +405,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 2.5
+            fruit: 2.5
         },
         lunch: {
             veg: 1,
@@ -414,7 +414,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 2,
             lact: 0.5
         },
@@ -428,12 +428,12 @@ let diets = {
     },
     "B1900": {
         breakfast: {
-            fruits: 1,
+            fruit: 1,
             carb: 2.5,
             lact: 1
         },
         snack1: {
-            fruits: 1,
+            fruit: 1,
             lact: 0.5
         },
         lunch: {
@@ -443,7 +443,7 @@ let diets = {
             lipid: 1
         },
         snack2: {
-            fruits: 1.5,
+            fruit: 1.5,
             carb: 2,
             protein: 1
         },
@@ -463,7 +463,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 2.5
+            fruit: 2.5
         },
         lunch: {
             veg: 1,
@@ -472,7 +472,7 @@ let diets = {
             lipid: 1.5
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 2,
             lact: 0.5
         },
@@ -492,7 +492,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 2.5
+            fruit: 2.5
         },
         lunch: {
             veg: 1,
@@ -501,7 +501,7 @@ let diets = {
             lipid: 1.5
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 2,
             lact: 0.5
         },
@@ -521,7 +521,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 2.5
+            fruit: 2.5
         },
         lunch: {
             veg: 1,
@@ -530,7 +530,7 @@ let diets = {
             lipid: 1.5
         },
         snack2: {
-            fruits: 2.5,
+            fruit: 2.5,
             carb: 1,
             lact: 1
         },
@@ -544,12 +544,12 @@ let diets = {
     },
     "B2100": {
         breakfast: {
-            fruits: 1,
+            fruit: 1,
             carb: 3,
             lact: 1
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 0.5,
             lipid: 1
         },
@@ -560,7 +560,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             protein: 2
         },
@@ -580,7 +580,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 3
+            fruit: 3
         },
         lunch: {
             veg: 1,
@@ -589,7 +589,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 3,
             lact: 0.5
         },
@@ -603,12 +603,12 @@ let diets = {
     },
     "B2200": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             carb: 3,
             lact: 1
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 0.5,
             lipid: 1
         },
@@ -619,7 +619,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 1.5,
+            fruit: 1.5,
             carb: 3,
             protein: 1.5
         },
@@ -639,7 +639,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 3,
+            fruit: 3,
             lact: 1
         },
         lunch: {
@@ -649,7 +649,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 3,
             lact: 0.5
         },
@@ -662,12 +662,12 @@ let diets = {
     },
     "B2300": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             carb: 3,
             lact: 1
         },
         snack1: {
-            fruits: 1.5,
+            fruit: 1.5,
             lact: 1,
             lipid: 1
         },
@@ -678,7 +678,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 3,
             protein: 3
         },
@@ -698,7 +698,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 3,
+            fruit: 3,
             lact: 0.5
         },
         lunch: {
@@ -708,7 +708,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 2.5,
+            fruit: 2.5,
             carb: 4,
             lact: 1
         },
@@ -721,12 +721,12 @@ let diets = {
     },
     "B2400": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             carb: 3,
             lact: 1
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 1,
             lipid: 1
         },
@@ -737,7 +737,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 1.5,
+            fruit: 1.5,
             carb: 3,
             protein: 2.5
         },
@@ -757,7 +757,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 3
+            fruit: 3
         },
         lunch: {
             veg: 1,
@@ -766,13 +766,13 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 3,
+            fruit: 3,
             carb: 3.5,
             lact: 1
         },
         dinner: {
             veg: 1,
-            fruits: 1,
+            fruit: 1,
             carb: 4,
             lact: 0.5,
             protein: 3.5,
@@ -781,12 +781,12 @@ let diets = {
     },
     "B2500": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             carb: 4,
             lact: 1
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 1,
             lipid: 1.5
         },
@@ -797,7 +797,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 3,
             protein: 3
         },
@@ -817,7 +817,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 3
+            fruit: 3
         },
         lunch: {
             veg: 1,
@@ -826,7 +826,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 3,
+            fruit: 3,
             carb: 4,
             lact: 1
         },
@@ -840,12 +840,12 @@ let diets = {
     },
     "B2600": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             carb: 4,
             lact: 1
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 1
         },
         lunch: {
@@ -855,7 +855,7 @@ let diets = {
             lipid: 2.5
         },
         snack2: {
-            fruits: 1,
+            fruit: 1,
             carb: 2,
             protein: 3
         },
@@ -875,7 +875,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 3
+            fruit: 3
         },
         lunch: {
             veg: 1,
@@ -884,7 +884,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 3,
+            fruit: 3,
             carb: 4,
             lact: 1
         },
@@ -898,12 +898,12 @@ let diets = {
     },
     "B2700": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             lact: 1.5,
             carb: 4
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 1,
             lipid: 1
         },
@@ -914,7 +914,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 1.5,
+            fruit: 1.5,
             carb: 4,
             protein: 4
         },
@@ -934,7 +934,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 3.5
+            fruit: 3.5
         },
         lunch: {
             veg: 1,
@@ -943,7 +943,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 3,
+            fruit: 3,
             carb: 4,
             lact: 1
         },
@@ -959,10 +959,10 @@ let diets = {
         breakfast: {
             lact: 1,
             carb: 4,
-            fruits: 2
+            fruit: 2
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 1,
             lipid: 1
         },
@@ -973,7 +973,7 @@ let diets = {
             lipid: 2.5
         },
         snack2: {
-            fruits: 1.5,
+            fruit: 1.5,
             carb: 4,
             protein: 4
         },
@@ -993,7 +993,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 4
+            fruit: 4
         },
         lunch: {
             veg: 1,
@@ -1002,7 +1002,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 3,
+            fruit: 3,
             carb: 4,
             lact: 1
         },
@@ -1016,12 +1016,12 @@ let diets = {
     },
     "B2900": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             carb: 4,
             lact: 1
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 1,
             lipid: 1
         },
@@ -1032,7 +1032,7 @@ let diets = {
             lipid: 2.5
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 4,
             protein: 4
         },
@@ -1052,7 +1052,7 @@ let diets = {
             lipid: 1
         },
         snack1: {
-            fruits: 4
+            fruit: 4
         },
         lunch: {
             veg: 1,
@@ -1061,7 +1061,7 @@ let diets = {
             lipid: 2
         },
         snack2: {
-            fruits: 3,
+            fruit: 3,
             carb: 4,
             lact: 1
         },
@@ -1075,12 +1075,12 @@ let diets = {
     },
     "B3000": {
         breakfast: {
-            fruits: 2,
+            fruit: 2,
             carb: 4,
             lact: 1
         },
         snack1: {
-            fruits: 2,
+            fruit: 2,
             lact: 1,
             lipid: 1
         },
@@ -1091,7 +1091,7 @@ let diets = {
             lipid: 3
         },
         snack2: {
-            fruits: 2,
+            fruit: 2,
             carb: 4,
             protein: 4
         },
