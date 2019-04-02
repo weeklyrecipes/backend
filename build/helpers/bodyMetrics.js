@@ -18,16 +18,19 @@ function calculateTMB(data) {
 }
 function calculateAF(data) {
     if (data.activity == 0) {
-        return 1.375;
+        return 1.2;
     }
     else if (data.activity == 1) {
-        return 1.56;
+        return 1.375;
     }
     else if (data.activity == 2) {
         return 1.64;
     }
     else if (data.activity == 3) {
-        return 1.22;
+        return 1.725;
+    }
+    else if (data.activity == 4) {
+        return 1.9;
     }
     else {
         return 1;
