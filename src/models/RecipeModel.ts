@@ -14,6 +14,7 @@ export interface IRecipeModel extends Document {
     photo_url: String;
 }
 
+
 const RecipeSchema: Schema = new Schema({
     name: {
         type: String,
