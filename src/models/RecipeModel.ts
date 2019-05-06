@@ -22,8 +22,7 @@ const RecipeSchema: Schema = new Schema({
     },
     type: {
         type: String,
-        required: true,
-        enum: ['breakfast', 'breakfastA', 'breakfastB', 'breakfastC', 'breakfastD', 'breakfastE', 'lunch', 'dinner', 'snack1', 'snack1A','snack1B', 'snack1C', 'snack1D', 'snack1E', 'snack2', 'snack2A', 'snack2B', 'snack2B', 'snack2C', 'snack2D', 'snack2E', 'snack3']
+        required: true
     },
     ingredients: {
         type: Array,
