@@ -15,6 +15,7 @@ export interface IRecipeModel extends Document {
 }
 
 
+
 const RecipeSchema: Schema = new Schema({
     name: {
         type: String,
