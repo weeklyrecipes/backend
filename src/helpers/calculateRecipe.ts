@@ -72,8 +72,9 @@ function findDiet(user: any, date: any) {
     week = 'E';
   }
   console.log("FINDING DIET FOR")
-  console.log(user)
-  console.log(diets[week][String(Math.floor(user.calories/100)*100)])
+  console.log(week)
+  console.log(diets[week])
+  console.log(String(Math.floor(user.calories/100)*100))
   return diets[week][String(Math.floor(user.calories/100)*100)];
 }
 

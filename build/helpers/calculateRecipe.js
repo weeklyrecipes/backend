@@ -67,8 +67,9 @@ function findDiet(user, date) {
         week = 'E';
     }
     console.log("FINDING DIET FOR");
-    console.log(user);
-    console.log(tables_1.default[week][String(Math.floor(user.calories / 100) * 100)]);
+    console.log(week);
+    console.log(tables_1.default[week]);
+    console.log(String(Math.floor(user.calories / 100) * 100));
     return tables_1.default[week][String(Math.floor(user.calories / 100) * 100)];
 }
 function calculateRecipes(user) {
