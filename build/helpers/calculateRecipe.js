@@ -6,8 +6,6 @@ let critical = false;
 function calculateRecipe(diet, recipe, type) {
     let ingredients = [];
     let i = 0;
-    console.log("DIETTT");
-    console.log(diet);
     for (let key in recipe.macro) {
         let macroLength = recipe.macro[key].length;
         let quantityDifference = 0;
@@ -70,7 +68,7 @@ function findDiet(user, date) {
     else if (user.objective == 3) {
         week = 'E';
     }
-    console.log("WEEK THEN CALORIES");
+    console.log("WEEK THEN CALORIES for " + date.toString());
     console.log(week);
     console.log(String(Math.floor(user.calories / 100) * 100));
     return { diet: tables_1.default[week][String(Math.floor(user.calories / 100) * 100)], week: week };

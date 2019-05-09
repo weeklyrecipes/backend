@@ -6,7 +6,12 @@ function calculateAge(birthday) {
     return Math.abs(ageDate.getUTCFullYear() - 1970);
 }
 function caloriesNeeded(data) {
-    return calculateTMB(data) * calculateAF(data);
+    let cal = calculateTMB(data) * calculateAF(data);
+    if (cal < 1200)
+        cal = 1200;
+    if (data.objective == 3 && cal < 3000)
+        cal = 3000;
+    return cal;
 }
 function calculateTMB(data) {
     if (data.gender == "M") {
