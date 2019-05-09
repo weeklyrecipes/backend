@@ -58,19 +58,19 @@ function findDiet(user, date) {
     let diet;
     let week = 'A';
     if (user.objective == 0 || user.objective == 1) {
-        week = (weeksBetween(user.createdAt, date) % 2 == 0) ? "A" : "B";
+        week = weeksBetween(user.createdAt, date) % 2 ? "B" : "A";
     }
     else if (user.objective == 2) {
-        week = weeksBetween(user.createdAt, date) < 6 ? "C" : "D";
+        let weeks = weeksBetween(user.createdAt, date);
+        while (weeks > 13) {
+            weeks /= 6;
+        }
+        week = weeks < 6 ? "C" : "D";
     }
     else if (user.objective == 3) {
         week = 'E';
     }
-    console.log("FINDING DIET FOR");
-    console.log(week);
-    console.log(tables_1.default[week]);
-    console.log(String(Math.floor(user.calories / 100) * 100));
-    return tables_1.default[week][String(Math.floor(user.calories / 100) * 100)];
+    return { diet: tables_1.default[week][String(Math.floor(user.calories / 100) * 100)], week: week };
 }
 function calculateRecipes(user) {
     return new Promise((resolve) => {
@@ -82,35 +82,30 @@ function calculateRecipes(user) {
                 user.menus[dates[i].formatted] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false, snack3: false };
             }
             for (let key in user.menus[dates[i].formatted]) {
+                let obj = findDiet(user, dates[i].raw);
                 if (!user.menus[dates[i].formatted][key])
-                    toFind[key].push({ diet: findDiet(user, dates[i].raw), date: dates[i].formatted, week: weeksBetween(user.createdAt, dates[i].raw) % 2 ? "A" : "B" });
+                    toFind[key].push({ diet: obj.diet, date: dates[i].formatted, week: obj.week });
             }
             i++;
         }
         let promises = [];
         for (let breakfast of toFind.breakfast) {
-            let diet = tables_1.default[breakfast.week][String(Math.floor(user.calories / 100) * 100)];
             promises.push(findBreakfast(user, breakfast.date, breakfast.diet, breakfast.week));
         }
         for (let snack1 of toFind.snack1) {
-            let diet = tables_1.default[snack1.week][String(Math.floor(user.calories / 100) * 100)];
             promises.push(findSnack1(user, snack1.date, snack1.diet, snack1.week));
         }
         for (let lunch of toFind.lunch) {
-            let diet = tables_1.default[lunch.week][String(Math.floor(user.calories / 100) * 100)];
             promises.push(findLunch(user, lunch.date, lunch.diet));
         }
         for (let snack2 of toFind.snack2) {
-            let diet = tables_1.default[snack2.week][String(Math.floor(user.calories / 100) * 100)];
             promises.push(findSnack2(user, snack2.date, snack2.diet, snack2.week));
         }
         for (let dinner of toFind.dinner) {
-            let diet = tables_1.default[dinner.week][String(Math.floor(user.calories / 100) * 100)];
             promises.push(findDinner(user, dinner.date, dinner.diet));
         }
         if (user.objective == 3) {
             for (let snack3 of toFind.snack3) {
-                let diet = tables_1.default[snack3.week][String(Math.floor(user.calories / 100) * 100)];
                 promises.push(findSnack3(user, snack3.date, snack3.diet));
             }
         }
