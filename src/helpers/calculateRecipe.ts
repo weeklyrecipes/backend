@@ -6,6 +6,8 @@ let critical = false;
 function calculateRecipe(diet: any, recipe: any, type: any) {
   let ingredients = [];
   let i = 0;
+  console.log("DIETTT")
+  console.log(diet)
   for (let key in recipe.macro) {
     let macroLength = recipe.macro[key].length;
     let quantityDifference = 0;
@@ -57,43 +59,61 @@ function weeksBetween(d1, d2) {
     return Math.round((d2 - d1) / (7 * 24 * 60 * 60 * 1000));
 }
 
+function findDiet(user: any, date: any) {
+  let diet;
+  let week = 'A';
+  if (user.objective == 0 || user.objective == 1) {
+    week = (weeksBetween(user.createdAt, date) % 2 == 0) ? "A" : "B";
+  }
+  else if (user.objective == 2) {
+    week = weeksBetween(user.createdAt, date) < 6 ? "C" : "D";
+  }
+  else if (user.objective == 3) {
+    week = 'E';
+  }
+  return diets[week][String(Math.floor(user.calories/100)*100)];
+}
+
 export function calculateRecipes(user: any) {
-  let week = weeksBetween(user.createdAt, new Date()) % 2 ? "A" : "B";
-  let diet = diets[week+String(Math.floor(user.calories/100)*100)];
-  user.diet = diet;
   return new Promise((resolve) => {
     let dates = getDates(new Date(), 10);
     let i = 0;
-    let toFind = {breakfast: [], snack1: [], lunch: [], snack2: [], dinner: []};
+    let toFind = {breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [], snack3: []};
     while (dates[i]) {
       if (!user.menus[dates[i].formatted]) {
-        user.menus[dates[i].formatted] = {breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false};
+        user.menus[dates[i].formatted] = {breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false, snack3: false};
       }
       for (let key in user.menus[dates[i].formatted]) {
-        if (!user.menus[dates[i].formatted][key]) toFind[key].push({date: dates[i].formatted, week:  weeksBetween(user.createdAt, dates[i].raw) % 2 ? "A" : "B"});
+        if (!user.menus[dates[i].formatted][key]) toFind[key].push({diet: findDiet(user, dates[i].raw), date: dates[i].formatted, week:  weeksBetween(user.createdAt, dates[i].raw) % 2 ? "A" : "B"});
       }
       i++;
     }
     let promises = [];
     for (let breakfast of toFind.breakfast) {
-      let diet = diets[breakfast.week+String(Math.floor(user.calories/100)*100)];
-      promises.push(findBreakfast(user, breakfast.date, diet, breakfast.week));
+      let diet = diets[breakfast.week][String(Math.floor(user.calories/100)*100)];
+      promises.push(findBreakfast(user, breakfast.date, breakfast.diet, breakfast.week));
     }
     for (let snack1 of toFind.snack1) {
-      let diet = diets[snack1.week+String(Math.floor(user.calories/100)*100)];
-      promises.push(findSnack1(user, snack1.date, diet, snack1.week));
+      let diet = diets[snack1.week][String(Math.floor(user.calories/100)*100)];
+      promises.push(findSnack1(user, snack1.date, snack1.diet, snack1.week));
     }
     for (let lunch of toFind.lunch) {
-      let diet = diets[lunch.week+String(Math.floor(user.calories/100)*100)];
-      promises.push(findLunch(user, lunch.date, diet));
+      let diet = diets[lunch.week][String(Math.floor(user.calories/100)*100)];
+      promises.push(findLunch(user, lunch.date, lunch.diet));
     }
     for (let snack2 of toFind.snack2) {
-      let diet = diets[snack2.week+String(Math.floor(user.calories/100)*100)];
-      promises.push(findSnack2(user, snack2.date, diet, snack2.week));
+      let diet = diets[snack2.week][String(Math.floor(user.calories/100)*100)];
+      promises.push(findSnack2(user, snack2.date, snack2.diet, snack2.week));
     }
     for (let dinner of toFind.dinner) {
-      let diet = diets[dinner.week+String(Math.floor(user.calories/100)*100)];
-      promises.push(findDinner(user, dinner.date, diet));
+      let diet = diets[dinner.week][String(Math.floor(user.calories/100)*100)];
+      promises.push(findDinner(user, dinner.date, dinner.diet));
+    }
+    if (user.objective == 3) {
+      for (let snack3 of toFind.snack3) {
+        let diet = diets[snack3.week][String(Math.floor(user.calories/100)*100)];
+        promises.push(findSnack3(user, snack3.date, snack3.diet));
+      }
     }
     Promise.all(promises).then(() => {
       resolve(user.menus)
@@ -136,7 +156,7 @@ function findSnack1(user: any, date: any, diet: any, week: any) : Promise<any> {
           })
         }
         else {
-          resolve(findBreakfast(user, date, diet, week));
+          resolve(findSnack1(user, date, diet, week));
         }
       })
     })
@@ -177,7 +197,29 @@ function findSnack2(user: any, date: any, diet: any, week: any) : Promise<any> {
           })
         }
         else {
-          resolve(findBreakfast(user, date, diet, week));
+          resolve(findSnack2(user, date, diet, week));
+        }
+      })
+    })
+  })
+}
+
+
+function findSnack3(user: any, date: any, diet: any) : Promise<any> {
+  return new Promise((resolve) => {
+    RecipeModel.count({type: 'snack3'}).exec(function (err, count) {
+      let random = Math.floor(Math.random() * count)
+      RecipeModel.findOne({type: 'snack3'}).skip(random).exec((err, recipe) => {
+        if (recipe) {
+          // && noDup(user.menus, recipe)
+          let final = calculateRecipe(diet, recipe, "snack3");
+          user.menus[date]["snack3"] = final;
+          user.save(() => {
+            resolve(final);
+          })
+        }
+        else {
+          resolve(findSnack3(user, date, diet));
         }
       })
     })
@@ -197,7 +239,7 @@ function findDinner(user: any, date: any, diet: any) : Promise<any> {
           })
         }
         else {
-          resolve(findLunch(user, date, diet));
+          resolve(findDinner(user, date, diet));
         }
       })
     })
