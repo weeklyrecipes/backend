@@ -60,6 +60,7 @@ function findDiet(user, date) {
     }
     else if (user.objective == 2) {
         let weeks = weeksBetween(user.createdAt, date);
+        console.log(weeks);
         // while (weeks > 13) {
         //   weeks /= 6;
         // }
@@ -71,7 +72,7 @@ function findDiet(user, date) {
     console.log("WEEK THEN CALORIES for " + date.toString());
     console.log(week);
     console.log(String(Math.floor(user.calories / 100) * 100));
-    console.log(tables_1.default[week][String(Math.floor(user.calories / 100) * 100)]);
+    // console.log(diets[week][String(Math.floor(user.calories/100)*100)]);
     return { diet: tables_1.default[week][String(Math.floor(user.calories / 100) * 100)], week: week };
 }
 function calculateRecipes(user) {
