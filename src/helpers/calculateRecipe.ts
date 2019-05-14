@@ -9,7 +9,7 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
   for (let key in recipe.macro) {
     let macroLength = recipe.macro[key].length;
     let quantityDifference = 0;
-    while (i < macroLength) {
+    while (recipe.macro[key][i]) {
       let quantity = Math.floor(((diet[type][key]/recipe.macro[key][i].ration) / macroLength)*10);
       if (macroLength > 1 && quantity > 25 && quantity%25 > 10) {
         quantity = (i%2 == 0 ? Math.floor(quantity / 25) * 25 : Math.ceil(quantity / 25) * 25);
