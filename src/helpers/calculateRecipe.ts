@@ -64,11 +64,12 @@ function findDiet(user: any, date: any) {
     week = weeksBetween(user.createdAt, date) % 2 ? "B" : "A";
   }
   else if (user.objective == 2) {
+    console.log("START DATES")
+    console.log(user.createdAt)
+    console.log(date)
+    console.log("END DATES")
     let weeks = weeksBetween(user.createdAt, date);
     console.log(weeks)
-    // while (weeks > 13) {
-    //   weeks /= 6;
-    // }
     week = weeks < 6 ? "C" : "D";
   }
   else if (user.objective == 3) {
