@@ -12,16 +12,18 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
   for (let key in recipe.macro) {
     let macroLength = recipe.macro[key].length;
     let quantityDifference = 0;
-    while (recipe.macro[key][i]) {
-      let quantity = Math.floor(((diet[type][key]/recipe.macro[key][i].ration) / macroLength)*10);
-      if (macroLength > 1 && quantity > 25 && quantity%25 > 10) {
-        quantity = (i%2 == 0 ? Math.floor(quantity / 25) * 25 : Math.ceil(quantity / 25) * 25);
+    if (diet[type][key]) {
+      while (recipe.macro[key][i]) {
+        let quantity = Math.floor(((diet[type][key]/recipe.macro[key][i].ration) / macroLength)*10);
+        if (macroLength > 1 && quantity > 25 && quantity%25 > 10) {
+          quantity = (i%2 == 0 ? Math.floor(quantity / 25) * 25 : Math.ceil(quantity / 25) * 25);
+        }
+        else {
+          quantity = Math.round(quantity / 5) * 5;
+        }
+        ingredients.push({ingredient: recipe.macro[key][i], quantity: quantity})
+        i++;
       }
-      else {
-        quantity = Math.round(quantity / 5) * 5;
-      }
-      ingredients.push({ingredient: recipe.macro[key][i], quantity: quantity})
-      i++;
     }
     i = 0;
   }
