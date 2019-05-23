@@ -9,10 +9,10 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
   console.log("BLOCKIING HERE")
   console.log(diet)
   console.log(recipe)
-  for (let key in recipe.macro) {
-    let macroLength = recipe.macro[key].length;
-    let quantityDifference = 0;
-    if (diet[type]) {
+  if (diet[type]) {
+    for (let key in recipe.macro) {
+      let macroLength = recipe.macro[key].length;
+      let quantityDifference = 0;
       while (recipe.macro[key][i]) {
         let quantity = Math.floor(((diet[type][key]/recipe.macro[key][i].ration) / macroLength)*10);
         if (macroLength > 1 && quantity > 25 && quantity%25 > 10) {
@@ -24,10 +24,13 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
         ingredients.push({ingredient: recipe.macro[key][i], quantity: quantity})
         i++;
       }
+      i = 0;
     }
-    i = 0;
+    recipe.ingredients = ingredients;
   }
-  recipe.ingredients = ingredients;
+  else {
+    recipe.ingredients = [];
+  }
   return recipe;
   // console.log(ingredients);
 }
