@@ -6,6 +6,9 @@ let critical = false;
 function calculateRecipe(diet, recipe, type) {
     let ingredients = [];
     let i = 0;
+    console.log("BLOCKIING HERE");
+    console.log(diet);
+    console.log(recipe);
     for (let key in recipe.macro) {
         let macroLength = recipe.macro[key].length;
         let quantityDifference = 0;
