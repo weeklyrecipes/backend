@@ -122,6 +122,8 @@ function calculateRecipes(user) {
 }
 exports.calculateRecipes = calculateRecipes;
 function findBreakfast(user, date, diet, week) {
+    if (week != "A" && week != "B")
+        week = "C";
     return new Promise((resolve) => {
         RecipeModel_1.default.count({ type: 'breakfast' + week }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);
@@ -142,6 +144,8 @@ function findBreakfast(user, date, diet, week) {
     });
 }
 function findSnack1(user, date, diet, week) {
+    if (week != "A" && week != "B")
+        week = "C";
     return new Promise((resolve) => {
         RecipeModel_1.default.count({ type: 'snack1' + week }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);
@@ -181,6 +185,8 @@ function findLunch(user, date, diet) {
     });
 }
 function findSnack2(user, date, diet, week) {
+    if (week != "A" && week != "B")
+        week = "C";
     return new Promise((resolve) => {
         RecipeModel_1.default.count({ type: 'snack2' + week }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);

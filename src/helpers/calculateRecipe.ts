@@ -127,6 +127,7 @@ export function calculateRecipes(user: any) {
 }
 
 function findBreakfast(user: any, date: any, diet: any, week: any) : Promise<any> {
+  if (week != "A" && week != "B") week = "C";
   return new Promise((resolve) => {
     RecipeModel.count({type: 'breakfast' + week}).exec(function (err, count) {
       let random = Math.floor(Math.random() * count)
@@ -148,6 +149,7 @@ function findBreakfast(user: any, date: any, diet: any, week: any) : Promise<any
 }
 
 function findSnack1(user: any, date: any, diet: any, week: any) : Promise<any> {
+  if (week != "A" && week != "B") week = "C";
   return new Promise((resolve) => {
     RecipeModel.count({type: 'snack1' + week}).exec(function (err, count) {
       let random = Math.floor(Math.random() * count)
@@ -189,6 +191,7 @@ function findLunch(user: any, date: any, diet: any) : Promise<any> {
 }
 
 function findSnack2(user: any, date: any, diet: any, week: any) : Promise<any> {
+  if (week != "A" && week != "B") week = "C";
   return new Promise((resolve) => {
     RecipeModel.count({type: 'snack2' + week}).exec(function (err, count) {
       let random = Math.floor(Math.random() * count)
