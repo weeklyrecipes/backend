@@ -60,19 +60,11 @@ function findDiet(user, date) {
     }
     else if (user.objective == 2) {
         let weeks = weeksBetween(user.createdAt, date);
-        console.log(weeks);
-        // while (weeks > 13) {
-        //   weeks /= 6;
-        // }
         week = weeks < 6 ? "C" : "D";
     }
     else if (user.objective == 3) {
         week = 'E';
     }
-    console.log("WEEK THEN CALORIES for " + date.toString());
-    console.log(week);
-    console.log(String(Math.floor(user.calories / 100) * 100));
-    // console.log(diets[week][String(Math.floor(user.calories/100)*100)]);
     return { diet: tables_1.default[week][String(Math.floor(user.calories / 100) * 100)], week: week };
 }
 function calculateRecipes(user) {
@@ -91,6 +83,9 @@ function calculateRecipes(user) {
             }
             i++;
         }
+        console.log("user");
+        console.log(user);
+        console.log(toFind);
         let promises = [];
         for (let breakfast of toFind.breakfast) {
             promises.push(findBreakfast(user, breakfast.date, breakfast.diet, breakfast.week));
@@ -107,7 +102,7 @@ function calculateRecipes(user) {
         for (let dinner of toFind.dinner) {
             promises.push(findDinner(user, dinner.date, dinner.diet));
         }
-        if (user.objective == 3) {
+        if (user.objective == 3 && user.calories > 390) {
             for (let snack3 of toFind.snack3) {
                 promises.push(findSnack3(user, snack3.date, snack3.diet));
             }
