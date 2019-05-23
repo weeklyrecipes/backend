@@ -112,11 +112,11 @@ export function calculateRecipes(user: any) {
     for (let dinner of toFind.dinner) {
       promises.push(findDinner(user, dinner.date, dinner.diet));
     }
-    if (user.objective == 3 && user.calories > 3900) {
-      for (let snack3 of toFind.snack3) {
-        promises.push(findSnack3(user, snack3.date, snack3.diet));
-      }
-    }
+    // if (user.objective == 3 && user.calories > 3900) {
+    //   for (let snack3 of toFind.snack3) {
+    //     promises.push(findSnack3(user, snack3.date, snack3.diet));
+    //   }
+    // }
     Promise.all(promises).then(() => {
       resolve(user.menus)
     })
