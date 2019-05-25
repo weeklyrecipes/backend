@@ -6,9 +6,6 @@ let critical = false;
 function calculateRecipe(diet, recipe, type) {
     let ingredients = [];
     let i = 0;
-    console.log("BLOCKIING HERE");
-    console.log(diet);
-    console.log(recipe);
     if (diet[type]) {
         for (let key in recipe.macro) {
             let macroLength = recipe.macro[key].length;
@@ -73,6 +70,9 @@ function findDiet(user, date) {
     else if (user.objective == 3) {
         week = 'E';
     }
+    console.log("WEEK");
+    console.log(week);
+    console.log(String(Math.floor(user.calories / 100) * 100));
     return { diet: tables_1.default[week][String(Math.floor(user.calories / 100) * 100)], week: week };
 }
 function calculateRecipes(user) {
@@ -91,9 +91,6 @@ function calculateRecipes(user) {
             }
             i++;
         }
-        console.log("user");
-        console.log(user);
-        console.log(toFind);
         let promises = [];
         for (let breakfast of toFind.breakfast) {
             promises.push(findBreakfast(user, breakfast.date, breakfast.diet, breakfast.week));
