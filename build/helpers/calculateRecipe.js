@@ -6,7 +6,7 @@ let critical = false;
 function calculateRecipe(diet, recipe, type) {
     let ingredients = [];
     let i = 0;
-    if (diet[type]) {
+    if (diet && diet[type]) {
         for (let key in recipe.macro) {
             let macroLength = recipe.macro[key].length;
             let quantityDifference = 0;
@@ -73,6 +73,8 @@ function findDiet(user, date) {
     console.log("WEEK");
     console.log(week);
     console.log(String(Math.floor(user.calories / 100) * 100));
+    console.log(tables_1.default[week]);
+    console.log(tables_1.default[week][String(Math.floor(user.calories / 100) * 100)]);
     return { diet: tables_1.default[week][String(Math.floor(user.calories / 100) * 100)], week: week };
 }
 function calculateRecipes(user) {
