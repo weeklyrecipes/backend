@@ -84,7 +84,7 @@ function calculateRecipes(user) {
         let toFind = { breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [], snack3: [] };
         while (dates[i]) {
             if (!user.menus[dates[i].formatted]) {
-                user.menus[dates[i].formatted] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false, snack3: false };
+                user.menus[dates[i].formatted] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false };
             }
             for (let key in user.menus[dates[i].formatted]) {
                 let obj = findDiet(user, dates[i].raw);
