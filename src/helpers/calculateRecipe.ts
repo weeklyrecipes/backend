@@ -121,11 +121,12 @@ export function calculateRecipes(user: any) {
 }
 
 function findBreakfast(user: any, date: any, week: any) : Promise<any> {
-  if (week != "A" && week != "B") week = "C";
+  var recipeWeek = week;
+  if (week != "A" && week != "B") recipeWeek = "C";
   return new Promise((resolve) => {
-    RecipeModel.count({type: 'breakfast' + week}).exec(function (err, count) {
+    RecipeModel.count({type: 'breakfast' + recipeWeek}).exec(function (err, count) {
       let random = Math.floor(Math.random() * count)
-      RecipeModel.findOne({type: 'breakfast' + week}).skip(random).exec((err, recipe) => {
+      RecipeModel.findOne({type: 'breakfast' + recipeWeek}).skip(random).exec((err, recipe) => {
         if (recipe) {
           // && noDup(user.menus, recipe)
           let final = calculateRecipe(diets[week][String(Math.floor(user.calories/100)*100)], recipe, "breakfast");

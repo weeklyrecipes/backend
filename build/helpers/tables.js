@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 let diets = {
-    "A": {
-        "﻿1200": { breakfast: { veg: 0,
+    'A': {
+        '1200': { breakfast: { veg: 0,
                 carb: '2',
                 lact: 0.5,
                 protein: '1',

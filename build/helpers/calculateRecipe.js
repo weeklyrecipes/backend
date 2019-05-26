@@ -116,12 +116,13 @@ function calculateRecipes(user) {
 }
 exports.calculateRecipes = calculateRecipes;
 function findBreakfast(user, date, week) {
+    var recipeWeek = week;
     if (week != "A" && week != "B")
-        week = "C";
+        recipeWeek = "C";
     return new Promise((resolve) => {
-        RecipeModel_1.default.count({ type: 'breakfast' + week }).exec(function (err, count) {
+        RecipeModel_1.default.count({ type: 'breakfast' + recipeWeek }).exec(function (err, count) {
             let random = Math.floor(Math.random() * count);
-            RecipeModel_1.default.findOne({ type: 'breakfast' + week }).skip(random).exec((err, recipe) => {
+            RecipeModel_1.default.findOne({ type: 'breakfast' + recipeWeek }).skip(random).exec((err, recipe) => {
                 if (recipe) {
                     // && noDup(user.menus, recipe)
                     let final = calculateRecipe(tables_1.default[week][String(Math.floor(user.calories / 100) * 100)], recipe, "breakfast");

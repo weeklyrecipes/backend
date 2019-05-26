@@ -1,7 +1,7 @@
 let diets = {
-  "A":
-{
- "﻿1200":
+  'A':
+  {
+ '1200':
    { breakfast:
       { veg: 0,
         carb: '2',
