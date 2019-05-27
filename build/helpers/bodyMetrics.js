@@ -15,10 +15,10 @@ function caloriesNeeded(data) {
 }
 function calculateTMB(data) {
     if (data.gender == "M") {
-        return 66 + (13.7516 * data.weight) + (5 * data.height) - (6.8 * calculateAge(data.birthday));
+        return 66.473 + (13.7516 * data.weight) + (5.0033 * data.height) - (6.755 * calculateAge(data.birthday));
     }
     else {
-        return 655 + (9.5634 * data.weight) + (1.8 * data.height) - (4.6756 * calculateAge(data.birthday));
+        return 655.0955 + (9.5634 * data.weight) + (1.8496 * data.height) - (4.6756 * calculateAge(data.birthday));
     }
 }
 function calculateAF(data) {
@@ -29,7 +29,7 @@ function calculateAF(data) {
         return 1.375;
     }
     else if (data.activity == 2) {
-        return 1.64;
+        return 1.55;
     }
     else if (data.activity == 3) {
         return 1.725;
@@ -42,16 +42,26 @@ function calculateAF(data) {
     }
 }
 function loseWeight(data) {
-    return Math.round(caloriesNeeded(data) * 0.7);
+    return Math.round(caloriesNeeded(data) - 500);
 }
 function remise(data) {
     return caloriesNeeded(data);
 }
 function seche(data) {
-    return caloriesNeeded(data) * 0.75;
+    let cals = caloriesNeeded(data);
+    if (cals < 3000) {
+        cals -= 300;
+    }
+    else if (cals < 3200) {
+        cals -= 400;
+    }
+    else {
+        cals -= 500;
+    }
+    return cals;
 }
 function gainWeight(data) {
-    return caloriesNeeded(data) * 1.3;
+    return caloriesNeeded(data) * 1.15;
 }
 function finalCalculus(data) {
     if (data.objective == 0) {
