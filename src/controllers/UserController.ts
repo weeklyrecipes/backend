@@ -4,6 +4,9 @@ import { calculateRecipes } from '../helpers/calculateRecipe';
 import { finalCalculus } from '../helpers/bodyMetrics';
 
 class UserController {
+
+
+    // check promo and change it if needed
     /**
      * @param  {express.Request} req
      * @param  {express.Response} res
@@ -89,10 +92,15 @@ class UserController {
         UserModel
             .findById(req.params.id)
             .then((user) => {
-                user.menus = {};
-                user.objective = req.body.objective;
-                user.activity = req.body.activity;
-                user.weight = req.body.weight;
+                if (req.body.menus != user.menus) {
+                  user.menus = req.body.menus;
+                }
+                else {
+                  user.menus = {};
+                  user.objective = req.body.objective;
+                  user.activity = req.body.activity;
+                  user.weight = req.body.weight;
+                }
                 let calories = finalCalculus(user);
                 user.calories =  (calories > 1200 ? calories : 1200);
                 calculateRecipes(user).then((recipes) => {
@@ -111,6 +119,7 @@ class UserController {
                 next(error);
             });
     }
+
 }
 
 export default new UserController();

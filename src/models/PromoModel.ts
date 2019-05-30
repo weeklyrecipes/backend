@@ -8,9 +8,18 @@ export interface IPromoModel extends Document {
     date: Date;
 }
 
+// 0 -> 1 mois
+// 1 -> 6 mois
+// 2 -> 12 mois
+
 const PromoSchema: Schema = new Schema({
-    value: {
+    code: {
         type: String,
+        required: true
+    },
+    type: {
+        type: Number,
+        enum: [0, 1, 2],
         required: true
     },
     status: {
@@ -22,7 +31,7 @@ const PromoSchema: Schema = new Schema({
       type: Number,
       default: 30
     },
-    date: {
+    purchaseDate: {
       type: Date
     }
 }, {
