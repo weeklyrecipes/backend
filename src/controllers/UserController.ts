@@ -92,7 +92,7 @@ class UserController {
         UserModel
             .findById(req.params.id)
             .then((user) => {
-                if (req.body.menus != user.menus) {
+                if (req.body.menus && req.body.menus != user.menus) {
                   user.menus = req.body.menus;
                 }
                 else {

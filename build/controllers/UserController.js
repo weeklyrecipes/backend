@@ -4,6 +4,7 @@ const UserModel_1 = require("../models/UserModel");
 const calculateRecipe_1 = require("../helpers/calculateRecipe");
 const bodyMetrics_1 = require("../helpers/bodyMetrics");
 class UserController {
+    // check promo and change it if needed
     /**
      * @param  {express.Request} req
      * @param  {express.Response} res
@@ -87,7 +88,7 @@ class UserController {
         UserModel_1.default
             .findById(req.params.id)
             .then((user) => {
-            if (req.body.menus != user.menus) {
+            if (req.body.menus && req.body.menus != user.menus) {
                 user.menus = req.body.menus;
             }
             else {
@@ -96,37 +97,6 @@ class UserController {
                 user.activity = req.body.activity;
                 user.weight = req.body.weight;
             }
-            let calories = bodyMetrics_1.finalCalculus(user);
-            user.calories = (calories > 1200 ? calories : 1200);
-            calculateRecipe_1.calculateRecipes(user).then((recipes) => {
-                user.menus = recipes;
-                user.markModified('menus');
-                user.save((err, saved) => {
-                    res.status(200).json(saved);
-                });
-            });
-        })
-            .catch((error) => {
-            res.status(500).json({
-                error: error.message,
-                errorStack: error.stack
-            });
-            next(error);
-        });
-    }
-    /**
-     * @param  {express.Request} req
-     * @param  {express.Response} res
-     * @param  {express.NextFunction} next
-     */
-    updateRecipes(req, res, next) {
-        UserModel_1.default
-            .findById(req.params.id)
-            .then((user) => {
-            user.menus = {};
-            user.objective = req.body.objective;
-            user.activity = req.body.activity;
-            user.weight = req.body.weight;
             let calories = bodyMetrics_1.finalCalculus(user);
             user.calories = (calories > 1200 ? calories : 1200);
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
