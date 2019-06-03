@@ -83,10 +83,6 @@ const UserSchema: Schema = new Schema({
 }).pre('save', (next) => {
     // this will run before saving
     const now: Date = new Date();
-    console.log("_DOC")
-    console.log(this._doc)
-    console.log("DOC")
-    console.log(this.doc)
     if (this._doc) {
         let doc: IUserModel = <IUserModel>this._doc;
 

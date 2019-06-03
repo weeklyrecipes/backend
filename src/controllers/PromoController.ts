@@ -1,5 +1,3 @@
-// import IngredientModel from '../models/IngredientModel';
-// import calulcateIngredient from '../helpers/calculateIngredient';
 import * as express from 'express';
 import PromoModel from '../models/PromoModel';
 var voucher_codes = require('voucher-code-generator');
@@ -28,8 +26,9 @@ class PromoController {
           i++;
         }
         res.status(200).json(codes);
-
     }
+
+    // add promo: if code available,  check type, add expiration date to 3/6/12 months from present/change to valid
 
 }
 

@@ -172,7 +172,7 @@ function findLunch(user: any, date: any, week: any) : Promise<any> {
     RecipeModel.count({type: 'lunch'}).exec(function (err, count) {
       let random = Math.floor(Math.random() * count)
       RecipeModel.findOne({type: 'lunch'}).skip(random).exec((err, recipe) => {
-        if (recipe && noDup(user.menus, recipe)) {
+        if (recipe) {
           let final = calculateRecipe(diets[week][String(Math.floor(user.calories/100)*100)], recipe, "lunch");
           user.menus[date]["lunch"] = final;
           user.save(() => {
@@ -237,7 +237,7 @@ function findDinner(user: any, date: any, week: any) : Promise<any> {
     RecipeModel.count({type: 'dinner'}).exec(function (err, count) {
       let random = Math.floor(Math.random() * count)
       RecipeModel.findOne({type: 'dinner'}).skip(random).exec((err, recipe) => {
-        if (recipe && noDup(user.menus, recipe)) {
+        if (recipe) {
           let final = calculateRecipe(diets[week][String(Math.floor(user.calories/100)*100)], recipe, "dinner");
           user.menus[date]["dinner"] = final;
           user.save(() => {

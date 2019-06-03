@@ -1,4 +1,5 @@
 import UserModel from '../models/UserModel';
+import PromoModel from '../models/PromoModel';
 import * as express from 'express';
 import { calculateRecipes } from '../helpers/calculateRecipe';
 import { finalCalculus } from '../helpers/bodyMetrics';
@@ -17,7 +18,6 @@ class UserController {
             .findById(req.params.id)
             .then((user) => {
                 if (user) {
-                  console.log(user);
                   let calories = finalCalculus(user);
                   user.calories =  (calories > 1200 ? calories : 1200);
                   calculateRecipes(user).then((recipes) => {
@@ -96,7 +96,23 @@ class UserController {
                   user.menus = req.body.menus;
                 }
                 else {
-                  user.menus = {};
+                  if (new Date().getDay() == 5 || new Date().getDay() == 6 || new Date().getDay() == 0) {
+                    let date = new Date();
+                    let d = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+                    let found = false;
+                    for (let menuDate of Object.keys(user.menus)) {
+                      if (d == menuDate) {
+                        found = true;
+                      }
+                      else if (found) {
+                        if (date.getDate() != 1) date.setDate(date.getDate() + 1);
+                        else delete user.menus[menuDate];
+                      }
+                    }
+                  }
+                  else {
+                    user.menus = {};
+                  }
                   user.objective = req.body.objective;
                   user.activity = req.body.activity;
                   user.weight = req.body.weight;
@@ -118,6 +134,41 @@ class UserController {
                 });
                 next(error);
             });
+    }
+
+    public enterCode(req: express.Request, res: express.Response, next: express.NextFunction): void {
+      PromoModel
+      .find({code: req.body.code})
+      .then((code: any) => {
+        // if code available,  check type, add expiration date to 3/6/12 months from present/change to valid
+        if (code && code.status == "available") {
+          let currentDate = new Date();
+          let exp_date = new Date();
+          exp_date.setMonth(exp_date.getMonth() + code.type);
+
+          code.status == "valid";
+          code.exp_date = exp_date;
+          UserModel
+          .findById(req.params.id)
+          .then((user) => {
+            user.pass = code;
+            code.userId = user._id;
+            user.save();
+            code.save();
+            res.status(200).json(user);
+          })
+        }
+        else {
+          res.status(401).json({});
+        }
+      })
+      .catch((error: Error) => {
+          res.status(500).json({
+              error: error.message,
+              errorStack: error.stack
+          });
+          next(error);
+      });
     }
 
 }

@@ -64,10 +64,6 @@ const UserSchema = new mongoose_1.Schema({
 }).pre('save', (next) => {
     // this will run before saving
     const now = new Date();
-    console.log("_DOC");
-    console.log(this._doc);
-    console.log("DOC");
-    console.log(this.doc);
     if (this._doc) {
         let doc = this._doc;
         if (!doc.createdAt) {

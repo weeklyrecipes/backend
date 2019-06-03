@@ -2,15 +2,12 @@ import * as connections from '../config/connection';
 import { Schema, Document } from 'mongoose';
 
 export interface IPromoModel extends Document {
-    value: string;
+    code: string;
+    type: number;
     status: string;
-    duration: number;
-    date: Date;
+    exp_date: Date;
+    userId: string;
 }
-
-// 0 -> 1 mois
-// 1 -> 6 mois
-// 2 -> 12 mois
 
 const PromoSchema: Schema = new Schema({
     code: {
@@ -19,7 +16,7 @@ const PromoSchema: Schema = new Schema({
     },
     type: {
         type: Number,
-        enum: [0, 1, 2],
+        enum: [1, 6, 12],
         required: true
     },
     status: {
@@ -27,16 +24,20 @@ const PromoSchema: Schema = new Schema({
       enum: ['available', 'valid', 'expired'],
       default: 'available'
     },
-    duration: {
-      type: Number,
-      default: 30
-    },
-    purchaseDate: {
+    exp_date: {
       type: Date
+    },
+    userId: {
+      type: String
     }
 }, {
     collection: 'promomodel',
     versionKey: false
+}).pre('save', (next) => {
+    // this will run before saving
+    const now: Date = new Date();
+    next();
+    return this;
 });
 
 export default connections.db.model < IPromoModel >('PromoModel', PromoSchema);
