@@ -18,7 +18,7 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
         else {
           quantity = Math.round(quantity / 5) * 5;
         }
-        ingredients.push({ingredient: recipe.macro[key][i], quantity: quantity})
+        ingredients.push({ingredient: {name: recipe.macro[key][i].name, ration: recipe.macro[key][i].ration, macroType: recipe.macro[key][i].macroType}, quantity: quantity})
         i++;
       }
       i = 0;
@@ -80,9 +80,8 @@ function findWeek(user: any, date: any) {
 }
 
 export function calculateRecipes(user: any) {
-  console.log("ABOUT TO")
   return new Promise((resolve) => {
-    let dates = getDates(new Date(), 10);
+    let dates = getDates(new Date(), 7);
     let i = 0;
     let toFind = {breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [], snack3: []};
     while (dates[i]) {
@@ -95,7 +94,6 @@ export function calculateRecipes(user: any) {
       }
       i++;
     }
-    console.log(toFind)
     let promises = [];
     for (let breakfast of toFind.breakfast) {
       promises.push(findBreakfast(user, breakfast.date, breakfast.week));
