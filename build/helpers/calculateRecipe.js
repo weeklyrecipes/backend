@@ -73,6 +73,7 @@ function findWeek(user, date) {
     return { week: week };
 }
 function calculateRecipes(user) {
+    console.log("ABOUT TO");
     return new Promise((resolve) => {
         let dates = getDates(new Date(), 10);
         let i = 0;
@@ -88,6 +89,7 @@ function calculateRecipes(user) {
             }
             i++;
         }
+        console.log(toFind);
         let promises = [];
         for (let breakfast of toFind.breakfast) {
             promises.push(findBreakfast(user, breakfast.date, breakfast.week));
