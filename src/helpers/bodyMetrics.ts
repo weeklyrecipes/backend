@@ -66,7 +66,7 @@ function seche(data: any) {
 
 function gainWeight(data: any) {
   let cals = Math.round((caloriesNeeded(data) * 1.15) / 300) * 300;
-  return cals < 3000 ? 3000 : cals;
+  return cals < 3000 ? 3300 : cals;
 }
 
 export function finalCalculus(data: any) {
