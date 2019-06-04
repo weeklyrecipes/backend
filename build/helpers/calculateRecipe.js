@@ -75,6 +75,7 @@ function findWeek(user, date) {
 function calculateRecipes(user) {
     return new Promise((resolve) => {
         let dates = getDates(new Date(), 10);
+        user.diet = tables_1.default[findWeek(user, new Date()).week][String(Math.floor(user.calories / 100) * 100)];
         let i = 0;
         let toFind = { breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [], snack3: [] };
         while (dates[i]) {

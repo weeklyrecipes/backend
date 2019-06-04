@@ -23,6 +23,7 @@ class UserController {
                 calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                     user.menus = recipes;
                     user.markModified('menus');
+                    user.markModified('diet');
                     user.save((err, saved) => {
                         res.status(200).json(saved);
                     });
@@ -72,6 +73,7 @@ class UserController {
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                 user.menus = recipes;
                 user.markModified('menus');
+                user.markModified('diet');
                 user.save((err, saved) => {
                     res.status(200).json(saved);
                 });
@@ -138,6 +140,7 @@ class UserController {
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                 user.menus = recipes;
                 user.markModified('menus');
+                user.markModified('diet');
                 user.save((err, saved) => {
                     res.status(200).json(saved);
                 });
