@@ -14,11 +14,12 @@ function caloriesNeeded(data) {
     return cal;
 }
 function calculateTMB(data) {
+    let weight = data.weight[data.weight.length - 1];
     if (data.gender == "M") {
-        return 66.473 + (13.7516 * data.weight) + (5.0033 * data.height) - (6.755 * calculateAge(data.birthday));
+        return 66.473 + (13.7516 * weight) + (5.0033 * data.height) - (6.755 * calculateAge(data.birthday));
     }
     else {
-        return 655.0955 + (9.5634 * data.weight) + (1.8496 * data.height) - (4.6756 * calculateAge(data.birthday));
+        return 655.0955 + (9.5634 * weight) + (1.8496 * data.height) - (4.6756 * calculateAge(data.birthday));
     }
 }
 function calculateAF(data) {

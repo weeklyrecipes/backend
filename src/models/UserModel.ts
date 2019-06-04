@@ -13,7 +13,8 @@ export interface IUserModel extends Document {
     allergens: Array<any>;
     gender: String;
     birthday: Date;
-    weight: Number;
+    // weight as an array, get last weight
+    weight: Array<any>;
     height: Number;
     objective: Number;
     calories: Number;

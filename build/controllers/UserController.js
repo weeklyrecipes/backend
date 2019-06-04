@@ -16,8 +16,10 @@ class UserController {
             .findById(req.params.id)
             .then((user) => {
             if (user) {
-                let calories = bodyMetrics_1.finalCalculus(user);
-                user.calories = (calories > 1200 ? calories : 1200);
+                if (typeof user.weight == 'number')
+                    user.weight = [user.weight];
+                // let calories = finalCalculus(user);
+                // user.calories =  (calories > 1200 ? calories : 1200);
                 calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                     user.menus = recipes;
                     user.markModified('menus');
@@ -45,6 +47,8 @@ class UserController {
      * @param  {express.NextFunction} next
      */
     createUser(req, res, next) {
+        if (typeof req.body.weight == 'number')
+            req.body.weight = [req.body.weight];
         UserModel_1.default
             .create({
             name: req.body.name,
@@ -85,13 +89,16 @@ class UserController {
      * @param  {express.NextFunction} next
      */
     editUser(req, res, next) {
+        if (typeof req.body.weight == 'number')
+            req.body.weight = [req.body.weight];
         UserModel_1.default
             .findById(req.params.id)
             .then((user) => {
+            let numOfChanged = 0;
             if (req.body.menus && req.body.menus != user.menus) {
                 user.menus = req.body.menus;
             }
-            else {
+            else if (user.objective != req.body.objective || user.activity != req.body.activity || user.weight != req.body.weight) {
                 if (new Date().getDay() == 5 || new Date().getDay() == 6 || new Date().getDay() == 0) {
                     let date = new Date();
                     let d = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
@@ -111,10 +118,18 @@ class UserController {
                 else {
                     user.menus = {};
                 }
-                user.objective = req.body.objective;
-                user.activity = req.body.activity;
-                user.weight = req.body.weight;
             }
+            else {
+                if (user.objective != req.body.objective)
+                    numOfChanged++;
+                if (user.activity != req.body.activity)
+                    numOfChanged++;
+                if (user.weight != req.body.weight)
+                    numOfChanged++;
+            }
+            user.objective = req.body.objective;
+            user.activity = req.body.activity;
+            user.weight = req.body.weight;
             let calories = bodyMetrics_1.finalCalculus(user);
             user.calories = (calories > 1200 ? calories : 1200);
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
