@@ -158,7 +158,6 @@ class UserController {
           let currentDate = new Date();
           let exp_date = new Date();
           exp_date.setMonth(exp_date.getMonth() + code.type);
-
           code.status == "used";
           code.exp_date = exp_date;
           UserModel
