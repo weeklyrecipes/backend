@@ -16,12 +16,12 @@ const PromoSchema: Schema = new Schema({
     },
     type: {
         type: Number,
-        enum: [1, 6, 12],
+        enum: [0, 1, 6, 12],
         required: true
     },
     status: {
       type: String,
-      enum: ['available', 'valid', 'expired'],
+      enum: ['available', 'used', 'expired'],
       default: 'available'
     },
     exp_date: {

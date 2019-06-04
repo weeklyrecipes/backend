@@ -49,6 +49,8 @@ class UserController {
     createUser(req, res, next) {
         if (typeof req.body.weight == 'number')
             req.body.weight = [req.body.weight];
+        let exp_date = new Date();
+        exp_date.setDate(exp_date.getDate() + 2);
         UserModel_1.default
             .create({
             name: req.body.name,
@@ -59,7 +61,8 @@ class UserController {
             weight: req.body.weight,
             height: req.body.height,
             birthday: req.body.birthday,
-            _id: req.body.fireId
+            _id: req.body.fireId,
+            pass: { type: 0, exp_date: exp_date }
         })
             .then((user) => {
             let calories = bodyMetrics_1.finalCalculus(user);
@@ -157,12 +160,13 @@ class UserController {
                 let currentDate = new Date();
                 let exp_date = new Date();
                 exp_date.setMonth(exp_date.getMonth() + code.type);
-                code.status == "valid";
+                code.status == "used";
                 code.exp_date = exp_date;
                 UserModel_1.default
                     .findById(req.params.id)
                     .then((user) => {
                     user.pass = code;
+                    user.markModified('pass');
                     code.userId = user._id;
                     user.save();
                     code.save();
