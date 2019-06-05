@@ -103,6 +103,7 @@ class UserController {
                 let numOfChanged = 0;
                 if (req.body.menus && req.body.menus != user.menus) {
                   user.menus = req.body.menus;
+                  alert(req.body.menus);
                 }
                 else if (user.objective != req.body.objective || user.activity != req.body.activity || user.weight != req.body.weight) {
                   if (new Date().getDay() == 5 || new Date().getDay() == 6 || new Date().getDay() == 0) {

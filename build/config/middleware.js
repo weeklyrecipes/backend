@@ -8,6 +8,7 @@ const helmet = require("helmet");
 class Middleware {
     static init(server) {
         // express middleware
+        server.app.use(bodyParser({ limit: '50mb' }));
         server.app.use(bodyParser.urlencoded({ extended: false }));
         server.app.use(bodyParser.json());
         server.app.use(cookieParser());

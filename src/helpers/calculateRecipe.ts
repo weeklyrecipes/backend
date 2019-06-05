@@ -79,6 +79,7 @@ function findWeek(user: any, date: any) {
   return {week: week};
 }
 
+
 export function calculateRecipes(user: any) {
   return new Promise((resolve) => {
     let dates = getDates(new Date(), 10);
