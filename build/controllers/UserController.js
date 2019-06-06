@@ -62,24 +62,25 @@ class UserController {
             weight: req.body.weight,
             height: req.body.height,
             birthday: req.body.birthday,
-            calories: bodyMetrics_1.finalCalculus(req.body),
             _id: req.body.fireId,
             pass: { type: 0, exp_date: exp_date }
         })
             .then((user) => {
             user.createdAt = new Date();
-            user.menus = {};
-            calculateRecipe_1.calculateRecipes(user).then((recipes) => {
-                console.log("HAS CALCULATED RECIPES");
-                if (!recipes) {
-                    console.log("NO RECIPES");
-                    res.status(401).json({});
-                }
-                user.menus = recipes;
-                user.markModified('menus');
-                user.markModified('diet');
-                user.save((err, saved) => {
-                    res.status(200).json(saved);
+            user.calories = bodyMetrics_1.finalCalculus(user);
+            user.save(() => {
+                calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                    console.log("HAS CALCULA");
+                    if (!recipes) {
+                        console.log("NO RECIPES");
+                        res.status(401).json({});
+                    }
+                    user.menus = recipes;
+                    user.markModified('menus');
+                    user.markModified('diet');
+                    user.save((err, saved) => {
+                        res.status(200).json(saved);
+                    });
                 });
             });
             // res.status(200).json({ data });
