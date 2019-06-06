@@ -73,11 +73,13 @@ function findWeek(user, date) {
     return { week: week };
 }
 function calculateRecipes(user) {
-    let cals = Math.floor(user.calories / 100) * 100;
-    user.diet = tables_1.default[findWeek(user, new Date()).week][String(cals)];
     return new Promise((resolve) => {
-        if (!cals)
+        let cals = Math.floor(user.calories / 100) * 100;
+        user.diet = tables_1.default[findWeek(user, new Date()).week][String(cals)];
+        if (!cals) {
+            console.log(user);
             return resolve(false);
+        }
         let dates = getDates(new Date(), 10);
         let i = 0;
         let toFind = { breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [], snack3: [] };
