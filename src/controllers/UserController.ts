@@ -70,12 +70,8 @@ class UserController {
                 let calories = finalCalculus(user);
                 user.createdAt = new Date();
                 user.calories =  (calories > 1200 ? calories : 1200);
-                console.log("USER")
-                console.log(user)
                 user.menus = {};
                 calculateRecipes(user).then((recipes) => {
-                  console.log("RECIPES")
-                  console.log(recipes)
                   user.menus = recipes;
                   user.markModified('menus');
                   user.markModified('diet');

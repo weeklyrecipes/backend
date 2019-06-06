@@ -6,6 +6,8 @@ let critical = false;
 function calculateRecipe(diet: any, recipe: any, type: any) {
   let ingredients = [];
   let i = 0;
+  console.log("DIET")
+  console.log(diet[type])
   if (diet && diet[type]) {
     for (let key in recipe.macro) {
       let macroLength = recipe.macro[key].length;
