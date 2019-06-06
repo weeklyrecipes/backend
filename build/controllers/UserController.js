@@ -67,6 +67,8 @@ class UserController {
         })
             .then((user) => {
             let calories = bodyMetrics_1.finalCalculus(user);
+            console.log("THEN CALORIES ARE");
+            console.log(calories);
             user.createdAt = new Date();
             user.calories = (calories > 1200 ? calories : 1200);
             user.menus = {};
