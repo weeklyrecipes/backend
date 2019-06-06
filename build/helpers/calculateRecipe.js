@@ -6,10 +6,6 @@ let critical = false;
 function calculateRecipe(diet, recipe, type) {
     let ingredients = [];
     let i = 0;
-    if (!diet || !diet[type]) {
-        console.log("DIET DIDNT GO THROUGH");
-        console.log(diet);
-    }
     if (diet && diet[type]) {
         for (let key in recipe.macro) {
             let macroLength = recipe.macro[key].length;
@@ -88,6 +84,10 @@ function calculateRecipes(user) {
             }
             for (let key in user.menus[dates[i].formatted]) {
                 let obj = findWeek(user, dates[i].raw);
+                if (!tables_1.default[obj.week] || !tables_1.default[obj.week][cals]) {
+                    console.log(obj.week);
+                    console.log(cals);
+                }
                 if (!user.menus[dates[i].formatted][key])
                     toFind[key].push({ date: dates[i].formatted, week: obj.week, diet: tables_1.default[obj.week][cals] });
             }
