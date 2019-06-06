@@ -18,6 +18,8 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
         else {
           quantity = Math.round(quantity / 5) * 5;
         }
+        console.log("QUANTITY")
+        console.log(quantity)
         ingredients.push({ingredient: {name: recipe.macro[key][i].name, ration: recipe.macro[key][i].ration, macroType: recipe.macro[key][i].macroType}, quantity: quantity})
         i++;
       }
