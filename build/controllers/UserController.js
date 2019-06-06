@@ -73,6 +73,8 @@ class UserController {
             console.log(user);
             user.menus = {};
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                console.log("RECIPES");
+                console.log(recipes);
                 user.menus = recipes;
                 user.markModified('menus');
                 user.markModified('diet');

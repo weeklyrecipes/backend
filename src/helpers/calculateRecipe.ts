@@ -18,7 +18,7 @@ function calculateRecipe(diet: any, recipe: any, type: any) {
         else {
           quantity = Math.round(quantity / 5) * 5;
         }
-        ingredients.push({ingredient: recipe.macro[key][i], quantity: quantity})
+        ingredients.push({ingredient: {name: recipe.macro[key][i].name, ration: recipe.macro[key][i].ration, macroType: recipe.macro[key][i].macroType }, quantity: quantity})
         i++;
       }
       i = 0;
@@ -130,6 +130,7 @@ function findBreakfast(user: any, date: any, week: any) : Promise<any> {
       RecipeModel.findOne({type: 'breakfast' + recipeWeek}).skip(random).exec((err, recipe) => {
         if (recipe) {
           // && noDup(user.menus, recipe)
+          console.log(user);
           let final = calculateRecipe(diets[week][String(Math.floor(user.calories/100)*100)], recipe, "breakfast");
           user.menus[date]["breakfast"] = final;
           user.save(() => {
