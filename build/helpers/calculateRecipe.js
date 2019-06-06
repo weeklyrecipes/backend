@@ -74,7 +74,8 @@ function findWeek(user, date) {
 }
 function calculateRecipes(user) {
     let cals = Math.floor(user.calories / 100) * 100;
-    console.log("Calculted CALS");
+    console.log("RAN ONCE");
+    console.log("CALS");
     console.log(cals);
     return new Promise((resolve) => {
         let dates = getDates(new Date(), 10);
@@ -87,6 +88,7 @@ function calculateRecipes(user) {
             for (let key in user.menus[dates[i].formatted]) {
                 let obj = findWeek(user, dates[i].raw);
                 if (!tables_1.default[obj.week] || !tables_1.default[obj.week][String(cals)]) {
+                    console.log("NOT WORKING");
                     console.log(obj.week);
                     console.log(cals);
                 }
@@ -134,9 +136,7 @@ function findBreakfast(user, date, week, diet) {
                     // && noDup(user.menus, recipe)
                     let final = calculateRecipe(diet, recipe, "breakfast");
                     user.menus[date]["breakfast"] = final;
-                    user.save(() => {
-                        resolve(final);
-                    });
+                    user.markModified('menus');
                 }
                 else {
                     resolve(findBreakfast(user, date, week, diet));
@@ -157,9 +157,7 @@ function findSnack1(user, date, week, diet) {
                     // && noDup(user.menus, recipe)
                     let final = calculateRecipe(diet, recipe, "snack1");
                     user.menus[date]["snack1"] = final;
-                    user.save(() => {
-                        resolve(final);
-                    });
+                    user.markModified('menus');
                 }
                 else {
                     resolve(findSnack1(user, date, week, diet));
@@ -176,9 +174,7 @@ function findLunch(user, date, week, diet) {
                 if (recipe) {
                     let final = calculateRecipe(diet, recipe, "lunch");
                     user.menus[date]["lunch"] = final;
-                    user.save(() => {
-                        resolve(final);
-                    });
+                    user.markModified('menus');
                 }
                 else {
                     resolve(findLunch(user, date, week, diet));
@@ -199,9 +195,7 @@ function findSnack2(user, date, week, diet) {
                     // && noDup(user.menus, recipe)
                     let final = calculateRecipe(diet, recipe, "snack2");
                     user.menus[date]["snack2"] = final;
-                    user.save(() => {
-                        resolve(final);
-                    });
+                    user.markModified('menus');
                 }
                 else {
                     resolve(findSnack2(user, date, week, diet));
@@ -219,9 +213,7 @@ function findSnack3(user, date, week, diet) {
                     // && noDup(user.menus, recipe)
                     let final = calculateRecipe(diet, recipe, "snack3");
                     user.menus[date]["snack3"] = final;
-                    user.save(() => {
-                        resolve(final);
-                    });
+                    user.markModified('menus');
                 }
                 else {
                     resolve(findSnack3(user, date, week, diet));
@@ -238,9 +230,7 @@ function findDinner(user, date, week, diet) {
                 if (recipe) {
                     let final = calculateRecipe(diet, recipe, "dinner");
                     user.menus[date]["dinner"] = final;
-                    user.save(() => {
-                        resolve(final);
-                    });
+                    user.markModified('menus');
                 }
                 else {
                     resolve(findDinner(user, date, week, diet));
