@@ -264,6 +264,9 @@ function findDinner(user: any, date: any, week: any) : Promise<any> {
       }
       RecipeModel.findOne({type: 'dinner'}).skip(random).exec((err, recipe) => {
         if (recipe) {
+          console.log("week")
+          console.log(week)
+          console.log(String(Math.floor(user.calories/100)*100))
           let final = calculateRecipe(diets[week][String(Math.floor(user.calories/100)*100)], recipe, "dinner");
           user.menus[date]["dinner"] = final;
           user.save(() => {

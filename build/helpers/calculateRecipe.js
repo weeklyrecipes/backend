@@ -254,6 +254,9 @@ function findDinner(user, date, week) {
             }
             RecipeModel_1.default.findOne({ type: 'dinner' }).skip(random).exec((err, recipe) => {
                 if (recipe) {
+                    console.log("week");
+                    console.log(week);
+                    console.log(String(Math.floor(user.calories / 100) * 100));
                     let final = calculateRecipe(tables_1.default[week][String(Math.floor(user.calories / 100) * 100)], recipe, "dinner");
                     user.menus[date]["dinner"] = final;
                     user.save(() => {
