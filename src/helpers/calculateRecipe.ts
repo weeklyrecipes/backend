@@ -80,7 +80,9 @@ function findWeek(user: any, date: any) {
 }
 
 export function calculateRecipes(user: any) {
-  let cals = String(Math.floor(user.calories/100)*100);
+  let cals = Math.floor(user.calories/100)*100;
+  console.log("Calculted CALS")
+  console.log(cals)
   return new Promise((resolve) => {
     let dates = getDates(new Date(), 10);
     let i = 0;
@@ -91,11 +93,11 @@ export function calculateRecipes(user: any) {
       }
       for (let key in user.menus[dates[i].formatted]) {
         let obj = findWeek(user, dates[i].raw);
-        if (!diets[obj.week] || !diets[obj.week][cals]) {
+        if (!diets[obj.week] || !diets[obj.week][String(cals)]) {
           console.log(obj.week)
           console.log(cals)
         }
-        else if (!user.menus[dates[i].formatted][key]) toFind[key].push({date: dates[i].formatted, week:  obj.week, diet: diets[obj.week][cals][key]});
+        else if (!user.menus[dates[i].formatted][key]) toFind[key].push({date: dates[i].formatted, week:  obj.week, diet: diets[obj.week][String(cals)][key]});
       }
       i++;
     }
