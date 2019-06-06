@@ -6,12 +6,12 @@ let critical = false;
 function calculateRecipe(diet: any, recipe: any, type: any) {
   let ingredients = [];
   let i = 0;
-  if (diet && diet[type]) {
+  if (diet) {
     for (let key in recipe.macro) {
       let macroLength = recipe.macro[key].length;
       let quantityDifference = 0;
       while (recipe.macro[key][i]) {
-        let quantity = Math.floor(((diet[type][key]/recipe.macro[key][i].ration) / macroLength)*10);
+        let quantity = Math.floor(((diet[key]/recipe.macro[key][i].ration) / macroLength)*10);
         if (macroLength > 1 && quantity > 25 && quantity%25 > 10) {
           quantity = (i%2 == 0 ? Math.floor(quantity / 25) * 25 : Math.ceil(quantity / 25) * 25);
         }
@@ -95,7 +95,7 @@ export function calculateRecipes(user: any) {
           console.log(obj.week)
           console.log(cals)
         }
-        if (!user.menus[dates[i].formatted][key]) toFind[key].push({date: dates[i].formatted, week:  obj.week, diet: diets[obj.week][cals]});
+        else if (!user.menus[dates[i].formatted][key]) toFind[key].push({date: dates[i].formatted, week:  obj.week, diet: diets[obj.week][cals][key]});
       }
       i++;
     }

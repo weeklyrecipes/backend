@@ -48,7 +48,7 @@ class UserController {
      * @param  {express.NextFunction} next
      */
     createUser(req, res, next) {
-        if (typeof req.body.weight == 'number')
+        if (typeof req.body.weight == 'number' || typeof req.body.weight == 'string')
             req.body.weight = [req.body.weight];
         let exp_date = new Date();
         exp_date.setDate(exp_date.getDate() + 2);
@@ -71,6 +71,7 @@ class UserController {
             console.log(calories);
             user.createdAt = new Date();
             user.calories = (calories > 1200 ? calories : 1200);
+            console.log(user);
             user.menus = {};
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                 user.menus = recipes;
