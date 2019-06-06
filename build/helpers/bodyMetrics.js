@@ -7,8 +7,6 @@ function calculateAge(birthday) {
 }
 function caloriesNeeded(data) {
     let cal = calculateTMB(data) * calculateAF(data);
-    if (cal < 1200)
-        cal = 1200;
     if (data.objective == 3 && cal < 3000)
         cal = 3000;
     return cal;
@@ -68,18 +66,20 @@ function gainWeight(data) {
     return cals < 3000 ? 3300 : cals;
 }
 function finalCalculus(data) {
+    let calories = 1200;
     if (data.objective == 0) {
-        return Math.floor(loseWeight(data));
+        calories = Math.floor(loseWeight(data));
     }
     else if (data.objective == 1) {
-        return Math.floor(remise(data));
+        calories = Math.floor(remise(data));
     }
     else if (data.objective == 2) {
-        return Math.floor(seche(data));
+        calories = Math.floor(seche(data));
     }
     else if (data.objective == 3) {
-        return Math.floor(gainWeight(data));
+        calories = Math.floor(gainWeight(data));
     }
+    return calories < 1200 ? 1200 : calories;
 }
 exports.finalCalculus = finalCalculus;
 //# sourceMappingURL=bodyMetrics.js.map

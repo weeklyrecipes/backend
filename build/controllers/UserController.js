@@ -62,18 +62,15 @@ class UserController {
             weight: req.body.weight,
             height: req.body.height,
             birthday: req.body.birthday,
+            calories: bodyMetrics_1.finalCalculus(req.body),
             _id: req.body.fireId,
             pass: { type: 0, exp_date: exp_date }
         })
             .then((user) => {
-            let calories = bodyMetrics_1.finalCalculus(user);
-            console.log("THEN CALORIES ARE");
-            console.log(calories);
             user.createdAt = new Date();
-            user.calories = (calories > 1200 ? calories : 1200);
-            console.log(user);
             user.menus = {};
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                console.log("HAS CALCULATED RECIPES");
                 if (!recipes) {
                     console.log("NO RECIPES");
                     res.status(401).json({});
