@@ -6,6 +6,8 @@ let critical = false;
 function calculateRecipe(diet, recipe, type) {
     let ingredients = [];
     let i = 0;
+    if (!diet || !diet[type])
+        console.log("DIET DIDNT GO THROUGH");
     if (diet && diet[type]) {
         for (let key in recipe.macro) {
             let macroLength = recipe.macro[key].length;
