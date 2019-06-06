@@ -74,6 +74,10 @@ class UserController {
             console.log(user);
             user.menus = {};
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                if (!recipes) {
+                    console.log("NO RECIPES");
+                    res.status(401).json({});
+                }
                 user.menus = recipes;
                 user.markModified('menus');
                 user.markModified('diet');
@@ -142,6 +146,10 @@ class UserController {
             let calories = bodyMetrics_1.finalCalculus(user);
             user.calories = (calories > 1200 ? calories : 1200);
             calculateRecipe_1.calculateRecipes(user).then((recipes) => {
+                if (!recipes) {
+                    console.log("NO RECIPES");
+                    res.status(401).json({});
+                }
                 user.menus = recipes;
                 user.markModified('menus');
                 user.markModified('diet');
