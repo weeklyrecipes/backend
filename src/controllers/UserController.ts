@@ -70,6 +70,8 @@ class UserController {
                 user.createdAt = new Date();
                 user.calories = finalCalculus(user);
                 user.save(() => {
+                  console.log("USER")
+                  console.log(user)
                   calculateRecipes(user).then((recipes) => {
                     console.log("HAS CALCULA")
                     if (!recipes) {

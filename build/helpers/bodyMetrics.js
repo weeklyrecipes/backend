@@ -7,14 +7,10 @@ function calculateAge(birthday) {
 }
 function caloriesNeeded(data) {
     let cal = calculateTMB(data) * calculateAF(data);
-    if (data.objective == 3 && cal < 3000)
-        cal = 3000;
     return cal;
 }
 function calculateTMB(data) {
     let weight = data.weight[data.weight.length - 1];
-    console.log("WEIGHT");
-    console.log(weight);
     if (data.gender == "M") {
         return 66.473 + (13.7516 * weight) + (5.0033 * data.height) - (6.755 * calculateAge(data.birthday));
     }
