@@ -130,7 +130,7 @@ function findBreakfast(user: any, date: any, week: any) : Promise<any> {
       RecipeModel.findOne({type: 'breakfast' + recipeWeek}).skip(random).exec((err, recipe) => {
         if (recipe) {
           // && noDup(user.menus, recipe)
-          console.log(user);
+          console.log(String(Math.floor(user.calories/100)*100))
           let final = calculateRecipe(diets[week][String(Math.floor(user.calories/100)*100)], recipe, "breakfast");
           user.menus[date]["breakfast"] = final;
           user.save(() => {
