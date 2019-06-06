@@ -6,8 +6,10 @@ let critical = false;
 function calculateRecipe(diet, recipe, type) {
     let ingredients = [];
     let i = 0;
-    if (!diet || !diet[type])
+    if (!diet || !diet[type]) {
         console.log("DIET DIDNT GO THROUGH");
+        console.log(diet);
+    }
     if (diet && diet[type]) {
         for (let key in recipe.macro) {
             let macroLength = recipe.macro[key].length;
@@ -75,6 +77,7 @@ function findWeek(user, date) {
     return { week: week };
 }
 function calculateRecipes(user) {
+    let cals = String(Math.floor(user.calories / 100) * 100);
     return new Promise((resolve) => {
         let dates = getDates(new Date(), 10);
         let i = 0;
@@ -86,7 +89,7 @@ function calculateRecipes(user) {
             for (let key in user.menus[dates[i].formatted]) {
                 let obj = findWeek(user, dates[i].raw);
                 if (!user.menus[dates[i].formatted][key])
-                    toFind[key].push({ date: dates[i].formatted, week: obj.week, diet: tables_1.default[obj.week][String(Math.floor(user.calories / 100) * 100)] });
+                    toFind[key].push({ date: dates[i].formatted, week: obj.week, diet: tables_1.default[obj.week][cals] });
             }
             i++;
         }
@@ -127,7 +130,6 @@ function findBreakfast(user, date, week, diet) {
             RecipeModel_1.default.findOne({ type: 'breakfast' + recipeWeek }).skip(random).exec((err, recipe) => {
                 if (recipe) {
                     // && noDup(user.menus, recipe)
-                    console.log(String(Math.floor(user.calories / 100) * 100));
                     let final = calculateRecipe(diet, recipe, "breakfast");
                     user.menus[date]["breakfast"] = final;
                     user.save(() => {
