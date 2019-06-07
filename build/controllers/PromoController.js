@@ -25,6 +25,11 @@ class PromoController {
         }
         res.status(200).json(codes);
     }
+    getCodes(req, res, next) {
+        PromoModel_1.default.find({}).then((promos) => {
+            res.status(200).json(promos);
+        });
+    }
 }
 exports.default = new PromoController();
 //# sourceMappingURL=PromoController.js.map

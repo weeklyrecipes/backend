@@ -2,6 +2,7 @@ import * as express from 'express';
 import UserRouter from './UserRouter';
 import RecipeRouter from './RecipeRouter';
 import IngredientRouter from './IngredientRouter';
+import PromoRouter from './PromoRouter';
 import { IServer } from '../interfaces/ServerInterface';
 
 export default class Routes {
@@ -16,5 +17,6 @@ export default class Routes {
         server.app.use('/v1/users', new UserRouter().router);
         server.app.use('/v1/recipes', new RecipeRouter().router);
         server.app.use('/v1/ingredients', new IngredientRouter().router);
+        server.app.use('/v1/promos', new PromoRouter().router);
     }
 }

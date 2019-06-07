@@ -28,8 +28,15 @@ class PromoController {
         res.status(200).json(codes);
     }
 
+    public getCodes(req: express.Request, res: express.Response, next: express.NextFunction): void {
+      PromoModel.find({}).then((promos) => {
+        res.status(200).json(promos);
+      })
+    }
+
     // add promo: if code available,  check type, add expiration date to 3/6/12 months from present/change to valid
 
 }
+
 
 export default new PromoController();
