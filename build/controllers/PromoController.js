@@ -17,7 +17,7 @@ class PromoController {
         });
         let i = 0;
         while (codes[i]) {
-            new PromoModel_1.default({
+            PromoModel_1.default.create({
                 code: codes[i],
                 type: type
             });
