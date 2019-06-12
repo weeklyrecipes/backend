@@ -84,6 +84,8 @@ class RecipeController {
         RecipeModel_1.default.findOne({ _id: req.params.id })
             .then((recipe) => {
             recipe.type = req.body.type;
+            if (req.body.ingredients)
+                recipe.ingredients = req.body.ingredients;
             recipe.save();
             res.status(200).json({ recipe });
         })
