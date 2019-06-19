@@ -39,10 +39,10 @@ function calculateAF(data) {
     }
 }
 function loseWeight(data) {
-    return Math.round(caloriesNeeded(data) - 500);
+    return Math.round(caloriesNeeded(data) - 600);
 }
 function remise(data) {
-    return caloriesNeeded(data);
+    return caloriesNeeded(data) > 2900 ? 2900 : caloriesNeeded(data);
 }
 function seche(data) {
     let cals = caloriesNeeded(data);
