@@ -26,6 +26,7 @@ class UserController {
                     user.menus = recipes;
                     user.markModified('menus');
                     user.markModified('diet');
+                    user.markModified('createdAt');
                     user.save((err, saved) => {
                         res.status(200).json(saved);
                     });
