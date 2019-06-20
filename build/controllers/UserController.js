@@ -20,7 +20,7 @@ class UserController {
                     user.weight = [user.weight];
                 // let calories = finalCalculus(user);
                 // user.calories =  (calories > 1200 ? calories : 1200);
-                if (user.email == "Itunes@weeklyrecipes.app")
+                if (user.email == "itunes@weeklyrecipes.app" || user.email == "Itunes@weeklyrecipes.app")
                     user.createdAt = new Date();
                 calculateRecipe_1.calculateRecipes(user).then((recipes) => {
                     user.menus = recipes;
