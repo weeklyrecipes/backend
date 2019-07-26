@@ -79,16 +79,16 @@ function calculateRecipes(user) {
         if (!cals) {
             return resolve(false);
         }
-        let dates = getDates(new Date(), 10);
+        let dates = getDates(new Date(), 14);
         let i = 0;
         let toFind = { breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [], snack3: [] };
         while (dates[i]) {
             if (!user.menus[dates[i].formatted]) {
-                user.menus[dates[i].formatted] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false };
+                user.menus[dates[i].formatted] = { breakfast: false, snack1: false, lunch: false, snack2: false, dinner: false, snack3: false };
             }
             for (let key in user.menus[dates[i].formatted]) {
                 let obj = findWeek(user, dates[i].raw);
-                if (!tables_1.default[obj.week] || !tables_1.default[obj.week][String(cals)]) {
+                if (!tables_1.default[obj.week] || !tables_1.default[obj.week][String(cals)] || !tables_1.default[obj.week][String(cals)][key]) {
                     console.log("NOT WORKING");
                     console.log(obj.week);
                     console.log(cals);
@@ -114,11 +114,11 @@ function calculateRecipes(user) {
         for (let dinner of toFind.dinner) {
             promises.push(findDinner(user, dinner.date, dinner.week, dinner.diet));
         }
-        // if (user.objective == 3 && user.calories > 3900) {
-        //   for (let snack3 of toFind.snack3) {
-        //     promises.push(findSnack3(user, snack3.date, snack3.diet));
-        //   }
-        // }
+        if (user.objective == 3 || user.objective == 2 && user.diet.snack3) {
+            for (let snack3 of toFind.snack3) {
+                promises.push(findSnack3(user, snack3.date, snack3.week, snack3.diet));
+            }
+        }
         Promise.all(promises).then(() => {
             resolve(user.menus);
         });

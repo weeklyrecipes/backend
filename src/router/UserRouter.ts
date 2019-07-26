@@ -16,5 +16,6 @@ export default class UserRouter {
         this.router.post('/', UserController.createUser);
         this.router.put('/:id', UserController.editUser);
         this.router.put('/:id/code', UserController.enterCode);
+        this.router.put('/:id/activate', UserController.activate);
     }
 }

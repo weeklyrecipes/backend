@@ -21,12 +21,12 @@ class UserController {
                   if (typeof user.weight == 'number') user.weight = [user.weight];
                   // let calories = finalCalculus(user);
                   // user.calories =  (calories > 1200 ? calories : 1200);
-                  if (user.email == "itunes@weeklyrecipes.app" || user.email=="Itunes@weeklyrecipes.app") user.createdAt = new Date();
+                  if (user.email.toLowerCase() == 'itunes@weeklyrecipes.app') user.pass.exp_date = new Date("10/10/2100");
                   calculateRecipes(user).then((recipes) => {
                     user.menus = recipes;
                     user.markModified('menus');
                     user.markModified('diet');
-                    user.markModified('createdAt');
+                    user.markModified('pass');
                     user.save((err, saved) => {
                       res.status(200).json(saved);
                     });
@@ -115,6 +115,7 @@ class UserController {
                   console.log(req.body.menus);
                 }
                 else if (user.objective != req.body.objective || user.activity != req.body.activity || user.weight != req.body.weight) {
+                  if (user.weight != req.body.weight)
                   if (new Date().getDay() == 5 || new Date().getDay() == 6 || new Date().getDay() == 0) {
                     let date = new Date();
                     let d = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
@@ -191,6 +192,36 @@ class UserController {
         else {
           res.status(401).json({});
         }
+      })
+      .catch((error: Error) => {
+          res.status(500).json({
+              error: error.message,
+              errorStack: error.stack
+          });
+          next(error);
+      });
+    }
+
+    public activate(req: express.Request, res: express.Response, next: express.NextFunction): void {
+      PromoModel
+      .create({code: "INAPP", type: req.body.type})
+      .then((code: any) => {
+        // if code available,  check type, add expiration date to 3/6/12 months from present/change to valid
+        let currentDate = new Date();
+        let exp_date = new Date();
+        exp_date.setMonth(exp_date.getMonth() + code.type);
+        code.status == "used";
+        code.exp_date = exp_date;
+        UserModel
+        .findById(req.params.id)
+        .then((user) => {
+          user.pass = code;
+          user.markModified('pass');
+          code.userId = user._id;
+          user.save();
+          code.save();
+          res.status(200).json(user);
+        })
       })
       .catch((error: Error) => {
           res.status(500).json({
