@@ -90,6 +90,7 @@ function calculateRecipes(user) {
                 let obj = findWeek(user, dates[i].raw);
                 if (!tables_1.default[obj.week] || !tables_1.default[obj.week][String(cals)] || !tables_1.default[obj.week][String(cals)][key]) {
                     console.log("NOT WORKING");
+                    console.log(key);
                     console.log(obj.week);
                     console.log(cals);
                 }

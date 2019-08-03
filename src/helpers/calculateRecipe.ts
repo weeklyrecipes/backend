@@ -97,6 +97,7 @@ export function calculateRecipes(user: any) {
         let obj = findWeek(user, dates[i].raw);
         if (!diets[obj.week] || !diets[obj.week][String(cals)] || !diets[obj.week][String(cals)][key]) {
           console.log("NOT WORKING")
+          console.log(key)
           console.log(obj.week)
           console.log(cals)
         }
