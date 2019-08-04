@@ -1,6 +1,6 @@
 import RecipeModel from '../models/RecipeModel';
-// import diets from './tables';
-let diets = require('./diets.json')
+import diets from './tables';
+// let diets = require('./diets.json')
 
 let critical = false;
 
