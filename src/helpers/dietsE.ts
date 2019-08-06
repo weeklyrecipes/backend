@@ -1,5 +1,5 @@
 let dietsE = {
-'﻿3000':
+'2100':
  { breakfast:
     { veg: 0,
       carb: 5,
@@ -42,6 +42,49 @@ let dietsE = {
       protein: 0,
       lipid: 0,
       fruit: 0} },
+'3000':
+{ breakfast:
+  { veg: 0,
+    carb: 5,
+    lact: 1,
+    protein: 3,
+    lipid: 0.5,
+    fruit: 6},
+ snack1:
+  { veg: 0,
+    carb: 5,
+    lact: 1,
+    protein: 2,
+    lipid: 0.5,
+    fruit: 3},
+ lunch:
+  { veg: 0.8,
+    carb: 6,
+    lact: 0,
+    protein: 3,
+    lipid: 1,
+    fruit: 0 },
+ snack2:
+  { veg: 0,
+    carb: 5,
+    lact: 0.5,
+    protein: 2,
+    lipid: 0,
+    fruit: 2},
+ dinner:
+  { veg: 0.8,
+    carb: 6,
+    lact: 1,
+    protein: 3,
+    lipid: 0.5,
+    fruit: 0 },
+ snack3:
+  { veg: 0,
+    carb: 0,
+    lact: 0,
+    protein: 0,
+    lipid: 0,
+    fruit: 0} },
 '3300':
 { breakfast:
   { veg: 0,
