@@ -3169,4 +3169,4 @@ let diets = {
 }
 
 
-export default diets;
+export = diets;
