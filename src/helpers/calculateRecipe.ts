@@ -1,6 +1,7 @@
 import RecipeModel from '../models/RecipeModel';
 
 import diets = require("./diets");
+import dietsE = require("./dietsE");
 
 
 // let diets = require('./diets.json')
@@ -86,6 +87,7 @@ function findWeek(user: any, date: any) {
 export function calculateRecipes(user: any) {
   return new Promise((resolve) => {
     let cals = Math.floor(user.calories/100)*100;
+    let diet;
     user.diet = diets[findWeek(user, new Date()).week][String(cals)];
     if (!cals) {
       return resolve(false);
@@ -99,13 +101,15 @@ export function calculateRecipes(user: any) {
       }
       for (let key in user.menus[dates[i].formatted]) {
         let obj = findWeek(user, dates[i].raw);
-        if (!diets[obj.week] || !diets[obj.week][String(cals)] || !diets[obj.week][String(cals)][key]) {
+        if (obj.week == 'E') diet = dietsE;
+        else diet = diets[obj.week]
+        if (!diet || !diet[String(cals)] || !diet[String(cals)][key]) {
           console.log("NOT WORKING")
           console.log(key)
           console.log(obj.week)
           console.log(cals)
         }
-        else if (!user.menus[dates[i].formatted][key]) toFind[key].push({date: dates[i].formatted, week:  obj.week, diet: diets[obj.week][String(cals)][key]});
+        else if (!user.menus[dates[i].formatted][key]) toFind[key].push({date: dates[i].formatted, week:  obj.week, diet: diet[String(cals)][key]});
       }
       i++;
     }
