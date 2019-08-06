@@ -1,6 +1,49 @@
 let diets = {
   'A':
   {
+    '﻿1100':
+    { breakfast:
+      { veg: 0,
+        carb: 1,
+        lact: 0.5,
+        protein: 1,
+        lipid: 0.5,
+        fruit: 1},
+     snack1:
+      { veg: 0,
+        carb: 1,
+        lact: 0,
+        protein: 1,
+        lipid: 0.5,
+        fruit: 0.5 },
+     lunch:
+      { veg: 0.8,
+        carb: 2,
+        lact: 0,
+        protein: 2,
+        lipid: 0.5,
+        fruit: 0 },
+     snack2:
+      { veg: 0,
+        carb: 1,
+        lact: 0.5,
+        protein: 1,
+        lipid: 0,
+        fruit: 0.5 },
+     dinner:
+      { veg: 0.8,
+        carb: 1,
+        lact: 0.5,
+        protein: 2,
+        lipid: 0.5,
+        fruit: 0 },
+     snack3:
+      { veg: 0,
+        carb: 0,
+        lact: 0,
+        protein: 0,
+        lipid: 0,
+        fruit: 0} },
  '1200':
    { breakfast:
       { veg: 0,
@@ -464,6 +507,49 @@ let diets = {
       },
   },
   'B': {
+    '﻿1100':
+    { breakfast:
+      { veg: 0,
+        carb: 1,
+        lact: 0.5,
+        protein: 1,
+        lipid: 0.5,
+        fruit: 1},
+     snack1:
+      { veg: 0,
+        carb: 1,
+        lact: 0,
+        protein: 1,
+        lipid: 0.5,
+        fruit: 0.5 },
+     lunch:
+      { veg: 0.8,
+        carb: 2,
+        lact: 0,
+        protein: 2,
+        lipid: 0.5,
+        fruit: 0 },
+     snack2:
+      { veg: 0,
+        carb: 1,
+        lact: 0.5,
+        protein: 1,
+        lipid: 0,
+        fruit: 0.5 },
+     dinner:
+      { veg: 0.8,
+        carb: 1,
+        lact: 0.5,
+        protein: 2,
+        lipid: 0.5,
+        fruit: 0 },
+     snack3:
+      { veg: 0,
+        carb: 0,
+        lact: 0,
+        protein: 0,
+        lipid: 0,
+        fruit: 0} },
   '﻿1200':
    { breakfast:
       { veg: 0, carb: 1, lact: 0.5, protein: 0, lipid: 0, fruit: 1},
