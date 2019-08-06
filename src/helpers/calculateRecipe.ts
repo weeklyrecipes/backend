@@ -103,6 +103,7 @@ export function calculateRecipes(user: any) {
         let obj = findWeek(user, dates[i].raw);
         if (obj.week == 'E') diet = dietsE;
         else diet = diets[obj.week]
+        console.log(diet);
         if (!diet || !diet[String(cals)] || !diet[String(cals)][key]) {
           console.log("NOT WORKING")
           console.log(key)
@@ -129,7 +130,7 @@ export function calculateRecipes(user: any) {
     for (let dinner of toFind.dinner) {
       promises.push(findDinner(user, dinner.date, dinner.week, dinner.diet));
     }
-    if (user.objective == 3 || user.objective == 2 && snack3.diet) {
+    if (user.objective == 3 || user.objective == 2) {
       for (let snack3 of toFind.snack3) {
         promises.push(findSnack3(user, snack3.date, snack3.week, snack3.diet));
       }

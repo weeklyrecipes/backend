@@ -78,7 +78,7 @@ function calculateRecipes(user) {
     return new Promise((resolve) => {
         let cals = Math.floor(user.calories / 100) * 100;
         let diet;
-        user.diet = diets[findWeek(user, new Date()).week][String(cals)];
+        // user.diet = diets[findWeek(user, new Date()).week][String(cals)];
         if (!cals) {
             return resolve(false);
         }
@@ -95,6 +95,7 @@ function calculateRecipes(user) {
                     diet = dietsE;
                 else
                     diet = diets[obj.week];
+                console.log(diet);
                 if (!diet || !diet[String(cals)] || !diet[String(cals)][key]) {
                     console.log("NOT WORKING");
                     console.log(key);
@@ -122,7 +123,7 @@ function calculateRecipes(user) {
         for (let dinner of toFind.dinner) {
             promises.push(findDinner(user, dinner.date, dinner.week, dinner.diet));
         }
-        if (user.objective == 3 || user.objective == 2 && user.diet.snack3) {
+        if (user.objective == 3 || user.objective == 2) {
             for (let snack3 of toFind.snack3) {
                 promises.push(findSnack3(user, snack3.date, snack3.week, snack3.diet));
             }
