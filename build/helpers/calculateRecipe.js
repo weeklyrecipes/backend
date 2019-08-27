@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const RecipeModel_1 = require("../models/RecipeModel");
-const diets = require("./diets");
 const dietsE = require("./dietsE");
+const diets = require("./diets");
 // let diets = require('./diets.json')
 let critical = false;
 function calculateRecipe(diet, recipe, type) {
@@ -82,7 +82,7 @@ function calculateRecipes(user) {
         if (!cals) {
             return resolve(false);
         }
-        let dates = getDates(new Date(), 14);
+        let dates = getDates(new Date(), 20);
         let i = 0;
         let toFind = { breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [], snack3: [] };
         while (dates[i]) {
@@ -95,10 +95,9 @@ function calculateRecipes(user) {
                     diet = dietsE;
                 else
                     diet = diets[obj.week];
-                console.log(diet);
+                // console.log(diet);
                 if (!diet || !diet[String(cals)] || !diet[String(cals)][key]) {
                     console.log("NOT WORKING");
-                    console.log(key);
                     console.log(obj.week);
                     console.log(cals);
                 }

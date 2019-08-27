@@ -1,7 +1,7 @@
 import RecipeModel from '../models/RecipeModel';
 
-import diets = require("./diets");
 import dietsE = require("./dietsE");
+import diets = require("./diets");
 
 
 // let diets = require('./diets.json')
@@ -92,7 +92,7 @@ export function calculateRecipes(user: any) {
     if (!cals) {
       return resolve(false);
     }
-    let dates = getDates(new Date(), 14);
+    let dates = getDates(new Date(), 20);
     let i = 0;
     let toFind = {breakfast: [], snack1: [], lunch: [], snack2: [], dinner: [], snack3: []};
     while (dates[i]) {
