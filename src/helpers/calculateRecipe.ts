@@ -1,5 +1,6 @@
 import RecipeModel from '../models/RecipeModel';
 
+import dietsA = require("./dietsA");
 import dietsE = require("./dietsE");
 import diets = require("./diets");
 
@@ -101,7 +102,8 @@ export function calculateRecipes(user: any) {
       }
       for (let key in user.menus[dates[i].formatted]) {
         let obj = findWeek(user, dates[i].raw);
-        if (obj.week == 'E') diet = dietsE;
+        if (obj.week == 'A') diet = dietsA;
+        else if (obj.week == 'E') diet = dietsE;
         else diet = diets[obj.week]
         // console.log(diet);
         if (!diet || !diet[String(cals)] || !diet[String(cals)][key]) {

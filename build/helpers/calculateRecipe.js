@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const RecipeModel_1 = require("../models/RecipeModel");
+const dietsA = require("./dietsA");
 const dietsE = require("./dietsE");
 const diets = require("./diets");
 // let diets = require('./diets.json')
@@ -91,7 +92,9 @@ function calculateRecipes(user) {
             }
             for (let key in user.menus[dates[i].formatted]) {
                 let obj = findWeek(user, dates[i].raw);
-                if (obj.week == 'E')
+                if (obj.week == 'A')
+                    diet = dietsA;
+                else if (obj.week == 'E')
                     diet = dietsE;
                 else
                     diet = diets[obj.week];
