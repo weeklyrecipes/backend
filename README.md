@@ -1,4 +1,4 @@
-# Node.js Express API with TypeScript
+# Weekly recipes Node.js Express API with TypeScript
 
 
 ![CircleCI branch](https://img.shields.io/circleci/project/github/RedSparr0w/node-csgo-parser/master.svg?style=flat-square)
@@ -8,27 +8,6 @@
 
 > Node.js Express API with TypeScript. Supports MongoDB
 
-## Description
-This generator will help you to build your own Node.js Express Mongodb API using TypeScript.
-
-### Project Introduction
-- suppot ES6/ES7 features
-- using tslint followed [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-
-## Installation
-
-First, install [Yeoman](http://yeoman.io) and generator-node-express-typescript-api using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
-
-```bash
-npm install -g yo
-npm install -g generator-node-express-typescript-api
-```
-
-Then generate your new project:
-
-```bash
-yo node-express-typescript-api
-```
 ## App skeleton
 ```
 root/
@@ -73,7 +52,7 @@ npm install
 
 Start the application in dev env:
 ```
-nodemon
+nodemon OR tsc && node ./build/index.js
 ```
 Start the application in production env:
 
